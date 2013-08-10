@@ -23,6 +23,8 @@ exports.Utility = class Utility
 
   _parser = null
 
+  Utility.lib = require.resolve('goatee-script').replace /\.js$/, '/'
+
   ##
   # @param  {String}     code
   # @return {Expression}

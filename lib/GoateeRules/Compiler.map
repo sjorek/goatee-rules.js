@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "Compiler.js",
+  "sourceRoot": "../../src",
+  "sources": [
+    "GoateeRules/Compiler.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;;;;;;;;;;;;;;;CAAA;CAAA;CAAA;CAAA,KAAA,oDAAA;KAAA,wBAAA;;CAAA,CAiBE,CAjBF,IAmBkB,IAAA;;CAnBlB,CAoBA,CAAkB,IAAA,CApBlB,EAoBkB,IAAlB;;CApBA,CAsBA,CAA4B,CAtB5B,GAsBA;;CAtBA,CA2BA,CAAyB,IAAlB,CAAP;CAEE,GAAA,IAAA;;CAAA;;AAAA,CAAA,QAAA,UAAA;;6BAAA;CAAmC,GAAA,CAAO;CACxC,EAAc,KAAd;QADF;CAAA,IAAA;;CAAA,CAOwB,CAAP,CAAjB,CAAA,GAAQ,CAAU;;GAAc,KAAR;QACtB;CAAe,CAAY,EAA3B,CAAA,QAAA,CAAc;CARhB,IAOiB;;CAPjB;;CA7BF;CAAA"
+}

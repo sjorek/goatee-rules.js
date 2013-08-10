@@ -14,22 +14,25 @@ implied. See the License for the specific language governing
 permissions and limitations under the License.
 ###
 
-ScriptCompiler  = require('GoateeScript/Compiler').Compiler
-
 {Utility:{
-  parse
+  parse,
+  lib
 }}              = require './Utility'
+ScriptCompiler  = require(lib + 'Compiler').Compiler
 
 exports = module?.exports ? this
 
 ##
 # @class
 # @namespace GoateeScript
-exports.Compiler = class Compiler extends ScriptCompiler
+exports.Compiler = class Compiler
+
+  for own k,v of ScriptCompiler when k isnt 'parse'
+    Compiler[k] = v
 
   ##
   # @param  {Array|String|Object} code, a String, opcode-Array or Object with
   #                               toString method
   # @return Expression
-  parse: (code, _parse = parse) ->
-    super(code, _parse)
+  Compiler.parse = (code, _impl = parse) ->
+    ScriptCompiler.parse(code, _impl)

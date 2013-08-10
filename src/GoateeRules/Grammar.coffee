@@ -13,19 +13,34 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
 implied. See the License for the specific language governing
 permissions and limitations under the License.
 ###
-
-yy            = require('GoateeScript/Scope').Scope
-ScriptGrammar = require('GoateeScript/Grammar').Grammar
+{Utility:{
+  lib
+}}            = require './Utility'
+yy            = require(lib + 'Scope').Scope
+ScriptGrammar = require(lib + 'Grammar').Grammar
 
 exports = module?.exports ? this
 
 exports.Grammar = class Grammar extends ScriptGrammar
 
+  # Actually this is not needed, but it looks nicer ;-)
+  $1 = $2 = $3 = $4 = $5 = $6 = $7 = $8 = null
+
   {
     r,o # ,aop,bop
   } = ScriptGrammar
 
-  comment: 'Goatee Rules Parser'
+  create: () ->
+      """
+      /* Goatee Rules Parser */
+      (function() {
+
+      #{Grammar.createParser(this).generate()}
+
+      parser.yy = require(require('./Utility').Utility.lib + 'Scope').Scope;
+
+      }).call(this);
+      """
 
   ##
   # The syntax description
@@ -63,7 +78,7 @@ exports.Grammar = class Grammar extends ScriptGrammar
           ]
       ]
 
-    for k,v in ScriptGrammar::bnf when k isnt 'Script' and k isnt 'Statements'
+    for own k,v of ScriptGrammar::bnf when k isnt 'Script' and k isnt 'Statements'
       grammar[k] = v
 
     grammar
