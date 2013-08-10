@@ -1,0 +1,42 @@
+{
+  "name": "goatee-rules",
+  "description": "Goatee is the missing complement for handbar mustaches.",
+  "version": "0.1.0",
+  "keywords": ["Goatee", "Node.js", "Browser", "Template", "Framework"],
+  "author": "Stephan Jorek <stephan.jorek@gmail.com>",
+  "licenses":     [{
+    "type":       "Apache",
+    "url":        "https://raw.github.com/sjorek/goatee-rules/master/LICENSE"
+  },{
+    "type":       "MIT",
+    "url":        "https://raw.github.com/jashkenas/coffee-script/master/LICENSE"
+  }],
+  "engines": {
+    "node": "~0.10"
+  },
+  "directories": {
+    "lib": "./lib"
+  },
+  "main": "./lib/GoateeRules.js",
+  "bin":          {
+    "goatee-rules": "./bin/goatee-rules"
+  },
+  "scripts": {
+    "test": "PATH=$PATH:./node_modules/.bin jasmine-node --growl --coffee --color --verbose ./lib/Tests"
+  },
+  "homepage":     "http://goat.ee/rules",
+  "bugs":         "https://github.com/sjorek/goatee-rules/issues",
+  "repository":   {
+    "type": "git",
+    "url": "git://github.com/sjorek/goatee-rules.git"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "coffee-script": "~1.6",
+    "jison": "~0.4",
+    "benchmark": "~1.0",
+    "jasmine-node": "~1.11"
+  },
+  "readmeFilename": "README.md"
+}
