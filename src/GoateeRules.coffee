@@ -30,13 +30,13 @@ exports = module?.exports ? this
 # @namespace GoateeRules
 exports.GoateeRules = class GoateeRules
 
-  GoateeRules.COMMAND  = 'goatee-rules'
-  GoateeRules.VERSION  = '0.0.1'
+  GoateeRules.COMMAND   = 'goatee-rules'
+  GoateeRules.VERSION   = '0.0.1'
 
   ##
   # @param {String} code
   # @return Expression
-  GoateeRules.parse = _parse = do ->
+  GoateeRules.parse     = do ->
     parse = null
     (code) ->
       GoateeRules.parse = parse = require('./GoateeRules/Parser').parse unless parse?
@@ -49,13 +49,13 @@ exports.GoateeRules = class GoateeRules
   # @param {Array}  scope (optional)
   # @param {Array}  stack (optional)
   # @return mixed
-  GoateeRules.evaluate = (code, context, variables, scope, stack) ->
+  GoateeRules.evaluate  = (code, context, variables, scope, stack) ->
     GoateeRules.parse(code).evaluate(context, variables, scope, stack)
 
   ##
   # @param {String} code
   # @return String
-  GoateeRules.render = do ->
+  GoateeRules.render    = do ->
     render = null
     (code) ->
       GoateeRules.render = render = require('./GoateeRules/Compiler').Compiler.render unless render?
@@ -66,7 +66,7 @@ exports.GoateeRules = class GoateeRules
   # @param  {Function}          callback (optional)
   # @param  {Boolean}           compress, default is true
   # @return {Array|String|Number|true|false|null}
-  GoateeRules.ast      = do ->
+  GoateeRules.ast       = do ->
     ast = null
     (data, callback, compress) ->
       GoateeRules.ast = ast = require('./GoateeRules/Compiler').Compiler.ast unless ast?
@@ -88,7 +88,7 @@ exports.GoateeRules = class GoateeRules
   # @param  {Function}     callback (optional)
   # @param  {Boolean}      compress, default = true
   # @return String
-  GoateeRules.compile = do ->
+  GoateeRules.compile   = do ->
     compile = null
     (data, callback, compress) ->
       GoateeRules.compile = compile = require('./GoateeRules/Compiler').Compiler.compile unless compile?

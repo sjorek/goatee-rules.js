@@ -27,11 +27,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 # The `goatee-script` utility. Handles evaluation of statements or launch an
 # interactive REPL.
 
-# External dependencies.
-nomnom         = require 'nomnom'
-{spawn}        = require 'child_process'
-
-ScriptCommand = require('../GoateeScript/Command').Command
+ScriptCommand = require('GoateeScript/Command').Command
 
 exports = module?.exports ? this
 
@@ -42,7 +38,3 @@ exports.Command = class Command extends ScriptCommand
 
   constructor: (command = require('../GoateeRules').GoateeRules) ->
     super(command)
-
-  # Run the interactive read-execute-print-loop
-  interactive: (repl = require('./Repl').Repl) ->
-    super(repl)
