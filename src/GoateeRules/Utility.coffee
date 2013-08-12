@@ -18,21 +18,242 @@ exports = module?.exports ? this
 
 ##
 # @class
-# @namespace GoateeScript
+# @namespace GoateeRules
 exports.Utility = class Utility
 
-  _parser = null
-
-  Utility.lib = require.resolve('goatee-script').replace /\.js$/, '/'
+  Utility.lib           = require.resolve('goatee-script').replace /\.js$/, '/'
 
   ##
   # @param  {String}     code
   # @return {Expression}
   Utility.parse = \
-  Utility.parseRules = do ->
+  Utility.parseRules    = do ->
+    parser = null
     cache  = {}
     (code) ->
       return cache[code] if cache.hasOwnProperty(code)
-      _parser ?= require './Parser'
-      expression = _parser.parse code
+      parser ?= require './Parser'
+      expression = parser.parse code
       cache[code] = cache['' + expression] = expression
+
+  ##
+  # NON-STANDARD
+  # lightweight version of CSSOM.CSSStyleRule.parse
+  #
+  # @param  {String}          rules
+  # @param  {UnorderedRules}  _map  Optional instance to merge rules into
+  #                                 meant to be used for internally.
+  # @return {UnorderedRules}
+  Utility.parseMap      = do ->
+
+    ##
+    # Un-inlined literals, to avoid object creation.
+    _CHAR_space           = " "
+    _CHAR_tab             = "\t" # tabulator
+    _CHAR_vtab            = "\v" # vertical tabulator
+    _CHAR_cr              = "\r" # carriage return
+    _CHAR_lf              = "\n" # line feed
+    _CHAR_ff              = "\f" # form feed
+    _CHAR_doublequote     = '"'
+    _CHAR_singlequote     = "'"
+    _CHAR_slash           = '/'
+    _CHAR_backslash       = '''\\'''
+    _CHAR_colon           = ':'
+    _CHAR_semicolon       = ';'
+    _CHAR_exclamation     = '!'
+    _CHAR_asterisk        = '*'
+
+    _STRING_empty         = ''
+    _STRING_opencomment   = '/*'
+    _STRING_closecomment  = '*/'
+    _STRING_nonimportant  = '!important'
+
+    _REGEXP_isEscaped     = /[^\\](\\\\)*$/
+
+    ##
+    # Internal list of error messages, used by UnorderedRules.parse
+    # @type {Array}
+    _errors               = [
+      "Unexpected content after important declaration"
+      "Missing closing string"
+      "Missing closing comment"
+      "Unexpected string opener"
+      "Missing identifier key"
+      "Important already declared"
+    ]
+
+    ##
+    # Internal error message function
+    # @param  {Number} num
+    # @param  {String} rules
+    # @return {String}
+    _error                = (num, rules, i) ->
+      """
+      #{_errors[num - 1]}:
+      “#{rules.slice(0, i)}»»»#{rules.charAt(i)}«««#{rules.slice(i + 1)}”
+      """
+
+    (rules, _map)       ->
+
+      _map      ?= new (require('./Unordered/RuleMap').RuleMap)
+      i          = 0
+      j          = i
+      stateKey   = "key"
+      stateValue = "value"
+      state      = stateKey
+      buffer     = ""
+      char       = ""
+      key        = ""
+      value      = ""
+      important  = false
+
+      `for (char = ""; (char = rules.charAt(i)) !== ""; i++) {`
+
+      # console.log 'Processing', i, '=', char
+
+      switch char
+
+        # " ", "\t", "\v", "\r", "\n", "\f"
+        when _CHAR_space, _CHAR_tab, _CHAR_vtab, _CHAR_cr, _CHAR_lf, _CHAR_ff
+
+          # SIGNIFICANT_WHITESPACE
+          buffer += char if state is stateValue and not important
+          continue
+          break
+
+        # String
+        # "'", '"'
+        when _CHAR_singlequote, _CHAR_doublequote
+          if important
+            throw (_error 1, rules, i)
+          else if state is stateValue
+            j = i + 1
+            while index = rules.indexOf(char, j) + 1
+              if rules.charAt(index - 2) isnt _CHAR_backslash or \
+                 _REGEXP_isEscaped.test rules.slice(i, index - 1)
+                break
+              j = index
+
+            throw (_error 2, rules, i) if index is 0
+            buffer += rules.slice(i, index)
+            i = index - 1
+            continue
+          else
+            throw (_error 4, rules, i)
+          break
+
+        # Comment
+        # "/"
+        when _CHAR_slash
+          if rules.charAt(i + 1) is _CHAR_asterisk # "*"
+            i += 2
+            index = rules.indexOf _STRING_closecomment, i # "*/", i
+            throw (_error 3, rules, i) if index is -1
+            i = index + 1
+            continue
+          else if important
+            throw (_error 1, rules, i)
+          else
+            buffer += char
+            continue
+          break
+
+        # ":"
+        when _CHAR_colon
+          if state is stateKey
+            key   += buffer
+            throw (_error 5, rules, i) if key is _STRING_empty
+            buffer = ""
+            state  = stateValue
+            continue
+          else if important
+            throw (_error 1, rules, i)
+          else
+            buffer += char
+            continue
+          break
+
+        # "!"
+        when _CHAR_exclamation
+          if state is stateValue and rules.indexOf(_STRING_nonimportant, i) is i
+            throw (_error 6, rules, i) if important
+            important = true
+            i += 9 # = "important".length
+            continue
+          else if important
+            throw (_error 1, rules, i)
+          else
+            buffer += char;
+            continue
+          break
+
+        # ";"
+        when _CHAR_semicolon
+          if state is stateKey
+            continue
+          if state is stateValue
+            value    += buffer
+
+            _map.add(key, value, important)
+
+            important = false
+            key       = ""
+            value     = ""
+            buffer    = ""
+            state     = stateKey
+            continue
+          else if important
+            throw (_error 1, rules, i)
+          else
+            buffer += char
+            continue
+          break
+
+        else
+          throw (_error 1, rules, i) if important
+          buffer += char
+          continue
+          break
+
+      `}`
+
+      _map.add(key, value + buffer, important) if state is stateValue
+
+      return _map
+
+
+  ##
+  # Trim whitespace from begin and end of string.
+  #
+  # @param  {String}  string  Input string.
+  # @return {String}  Trimmed string.
+  Utility.trim          =
+    if String::trim?
+      (string) -> string.trim()
+    else do ->
+      # Un-inlined literal, to avoid object creation.
+      _REGEXP_trim = /^\s+|\s+$/g
+      (string)    -> string.replace _REGEXP_trim, ''
+
+  ##
+  # Converts “a-property-name” to “aPropertyName”
+  #
+  # @param  {String}  string  Input string.
+  # @return {String}  Camelized string.
+  Utility.camelize      = do ->
+    _REGEXP_camelize    = /-([a-z])/gi
+    _camelize           =  (match, char, index, str) -> char.toUpperCase()
+    (string)            -> string.replace _REGEXP_camelize, _camelize
+
+  ##
+  # Converts “aPropertyName” to “a-property-name”
+  #
+  # @param  {String}  string  Input string.
+  # @return {String}  Dashed string.
+  Utility.dashify       = do ->
+    _CHAR_dash          = '-'
+    _REGEXP_dashify     = /(^|[a-zA-Z])([A-Z])/g
+    _dashify            = (match, char, camel, index, str) ->
+      char + _CHAR_dash + camel.toLowerCase()
+    (string)            -> string.replace _REGEXP_dashify, _dashify
+

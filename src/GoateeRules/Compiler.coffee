@@ -24,11 +24,8 @@ exports = module?.exports ? this
 
 ##
 # @class
-# @namespace GoateeScript
+# @namespace GoateeRules
 exports.Compiler = class Compiler
-
-  for own k,v of ScriptCompiler when k isnt 'parse'
-    Compiler[k] = v
 
   ##
   # @param  {Array|String|Object} code, a String, opcode-Array or Object with
@@ -36,3 +33,53 @@ exports.Compiler = class Compiler
   # @return Expression
   Compiler.parse = (code, _impl = parse) ->
     ScriptCompiler.parse(code, _impl)
+
+  ##
+  # @param  {Array|String|Object} code, a String, opcode-Array or Object with
+  #                               toString method
+  # @param  {Object}              context
+  # @return mixed
+  Compiler.evaluate = (code, context, _impl = parse) ->
+    ScriptCompiler.evaluate(code, context, _impl)
+
+  ##
+  # @param  {Array|String|Object} code, a String, opcode-Array or Object with
+  #                               toString method
+  # @return {String}
+  Compiler.render = (code, _impl = parse) ->
+    ScriptCompiler.render(code, _impl)
+
+  ##
+  # @param  {String|Expression} code, a String or an Expression
+  # @param  {Function}          callback (optional)
+  # @param  {Boolean}           compress, default is on
+  # @return {Array|String|Number|true|false|null}
+  Compiler.ast = (data, callback, compress = on, _impl = parse) ->
+    ScriptCompiler.ast(data, callback, compress, _impl)
+
+  ##
+  # @param  {String|Expression} data
+  # @param  {Function}          callback (optional)
+  # @param  {Boolean}           compress, default is on
+  # @return {String}
+  Compiler.stringify = (data, callback, compress = on, _impl = parse) ->
+    ScriptCompiler.stringify(data, callback, compress, _impl)
+
+  ##
+  # @param  {String|Expression} data
+  # @param  {Function}          callback (optional)
+  # @param  {Boolean}           compress, default is on
+  # @return Function
+  Compiler.closure = (data, callback, compress = on, prefix, _impl = parse) ->
+    ScriptCompiler.closure(data, callback, compress, prefix, _impl)
+
+  ##
+  # @param  {String|Array} data, code-String or opcode-Array
+  # @param  {Function}     callback (optional)
+  # @param  {Boolean}      compress, default = true
+  # @return String
+  Compiler.compile = (data, callback, compress = on, _impl = parse) ->
+    ScriptCompiler.compile(data, callback, compress, _impl)
+
+  for own k,v of ScriptCompiler when not Compiler[k]?
+    Compiler[k] = v
