@@ -65,7 +65,7 @@ exports.Grammar = class Grammar extends ScriptGrammar
           -?\w
         )*
       ///                             , -> 'KEY'
-      c ['rule'], /\!important\b/     , -> 'NONIMPORTANT'
+      c ['rule'], /\s\!important\b/   , -> 'NONIMPORTANT'
       r ':'                           , -> @begin 'rule' ; ':'
 
     # Inherit lexer tokens from ScriptGrammar
@@ -104,22 +104,11 @@ exports.Grammar = class Grammar extends ScriptGrammar
         r 'Seperator RuleMap End'     , -> $2
       ]
       RuleMap: [
-        o 'Map'
-        o 'RuleMap Seperator Map'     , ->
-          if $1.operator.name is 'block'
-            $1.parameters.push $3
-            $1
-          else
-            yy.create 'block', [$1, $3]
+        o 'Map'                       , -> yy.create 'rules', $1
+        o 'RuleMap Seperator Map'     , -> yy.addRule $1, $3
       ]
       Map: [
-        o 'KEY : Rule'                , ->
-          yy.create '=', [$1,
-            if $3[0].operator.name is 'list'
-              yy.create 'group', [$3[0]]
-            else
-              $3[0]
-          ]
+        o 'KEY : Rule'                , -> [$1].concat $3
       ]
       Rule: [
         o 'List'                      , -> [$1, off]

@@ -140,4 +140,4 @@ exports.RuleMap = class RuleMap
       rule  = "#{key}:#{value}"
       rule += " !important" if priority is true
       rule
-    rules.implode ';'
+    rules.join ';'

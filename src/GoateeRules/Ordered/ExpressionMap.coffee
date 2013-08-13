@@ -15,19 +15,27 @@ permissions and limitations under the License.
 ###
 
 {RuleMap}   = require './RuleMap'
-{parse}     = require '../Parser'
-
 
 exports = module?.exports ? this
 
 ## ExpressionMap
 
-# ExpressionMap look like “attribute-key: expression; another-key: value”.
+# ExpressionMaps look like “attribute-key: expression; another-key: expression”.
 # They provide a implementation of normalized to dash-seperated RuleMap.
 #
 # @class
-# @namespace GoateeRules.Unordered
+# @namespace GoateeRules.Ordered
 exports.ExpressionMap = class ExpressionMap extends RuleMap
+
+  # lazy reference to **Parser.parse**
+  parse = null
+
+  ##
+  # Compatibilliy layer for expressions
+  #
+  # @type {Object}
+  operator:
+    name: 'rules'
 
   ##
   # Parses the given string  and applies the resulting map to this map, taking
@@ -36,9 +44,12 @@ exports.ExpressionMap = class ExpressionMap extends RuleMap
   # @param  {String} string
   # @return {RuleMap}
   apply: (string) ->
+    # Delayed require to allow circular dependency during parser creation
+    parse ?= require('../Parser').parse
     @inject parse(string, this)
 
   ##
   # @param  {Expression} expression
   # @return {Expression}
   normalizeValue: (expression) ->
+    expression
