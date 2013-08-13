@@ -16,6 +16,11 @@ permissions and limitations under the License.
 {Utility:{
   lib
 }}            = require './Utility'
+
+{Notator:{
+  r,o,c
+}}            = require lib + 'Notator'
+
 yy            = require(lib + 'Scope').Scope
 ScriptGrammar = require(lib + 'Grammar').Grammar
 
@@ -26,24 +31,12 @@ exports.Grammar = class Grammar extends ScriptGrammar
   # Actually this is not needed, but it looks nicer ;-)
   $1 = $2 = $3 = $4 = $5 = $6 = $7 = $8 = null
 
-  {
-    r,o # ,aop,bop
-  } = ScriptGrammar
-
-  Grammar.c = c = (conditional, patternString, action) ->
-    [conditional].concat r patternString, action
-
-  create: () ->
-      """
-      /* Goatee Rules Parser */
-      (function() {
-
-      #{Grammar.createParser(this).generate()}
-
-      parser.yy = require(require('./Utility').Utility.lib + 'Scope').Scope;
-
-      }).call(this);
-      """
+  create: (comment  = 'Goatee Rules Parser', \
+           prefix   = '', \
+           suffix   = 'parser.yy = require(
+                         require("./Utility").Utility.lib + "Scope"
+                       ).Scope;' ) ->
+    super(comment, prefix, suffix)
 
   lex: do ->
     rules = [
@@ -75,17 +68,16 @@ exports.Grammar = class Grammar extends ScriptGrammar
       rules           : rules
     }
 
-  ##
-  # The syntax description
-  # ----------------------
-
+  # The **Rules** is the top-level node in the syntax tree.
   startSymbol : 'Rules'
 
+  ##
+  # The syntax description notated in Backus-Naur-Format
+  # ----------------------------------------------------
   bnf: do ->
 
     grammar =
 
-      # The **Rules** is the top-level node in the syntax tree.
       # Since we parse bottom-up, all parsing must end here.
       Rules: [
         r 'End'                       , -> new yy.Expression 'scalar', [undefined]
@@ -133,6 +125,11 @@ exports.Grammar = class Grammar extends ScriptGrammar
 
     grammar
 
-# Initialize the **Parser** with our **Grammar**
+##
+# Initializes the **Parser** with our **Grammar**
+#
+# @param  {Grammar} grammar
+# @param  {Scope}   scope
+# @return {Parser}
 Grammar.createParser = (grammar = new Grammar, scope = yy) ->
   ScriptGrammar.createParser grammar, scope
