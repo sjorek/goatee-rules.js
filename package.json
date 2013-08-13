@@ -22,7 +22,7 @@
     "goatee-rules": "./bin/goatee-rules"
   },
   "scripts": {
-    "test": "PATH=$PATH:./node_modules/.bin jasmine-node --growl --coffee --color --verbose ./lib/Tests"
+    "test": "PATH=$PATH:./node_modules/.bin jasmine-node --growl --coffee --color --verbose ./src/Tests ./lib/Tests"
   },
   "homepage":     "http://goat.ee/rules",
   "bugs":         "https://github.com/sjorek/goatee-rules/issues",
