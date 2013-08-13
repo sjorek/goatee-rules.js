@@ -104,7 +104,12 @@ describe "GoateeRules", ->
     expect(JSON.stringify(expression.evaluate(data)))
       .toBe JSON.stringify(expected)
 
-  it 'can add two positive numbers', ->
+  it 'can parse rules', ->
+      code = 'test:1'
+      rules = parse code
+      expect(rules.toString()).toBe code
+
+  xit 'can add two positive numbers', ->
       egal 'test: 1+1', 2
 
   xit 'can add two positive numbers in given time', (done) ->
@@ -122,7 +127,7 @@ describe "GoateeRules", ->
       )
       .run({async: false })
 
-  it 'resolves expression vectors', ->
+  xit 'resolves expression vectors', ->
       expect(parse('test: 5').vector).toBe false
       expect(parse('test: 5+2').vector).toBe false
       #expect(parse('test: *').vector).toBe true
