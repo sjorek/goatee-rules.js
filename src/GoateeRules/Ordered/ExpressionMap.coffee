@@ -15,24 +15,30 @@ permissions and limitations under the License.
 ###
 
 {RuleMap}   = require './RuleMap'
+{parse}     = require '../Parser'
 
-{Utility:{
-  dashify
-}}          = require '../Utility'
 
 exports = module?.exports ? this
 
-## AttributeMap
+## ExpressionMap
 
-# AttributeMap look like “attribute-key: expression; another-key: value”.
+# ExpressionMap look like “attribute-key: expression; another-key: value”.
 # They provide a implementation of normalized to dash-seperated RuleMap.
 #
 # @class
 # @namespace GoateeRules.Unordered
-exports.AttributeMap = class AttributeMap extends RuleMap
+exports.ExpressionMap = class ExpressionMap extends RuleMap
 
   ##
+  # Parses the given string  and applies the resulting map to this map, taking
+  # priorities into consideration.
+  #
   # @param  {String} string
-  # @return {String}
-  normalizeKey: (string) ->
-    dashify super(string)
+  # @return {RuleMap}
+  apply: (string) ->
+    @inject parse(string, this)
+
+  ##
+  # @param  {Expression} expression
+  # @return {Expression}
+  normalizeValue: (expression) ->

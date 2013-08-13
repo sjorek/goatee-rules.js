@@ -14,11 +14,11 @@ implied. See the License for the specific language governing
 permissions and limitations under the License.
 ###
 
-{RuleMap} = require './RuleMap'
+{RuleMap}     = require './RuleMap'
 
 {Utility:{
   camelize
-}}             = require '../Utility'
+}}            = require '../Utility'
 
 exports = module?.exports ? this
 

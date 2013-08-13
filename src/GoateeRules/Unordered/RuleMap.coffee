@@ -14,9 +14,13 @@ implied. See the License for the specific language governing
 permissions and limitations under the License.
 ###
 
+{Rules:{
+  parse
+}}          = require '../Rules'
+
 {Utility:{
   trim
-}} = require '../Utility'
+}}          = require '../Utility'
 
 exports = module?.exports ? this
 
@@ -47,14 +51,14 @@ exports.RuleMap = class RuleMap
     id     = @normalizeKey key
     exists = @rules.hasOwnProperty(id)
 
-    return @ unless important is true or \
-                    exists is false or \
-                    @priority.hasOwnProperty(id) is false
+    return this unless important is true or \
+                       exists is false or \
+                       @priority.hasOwnProperty(id) is false
 
     @rules[id]    = @normalizeValue value
     @priority[id] = true if important is true
 
-    return @
+    this
 
   ##
   # Call fn for each rule's key, value and priority and return this.
@@ -81,7 +85,7 @@ exports.RuleMap = class RuleMap
   # @param  {String} string
   # @return {RuleMap}
   apply: (string) ->
-    RuleMap.parse string, @
+    parse string, @
 
   ##
   # Opposite of @project(map). Returns this map with all rules from given map
@@ -90,8 +94,8 @@ exports.RuleMap = class RuleMap
   # @param  {RuleMap} map
   # @return {RuleMap}
   inject: (map) ->
-    map.project @
-    @
+    map.project this
+    this
 
   ##
   # Opposite of @inject(map). Returns the given map with all my rules applied
@@ -102,7 +106,7 @@ exports.RuleMap = class RuleMap
   project: (map) ->
     @each (key, value, priority) ->
       map.add(key, value, priority)
-    @
+    this
 
   ##
   # @param  {String} string

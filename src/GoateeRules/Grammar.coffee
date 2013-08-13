@@ -21,8 +21,8 @@ permissions and limitations under the License.
   r,o,c
 }}            = require lib + 'Notator'
 
-yy            = require(lib + 'Scope').Scope
 ScriptGrammar = require(lib + 'Grammar').Grammar
+{Scope}       = require './Scope'
 
 exports = module?.exports ? this
 
@@ -31,14 +31,30 @@ exports.Grammar = class Grammar extends ScriptGrammar
   # Actually this is not needed, but it looks nicer ;-)
   $1 = $2 = $3 = $4 = $5 = $6 = $7 = $8 = null
 
-  create: (comment  = 'Goatee Rules Parser', \
-           prefix   = '', \
-           suffix   = 'parser.yy = require(
-                         require("./Utility").Utility.lib + "Scope"
-                       ).Scope;' ) ->
+  yy = new Scope
+
+  ##
+  # Initializes the **Parser** with our **Grammar**
+  #
+  # @param  {Grammar} grammar
+  # @param  {Scope}   scope
+  # @return {Parser}
+  Grammar.createParser = (grammar = new Grammar, scope = yy) ->
+    ScriptGrammar.createParser grammar, scope
+
+  ##
+  # Create and return the parsers source code wrapped into a closure, still
+  # keeping the value of `this`.
+  #
+  # @return {String}
+  create: (comment  = 'Goatee Rules Parser', prefix   = '', \
+           suffix   = 'parser.yy = new (require("./Scope").Scope);') ->
     super(comment, prefix, suffix)
 
+  # Use the default jison-lexer
   lex: do ->
+
+    # Declare all lexer tokens
     rules = [
       r ///
         (
@@ -51,6 +67,8 @@ exports.Grammar = class Grammar extends ScriptGrammar
       ///                             , -> 'KEY'
       c ['rule'], /\!important\b/     , -> 'NONIMPORTANT'
       r ':'                           , -> @begin 'rule' ; ':'
+
+    # Inherit lexer tokens from ScriptGrammar
     ].concat ScriptGrammar::lex.rules.map (v, k) ->
       switch v[1]
         # '\s+', '/* … */'
@@ -64,6 +82,7 @@ exports.Grammar = class Grammar extends ScriptGrammar
 
     {
       startConditions :
+        # “rule” is implicit (1), not explicit (0)
         rule          : 1
       rules           : rules
     }
@@ -80,7 +99,7 @@ exports.Grammar = class Grammar extends ScriptGrammar
 
       # Since we parse bottom-up, all parsing must end here.
       Rules: [
-        r 'End'                       , -> new yy.Expression 'scalar', [undefined]
+        r 'End'                       , -> yy.create 'scalar', [undefined]
         r 'RuleMap End'               , -> $1
         r 'Seperator RuleMap End'     , -> $2
       ]
@@ -91,13 +110,13 @@ exports.Grammar = class Grammar extends ScriptGrammar
             $1.parameters.push $3
             $1
           else
-            new yy.Expression 'block', [$1, $3]
+            yy.create 'block', [$1, $3]
       ]
       Map: [
         o 'KEY : Rule'                , ->
-          new yy.Expression '=', [$1,
+          yy.create '=', [$1,
             if $3[0].operator.name is 'list'
-              new yy.Expression 'group', [$3[0]]
+              yy.create 'group', [$3[0]]
             else
               $3[0]
           ]
@@ -107,29 +126,23 @@ exports.Grammar = class Grammar extends ScriptGrammar
         o 'List NONIMPORTANT'         , -> [$1, on]
       ]
 
+    # Inherit all but “Script” and “Statement” operations from ScriptGrammar
     for own k,v of ScriptGrammar::bnf when k isnt 'Script' and k isnt 'Statements'
       if k isnt 'Operation'
         grammar[k] = v
         continue
 
+      # Tweak “Operation” to include a hack to support “!important” as statement
+      # expression without interfering the final “!important” declaration
       ops = []
       for rule in v
         if rule[0] is '! Expression'
           ops.push o 'NONIMPORTANT', ->
-            new yy.Expression '!' , [
-              new yy.Expression 'reference', ['important']
+            yy.create '!' , [
+              yy.create 'reference', ['important']
             ]
         ops.push rule
 
       grammar[k] = ops
 
     grammar
-
-##
-# Initializes the **Parser** with our **Grammar**
-#
-# @param  {Grammar} grammar
-# @param  {Scope}   scope
-# @return {Parser}
-Grammar.createParser = (grammar = new Grammar, scope = yy) ->
-  ScriptGrammar.createParser grammar, scope

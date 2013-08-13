@@ -14,25 +14,13 @@ implied. See the License for the specific language governing
 permissions and limitations under the License.
 ###
 
-{RuleMap}   = require './RuleMap'
-
 {Utility:{
-  dashify
-}}          = require '../Utility'
+  lib
+}}          = require './Utility'
+ScriptScope = require(lib + 'Scope').Scope
 
 exports = module?.exports ? this
 
-## AttributeMap
-
-# AttributeMap look like “attribute-key: expression; another-key: value”.
-# They provide a implementation of normalized to dash-seperated RuleMap.
-#
-# @class
-# @namespace GoateeRules.Unordered
-exports.AttributeMap = class AttributeMap extends RuleMap
-
-  ##
-  # @param  {String} string
-  # @return {String}
-  normalizeKey: (string) ->
-    dashify super(string)
+##
+# @namespace GoateeRules
+exports.Scope = class Scope extends ScriptScope

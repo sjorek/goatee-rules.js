@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "Scope.js",
+  "sourceRoot": "../../src",
+  "sources": [
+    "GoateeRules/Scope.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;;;;;;;;;;;;;;;CAAA;CAAA;CAAA;CAAA,KAAA,uCAAA;KAAA;oSAAA;;CAAA,CAiBE,CACY,IAAA,IAAA;;CAlBd,CAmBA,CAAc,EAnBd,EAmBc,IAAd;;CAnBA,CAqBA,CAA4B,CArB5B,GAqBA;;CArBA,CAyBA,CAAsB,EAAtB,EAAO;CAAS;;;;;CAAA;;CAAA;;CAAoB;CAzBpC"
+}

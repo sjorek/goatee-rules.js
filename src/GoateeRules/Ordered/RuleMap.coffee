@@ -21,13 +21,13 @@ exports = module?.exports ? this
 
 ## RuleMap
 
-# RuleMap look like “identifier: expression; identifier2: expression2”.
+# RuleMaps look like “identifier: expression; identifier2: expression2”.
 # They provide a simplified implementation of RuleMap keeping the
 # initial order of all rules added.
 #
 # @class
 # @namespace GoateeRules.Ordered
-exports.RuleMap = class RuleMap extends RuleMap
+exports.RuleMap = class RuleMap extends UnorderedRuleMap
 
   ##
   # @param {Array}  sequence
@@ -46,15 +46,16 @@ exports.RuleMap = class RuleMap extends RuleMap
     id     = @normalizeKey key
     exists = @rules.hasOwnProperty(id)
 
-    return @ unless important is true or \
-                    exists is false or \
-                    @priority.hasOwnProperty(id) is false
+    return this unless important is true or \
+                       exists is false or \
+                       @priority.hasOwnProperty(id) is false
 
     @rules[id]    = @normalizeValue value
     @priority[id] = true if important is true
 
     @sequence.push(id) if exists is false
-    return @
+
+    this
 
   ##
   # Call fn for each rule's key, value and priority and return the resulting

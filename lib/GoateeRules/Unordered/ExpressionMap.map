@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "ExpressionMap.js",
+  "sourceRoot": "../../../src",
+  "sources": [
+    "GoateeRules/Unordered/ExpressionMap.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;;;;;;;;;;;;;;;CAAA;CAAA;CAAA;CAAA,KAAA,6CAAA;KAAA;oSAAA;;CAAA,CAgBC,CAAa,IAAA,IAAA;;CAhBd,CAiBC,CAAa,EAjBd,EAiBc,IAAA;;CAjBd,CAoBA,CAA4B,CApB5B,GAoBA;;CApBA,CA6BA,CAA8B,IAAvB,MAAP;CAQE;;;;;CAAA;;CAAA,EAAO,EAAP,CAAO,GAAC;CACL,CAAqB,EAArB,CAAO,CAAR,OAAA;CADF,IAAO;;CAAP,EAMgB,MAAC,CAAD,IAAhB;;CANA;;CARkD;CA7BpD"
+}
