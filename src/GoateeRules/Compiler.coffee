@@ -27,13 +27,7 @@ permissions and limitations under the License.
 
 ScriptCompiler  = require(lib + 'Compiler').Compiler
 
-#Expressions = require('./Expressions').OrderedAttributeExpressions
-Expressions = require('./Expressions').OrderedPropertyExpressions
-#Expressions = require('./Expressions').OrderedRuleExpressions
-
-#Expressions = require('./Expressions').UnorderedAttributeExpressions
-#Expressions = require('./Expressions').UnorderedPropertyExpressions
-#Expressions = require('./Expressions').UnorderedRuleExpressions
+{Expressions}   = require './Expressions'
 
 exports = module?.exports ? this
 

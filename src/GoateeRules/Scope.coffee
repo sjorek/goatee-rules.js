@@ -19,13 +19,7 @@ permissions and limitations under the License.
 }}            = require './Utility'
 ScriptScope   = require(lib + 'Scope').Scope
 
-#Expressions = require('./Expressions').OrderedAttributeExpressions
-Expressions = require('./Expressions').OrderedPropertyExpressions
-#Expressions = require('./Expressions').OrderedRuleExpressions
-
-#Expressions = require('./Expressions').UnorderedAttributeExpressions
-#Expressions = require('./Expressions').UnorderedPropertyExpressions
-#Expressions = require('./Expressions').UnorderedRuleExpressions
+{Expressions}   = require './Expressions'
 
 exports = module?.exports ? this
 

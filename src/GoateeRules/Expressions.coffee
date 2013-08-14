@@ -82,8 +82,10 @@ _create = (ParentClass) ->
 
   ExpressionMap
 
-for _kind in ['Attribute','Property', 'Rule']
-  exports["Ordered#{_kind}Expressions"]   = \
-    _create require("./Ordered/#{_kind}Map")["#{_kind}Map"]
-  exports["Unordered#{_kind}Expressions"] = \
-    _create require("./Unordered/#{_kind}Map")["#{_kind}Map"]
+#for _kind in ['Attribute','Property', 'Rule']
+#  exports["Ordered#{_kind}Expressions"]   = \
+#    _create require("./Ordered/#{_kind}Map")["#{_kind}Map"]
+#  exports["Unordered#{_kind}Expressions"] = \
+#    _create require("./Unordered/#{_kind}Map")["#{_kind}Map"]
+
+exports.Expressions = _create require("./Ordered/PropertyMap").PropertyMap
