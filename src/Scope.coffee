@@ -14,12 +14,9 @@ implied. See the License for the specific language governing
 permissions and limitations under the License.
 ###
 
-{Utility:{
-  lib
-}}            = require './Utility'
-ScriptScope   = require(lib + 'Scope').Scope
+ScriptScope   = require('goatee-script/lib/Scope').Scope
 
-{Expressions}   = require './Expressions'
+{Expressions} = require './Expressions'
 
 exports = module?.exports ? this
 

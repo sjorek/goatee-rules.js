@@ -1,9 +1,9 @@
 {
   "version": 3,
   "file": "PropertyMap.js",
-  "sourceRoot": "../../../src",
+  "sourceRoot": "../../src",
   "sources": [
-    "GoateeRules/Ordered/PropertyMap.coffee"
+    "Ordered/PropertyMap.coffee"
   ],
   "names": [],
   "mappings": ";AAAA;;;;;;;;;;;;;;;CAAA;CAAA;CAAA;CAAA,KAAA,8CAAA;KAAA;oSAAA;;CAAA,CAgBC,CAAe,IAAA,IAAA;;CAhBhB,CAmBE,CACc,IAAA,CApBhB,IAoBgB;;CApBhB,CAsBA,CAA4B,CAtB5B,GAsBA;;CAtBA,CA+BA,CAA4B,IAArB,IAAP;CAKE;;;;;CAAA;;CAAA,EAAc,GAAA,GAAC,GAAf;CACW,KAAA,EAAT,KAAA,iCAAe;CADjB,IAAc;;CAAd;;CAL8C;CA/BhD"

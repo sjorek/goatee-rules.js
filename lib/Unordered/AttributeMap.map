@@ -1,9 +1,9 @@
 {
   "version": 3,
   "file": "AttributeMap.js",
-  "sourceRoot": "../../../src",
+  "sourceRoot": "../../src",
   "sources": [
-    "GoateeRules/Unordered/AttributeMap.coffee"
+    "Unordered/AttributeMap.coffee"
   ],
   "names": [],
   "mappings": ";AAAA;;;;;;;;;;;;;;;CAAA;CAAA;CAAA;CAAA,KAAA,8CAAA;KAAA;oSAAA;;CAAA,CAgBC,CAAa,IAAA,IAAA;;CAhBd,CAmBE,CACY,IAAA,KAAA;;CApBd,CAsBA,CAA4B,CAtB5B,GAsBA;;CAtBA,CA+BA,CAA6B,IAAtB,KAAP;CAKE;;;;;CAAA;;CAAA,EAAc,GAAA,GAAC,GAAf;CACU,KAAA,CAAR,MAAA,kCAAc;CADhB,IAAc;;CAAd;;CALgD;CA/BlD"

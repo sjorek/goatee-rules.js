@@ -22,10 +22,6 @@ exports = module?.exports ? this
 exports.Utility = class Utility
 
   ##
-  # @type {String}
-  Utility.lib           = require.resolve('goatee-script').replace /\.js$/, '/'
-
-  ##
   # @param  {Object}
   # @return {Boolean}
   Utility.isRuleMap = (obj) ->

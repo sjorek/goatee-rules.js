@@ -24,13 +24,10 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 ###
 
-# The `goatee-script` utility. Handles evaluation of statements or launch an
+# The `goatee-rules` utility. Handles evaluation of statements or launch an
 # interactive REPL.
 
-{Utility:{
-  lib
-}}            = require './Utility'
-ScriptCommand = require(lib + 'Command').Command
+ScriptCommand = require('goatee-script/lib/Command').Command
 
 exports = module?.exports ? this
 

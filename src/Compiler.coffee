@@ -16,16 +16,15 @@ permissions and limitations under the License.
 
 {Utility:{
   isRuleMap,
-  lib,
   parse
 }}              = require './Utility'
 
 {Utility:{
   isString,
   isArray
-}}              = require lib + 'Utility'
+}}              = require 'goatee-script/lib/Utility'
 
-ScriptCompiler  = require(lib + 'Compiler').Compiler
+ScriptCompiler  = require('goatee-script/lib/Compiler').Compiler
 
 {Expressions}   = require './Expressions'
 

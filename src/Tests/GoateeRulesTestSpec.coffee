@@ -31,13 +31,8 @@ Benchmark = require 'benchmark'
 }} = require '../GoateeRules'
 
 {Utility:{
-  lib
-}} = require '../GoateeRules/Utility'
-
-{Utility:{
   isArray
-}} = require lib + 'Utility'
-
+}} = require 'goatee-script/lib/Utility'
 
 #_         ?= null
 #expect    ?= null

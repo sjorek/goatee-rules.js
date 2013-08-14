@@ -39,7 +39,7 @@ exports.GoateeRules = class GoateeRules
   # @param {String} code
   # @return Expression
   GoateeRules.parse = (code) ->
-    _compiler ?= new (require('./GoateeRules/Compiler').Compiler)
+    _compiler ?= new (require('./Compiler').Compiler)
     _compiler.parse(code)
 
   ##
@@ -50,14 +50,14 @@ exports.GoateeRules = class GoateeRules
   # @param {Array}  stack (optional)
   # @return mixed
   GoateeRules.evaluate  = (code, context, variables, scope, stack) ->
-    _compiler ?= new (require('./GoateeRules/Compiler').Compiler)
+    _compiler ?= new (require('./Compiler').Compiler)
     _compiler.evaluate(code, context, variables, scope, stack)
 
   ##
   # @param {String} code
   # @return String
   GoateeRules.render = (code) ->
-    _compiler ?= new (require('./GoateeRules/Compiler').Compiler)
+    _compiler ?= new (require('./Compiler').Compiler)
     _compiler.render(code)
 
   ##
@@ -66,7 +66,7 @@ exports.GoateeRules = class GoateeRules
   # @param  {Boolean}           compress, default is true
   # @return {Array|String|Number|true|false|null}
   GoateeRules.ast = (data, callback, compress) ->
-    _compiler ?= new (require('./GoateeRules/Compiler').Compiler)
+    _compiler ?= new (require('./Compiler').Compiler)
     _compiler.ast(data, callback, compress)
 
   ##
@@ -75,7 +75,7 @@ exports.GoateeRules = class GoateeRules
   # @param  {Boolean}           compress, default is true
   # @return String
   GoateeRules.stringify = (data, callback, compress) ->
-    _compiler ?= new (require('./GoateeRules/Compiler').Compiler)
+    _compiler ?= new (require('./Compiler').Compiler)
     _compiler.stringify(data, callback, compress)
 
   ##
@@ -84,5 +84,5 @@ exports.GoateeRules = class GoateeRules
   # @param  {Boolean}      compress, default = true
   # @return String
   GoateeRules.compile = (data, callback, compress) ->
-    _compiler ?= new (require('./GoateeRules/Compiler').Compiler)
+    _compiler ?= new (require('./Compiler').Compiler)
     _compiler.compile(data, callback, compress)
