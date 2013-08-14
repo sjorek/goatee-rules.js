@@ -25,10 +25,10 @@ exports.Rules = class Rules
   # NON-STANDARD
   # lightweight version of CSSOM.CSSStyleRule.parse
   #
-  # @param  {String}          rules
-  # @param  {UnorderedRules}  _map  Optional instance to merge rules into
-  #                                 meant to be used for internally.
-  # @return {UnorderedRules}
+  # @param  {String} rules
+  # @param  {AttributeMap|PropertyMap|RuleMap}  _map  Optional instance to merge
+  #                                                   rules into, internally.
+  # @return {AttributeMap|PropertyMap|RuleMap}        The filled **_map**
   Rules.parse             = do ->
 
     ##

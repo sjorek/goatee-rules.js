@@ -14,7 +14,6 @@ implied. See the License for the specific language governing
 permissions and limitations under the License.
 ###
 
-
 UnorderedRuleMap = require('../Unordered/RuleMap').RuleMap
 
 exports = module?.exports ? this

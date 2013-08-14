@@ -15,71 +15,138 @@ permissions and limitations under the License.
 ###
 
 {Utility:{
-  parse,
-  lib
+  isRuleMap,
+  lib,
+  parse
 }}              = require './Utility'
+
+{Utility:{
+  isString,
+  isArray
+}}              = require lib + 'Utility'
+
 ScriptCompiler  = require(lib + 'Compiler').Compiler
+
+#Expressions = require('./Expressions').OrderedAttributeExpressions
+Expressions = require('./Expressions').OrderedPropertyExpressions
+#Expressions = require('./Expressions').OrderedRuleExpressions
+
+#Expressions = require('./Expressions').UnorderedAttributeExpressions
+#Expressions = require('./Expressions').UnorderedPropertyExpressions
+#Expressions = require('./Expressions').UnorderedRuleExpressions
 
 exports = module?.exports ? this
 
 ##
 # @class
 # @namespace GoateeRules
-exports.Compiler = class Compiler
+exports.Compiler = class Compiler extends ScriptCompiler
+
+  ##
+  # @param  {Function}  parseImpl
+  # @constructor
+  constructor: (parseImpl = parse) ->
+    super(parseImpl)
 
   ##
   # @param  {Array|String|Object} code, a String, opcode-Array or Object with
   #                               toString method
   # @return Expression
-  Compiler.parse = (code, _impl = parse) ->
-    ScriptCompiler.parse(code, _impl)
+  parse: (code) ->
+    return @parseImpl(code.toString()) if not isArray code
+    map = new Expressions
+    for rule in code
+      [key, value, important]  = rule
+      map.add(key, @toExpression(value), important)
+    map
 
   ##
   # @param  {Array|String|Object} code, a String, opcode-Array or Object with
   #                               toString method
-  # @param  {Object}              context
+  # @param  {Object}              context (optional)
+  # @param  {Object}              variables (optional)
+  # @param  {Array}               scope (optional)
+  # @param  {Array}               stack (optional)
   # @return mixed
-  Compiler.evaluate = (code, context, _impl = parse) ->
-    ScriptCompiler.evaluate(code, context, _impl)
+  evaluate: (code, context={}, variables={}, scope, stack) ->
+    map = @parse(code)
+    map.each (key, value, important) ->
+      map.rules[key] = value.evaluate(context, variables, scope, stack)
+      return
 
-  ##
-  # @param  {Array|String|Object} code, a String, opcode-Array or Object with
-  #                               toString method
-  # @return {String}
-  Compiler.render = (code, _impl = parse) ->
-    ScriptCompiler.render(code, _impl)
+#  ##
+#  # @param  {Array|String|Object} code, a String, opcode-Array or Object with
+#  #                               toString method
+#  # @return {String}
+#  render: (code) ->
+#    super(code)
 
   ##
   # @param  {String|Expression} code, a String or an Expression
   # @param  {Function}          callback (optional)
   # @param  {Boolean}           compress, default is on
-  # @return {Array|String|Number|true|false|null}
-  Compiler.ast = (data, callback, compress = on, _impl = parse) ->
-    ScriptCompiler.ast(data, callback, compress, _impl)
+  # @return {Array}
+  ast: (data, callback, compress = on) ->
+    rules = if isRuleMap data then data else @parse(data)
+    self  = this
+    save  = @save
+    comp  = @compress
+    tree  = []
+    rules.map (key, value, important) ->
+      ast = save.call(self, value, callback, compress)
+      tree.push [
+        key
+        if compress then comp.call(self, ast) else ast
+        important
+      ]
+      return
+    tree
 
   ##
   # @param  {String|Expression} data
   # @param  {Function}          callback (optional)
   # @param  {Boolean}           compress, default is on
   # @return {String}
-  Compiler.stringify = (data, callback, compress = on, _impl = parse) ->
-    ScriptCompiler.stringify(data, callback, compress, _impl)
+  stringify: (data, callback, compress = on) ->
+    opcode = @ast(data, callback, compress)
+    if compress
+      for rule, index in opcode
+        [key, value, important]  = rule
+        key       = JSON.stringify key
+        value     = "[#{value[0]},#{JSON.stringify value[1]}]"
+        important = JSON.stringify important
+        opcode[index] = "[#{key},#{value},#{important}]"
+      "[#{opcode.join '],['}]"
+    else
+      JSON.stringify opcode
+
+#  ##
+#  # @param  {String|Expression} data
+#  # @param  {Function}          callback (optional)
+#  # @param  {Boolean}           compress, default is on
+#  # @return Function
+#  closure: (data, callback, compress = on, prefix) ->
+#    super(data, callback, compress, prefix)
 
   ##
-  # @param  {String|Expression} data
-  # @param  {Function}          callback (optional)
-  # @param  {Boolean}           compress, default is on
-  # @return Function
-  Compiler.closure = (data, callback, compress = on, prefix, _impl = parse) ->
-    ScriptCompiler.closure(data, callback, compress, prefix, _impl)
-
-  ##
-  # @param  {String|Array} data, code-String or opcode-Array
-  # @param  {Function}     callback (optional)
+  # @param  {String|Array} data, opcode-String or -Array
   # @param  {Boolean}      compress, default = true
   # @return String
-  Compiler.compile = (data, callback, compress = on, _impl = parse) ->
-    ScriptCompiler.compile(data, callback, compress, _impl)
+  load: (data, compress = on) ->
+    opcode = if isArray data then data else @expand(data)
+    code   = []
+    for rule in opcode
+      [key, value, important] = rule
+      important = if important then ' !important' else ''
+      code.push "#{key}:#{super(value, compress)}#{important}"
+    code.join ';'
 
-  for own k,v of ScriptCompiler when not Compiler[k]?
-    Compiler[k] = v
+#  ##
+#  # @param  {Array|String|Object} code, a String, opcode-Array or Object with
+#  #                               toString method
+#  # @param  {Function}            callback (optional)
+#  # @param  {Boolean}             compress, default = true
+#  # @return String
+#  compile: (data, callback, compress = on) ->
+#    opcode = if isArray data then data else @ast(data, callback, false)
+#    @load(opcode, compress)

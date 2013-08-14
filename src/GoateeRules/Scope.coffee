@@ -16,11 +16,16 @@ permissions and limitations under the License.
 
 {Utility:{
   lib
-}}              = require './Utility'
-ScriptScope     = require(lib + 'Scope').Scope
+}}            = require './Utility'
+ScriptScope   = require(lib + 'Scope').Scope
 
-#{ExpressionMap} = require './Unordered/ExpressionMap'
-{ExpressionMap} = require './Ordered/ExpressionMap'
+#Expressions = require('./Expressions').OrderedAttributeExpressions
+Expressions = require('./Expressions').OrderedPropertyExpressions
+#Expressions = require('./Expressions').OrderedRuleExpressions
+
+#Expressions = require('./Expressions').UnorderedAttributeExpressions
+#Expressions = require('./Expressions').UnorderedPropertyExpressions
+#Expressions = require('./Expressions').UnorderedRuleExpressions
 
 exports = module?.exports ? this
 
@@ -29,13 +34,13 @@ exports = module?.exports ? this
 exports.Scope = class Scope extends ScriptScope
 
   ##
-  # Create a new **Expression** or **ExpressionMap** instance
+  # Create a new **Expression** or **Expressions** instance
   #
   # @param  {String}      operator
   # @param  {Array}       parameters
-  # @return {ExpressionMap|Expression}
+  # @return {Expressions|Expression}
   create  : (operator, parameters) ->
-    return @addRule new ExpressionMap, parameters if operator is 'rules'
+    return @addRule new Expressions, parameters if operator is 'rules'
     super(operator, parameters)
 
   addRule: (rule, parameters) ->

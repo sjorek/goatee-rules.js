@@ -21,11 +21,20 @@ exports = module?.exports ? this
 # @namespace GoateeRules
 exports.Utility = class Utility
 
+  ##
+  # @type {String}
   Utility.lib           = require.resolve('goatee-script').replace /\.js$/, '/'
+
+  ##
+  # @param  {Object}
+  # @return {Boolean}
+  Utility.isRuleMap = (obj) ->
+    obj? and obj.rules? and obj.priority?
 
   ##
   # @param  {String}     code
   # @return {Expression}
+  Utility.parse = \
   Utility.parseExpression = do ->
     parser = null
     cache  = {}
