@@ -17,14 +17,6 @@
   "bin": {
     "goatee-rules": "./bin/goatee-rules"
   },
-  "files": [
-    "LICENSE",
-    "README.md"
-  ],
-  "directories": {
-    "bin": "./bin",
-    "lib": "./lib"
-  },
   "main": "./lib/GoateeRules.js",
   "scripts": {
     "test": "PATH=$PATH:./node_modules/.bin jasmine-node --growl --coffee --color --verbose ./src/Tests ./lib/Tests"
