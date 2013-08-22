@@ -36,5 +36,5 @@ exports = module?.exports ? this
 # @namespace GoateeRules
 exports.Command = class Command extends ScriptCommand
 
-  constructor: (command = require('../GoateeRules').GoateeRules) ->
+  constructor: (command = require('./GoateeRules').GoateeRules) ->
     super(command)
