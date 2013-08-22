@@ -1,0 +1,121 @@
+<!DOCTYPE html><html lang="en"><head><title>Compiler</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="Compiler"><meta name="groc-project-path" content="src/Compiler.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/Compiler.coffee</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="cm">###</span>
+<span class="cm">© Copyright 2013 Stephan Jorek &lt;stephan.jorek@gmail.com&gt;</span>
+
+<span class="cm">Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="cm">you may not use this file except in compliance with the License.</span>
+<span class="cm">You may obtain a copy of the License at</span>
+
+<span class="cm">http://www.apache.org/licenses/LICENSE-2.0</span>
+
+<span class="cm">Unless required by applicable law or agreed to in writing, software</span>
+<span class="cm">distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="cm">WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or</span>
+<span class="cm">implied. See the License for the specific language governing</span>
+<span class="cm">permissions and limitations under the License.</span>
+<span class="cm">###</span>
+
+<span class="p">{</span><span class="nx">Utility</span><span class="o">:</span><span class="p">{</span>
+  <span class="nx">isRuleMap</span><span class="p">,</span>
+  <span class="nx">parse</span>
+<span class="p">}}</span>              <span class="o">=</span> <span class="nx">require</span> <span class="s">&#39;./Utility&#39;</span>
+
+<span class="p">{</span><span class="nx">Utility</span><span class="o">:</span><span class="p">{</span>
+  <span class="nx">isString</span><span class="p">,</span>
+  <span class="nx">isArray</span>
+<span class="p">}}</span>              <span class="o">=</span> <span class="nx">require</span> <span class="s">&#39;goatee-script/lib/Utility&#39;</span>
+
+<span class="nv">ScriptCompiler  = </span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;goatee-script/lib/Compiler&#39;</span><span class="p">).</span><span class="nx">Compiler</span>
+
+<span class="p">{</span><span class="nx">Expressions</span><span class="p">}</span>   <span class="o">=</span> <span class="nx">require</span> <span class="s">&#39;./Expressions&#39;</span>
+
+<span class="nv">exports = </span><span class="nx">module</span><span class="o">?</span><span class="p">.</span><span class="nx">exports</span> <span class="o">?</span> <span class="k">this</span>
+
+<span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@class
+@namespace GoateeRules</p></div></div><div class="code"><div class="wrapper"><span class="nv">exports.Compiler = </span><span class="k">class</span> <span class="nx">Compiler</span> <span class="k">extends</span> <span class="nx">ScriptCompiler</span>
+
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {Function}  parseImpl
+@constructor</p></div></div><div class="code"><div class="wrapper">  <span class="nv">constructor: </span><span class="nf">(parseImpl = parse) -&gt;</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">parseImpl</span><span class="p">)</span>
+
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {Array|String|Object} code, a String, opcode-Array or Object with
+                              toString method
+@return Expression</p></div></div><div class="code"><div class="wrapper">  <span class="nv">parse: </span><span class="nf">(code) -&gt;</span>
+    <span class="k">return</span> <span class="nx">@parseImpl</span><span class="p">(</span><span class="nx">code</span><span class="p">.</span><span class="nx">toString</span><span class="p">())</span> <span class="k">if</span> <span class="o">not</span> <span class="nx">isArray</span> <span class="nx">code</span>
+    <span class="nv">map = </span><span class="k">new</span> <span class="nx">Expressions</span>
+    <span class="k">for</span> <span class="nx">rule</span> <span class="k">in</span> <span class="nx">code</span>
+      <span class="p">[</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">important</span><span class="p">]</span>  <span class="o">=</span> <span class="nx">rule</span>
+      <span class="nx">map</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">@toExpression</span><span class="p">(</span><span class="nx">value</span><span class="p">),</span> <span class="nx">important</span><span class="p">)</span>
+    <span class="nx">map</span>
+
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {Array|String|Object} code, a String, opcode-Array or Object with
+                              toString method
+@param  {Object}              context (optional)
+@param  {Object}              variables (optional)
+@param  {Array}               scope (optional)
+@param  {Array}               stack (optional)
+@return mixed</p></div></div><div class="code"><div class="wrapper">  <span class="nv">evaluate: </span><span class="nf">(code, context={}, variables={}, scope, stack) -&gt;</span>
+    <span class="nv">map = </span><span class="nx">@parse</span><span class="p">(</span><span class="nx">code</span><span class="p">)</span>
+    <span class="nx">map</span><span class="p">.</span><span class="nx">each</span> <span class="nf">(key, value, important) -&gt;</span>
+      <span class="nx">map</span><span class="p">.</span><span class="nx">rules</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">variables</span><span class="p">,</span> <span class="nx">scope</span><span class="p">,</span> <span class="nx">stack</span><span class="p">)</span>
+      <span class="k">return</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>##
+ # @param  {Array|String|Object} code, a String, opcode-Array or Object with
+ #                               toString method
+ # @return {String}
+ render: (code) ->
+   super(code)</p></div></div><div class="code"><div class="wrapper">  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {String|Expression} code, a String or an Expression
+@param  {Function}          callback (optional)
+@param  {Boolean}           compress, default is on
+@return {Array}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">ast: </span><span class="nf">(data, callback, compress = on) -&gt;</span>
+    <span class="nv">rules = </span><span class="k">if</span> <span class="nx">isRuleMap</span> <span class="nx">data</span> <span class="k">then</span> <span class="nx">data</span> <span class="k">else</span> <span class="nx">@parse</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+    <span class="nv">self  = </span><span class="k">this</span>
+    <span class="nv">save  = </span><span class="nx">@save</span>
+    <span class="nv">comp  = </span><span class="nx">@compress</span>
+    <span class="nv">tree  = </span><span class="p">[]</span>
+    <span class="nx">rules</span><span class="p">.</span><span class="nx">map</span> <span class="nf">(key, value, important) -&gt;</span>
+      <span class="nv">ast = </span><span class="nx">save</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">callback</span><span class="p">,</span> <span class="nx">compress</span><span class="p">)</span>
+      <span class="nx">tree</span><span class="p">.</span><span class="nx">push</span> <span class="p">[</span>
+        <span class="nx">key</span>
+        <span class="k">if</span> <span class="nx">compress</span> <span class="k">then</span> <span class="nx">comp</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span> <span class="nx">ast</span><span class="p">)</span> <span class="k">else</span> <span class="nx">ast</span>
+        <span class="nx">important</span>
+      <span class="p">]</span>
+      <span class="k">return</span>
+    <span class="nx">tree</span>
+
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {String|Expression} data
+@param  {Function}          callback (optional)
+@param  {Boolean}           compress, default is on
+@return {String}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">stringify: </span><span class="nf">(data, callback, compress = on) -&gt;</span>
+    <span class="nv">opcode = </span><span class="nx">@ast</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">callback</span><span class="p">,</span> <span class="nx">compress</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">compress</span>
+      <span class="k">for</span> <span class="nx">rule</span><span class="p">,</span> <span class="nx">index</span> <span class="k">in</span> <span class="nx">opcode</span>
+        <span class="p">[</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">important</span><span class="p">]</span>  <span class="o">=</span> <span class="nx">rule</span>
+        <span class="nv">key       = </span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span> <span class="nx">key</span>
+        <span class="nv">value     = </span><span class="s">&quot;[</span><span class="si">#{</span><span class="nx">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s">,</span><span class="si">#{</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span> <span class="nx">value</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s">]&quot;</span>
+        <span class="nv">important = </span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span> <span class="nx">important</span>
+        <span class="nx">opcode</span><span class="p">[</span><span class="nx">index</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;[</span><span class="si">#{</span><span class="nx">key</span><span class="si">}</span><span class="s">,</span><span class="si">#{</span><span class="nx">value</span><span class="si">}</span><span class="s">,</span><span class="si">#{</span><span class="nx">important</span><span class="si">}</span><span class="s">]&quot;</span>
+      <span class="s">&quot;[</span><span class="si">#{</span><span class="nx">opcode</span><span class="p">.</span><span class="nx">join</span> <span class="s">&#39;],[&#39;</span><span class="si">}</span><span class="s">]&quot;</span>
+    <span class="k">else</span>
+      <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span> <span class="nx">opcode</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>##
+ # @param  {String|Expression} data
+ # @param  {Function}          callback (optional)
+ # @param  {Boolean}           compress, default is on
+ # @return Function
+ closure: (data, callback, compress = on, prefix) ->
+   super(data, callback, compress, prefix)</p></div></div><div class="code"><div class="wrapper">  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {String|Array} data, opcode-String or -Array
+@param  {Boolean}      compress, default = true
+@return String</p></div></div><div class="code"><div class="wrapper">  <span class="nv">load: </span><span class="nf">(data, compress = on) -&gt;</span>
+    <span class="nv">opcode = </span><span class="k">if</span> <span class="nx">isArray</span> <span class="nx">data</span> <span class="k">then</span> <span class="nx">data</span> <span class="k">else</span> <span class="nx">@expand</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+    <span class="nv">code   = </span><span class="p">[]</span>
+    <span class="k">for</span> <span class="nx">rule</span> <span class="k">in</span> <span class="nx">opcode</span>
+      <span class="p">[</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">important</span><span class="p">]</span> <span class="o">=</span> <span class="nx">rule</span>
+      <span class="nv">important = </span><span class="k">if</span> <span class="nx">important</span> <span class="k">then</span> <span class="s">&#39; !important&#39;</span> <span class="k">else</span> <span class="s">&#39;&#39;</span>
+      <span class="nx">code</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;</span><span class="si">#{</span><span class="nx">key</span><span class="si">}</span><span class="s">:</span><span class="si">#{</span><span class="k">super</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">compress</span><span class="p">)</span><span class="si">}#{</span><span class="nx">important</span><span class="si">}</span><span class="s">&quot;</span>
+    <span class="nx">code</span><span class="p">.</span><span class="nx">join</span> <span class="s">&#39;;&#39;</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>##
+ # @param  {Array|String|Object} code, a String, opcode-Array or Object with
+ #                               toString method
+ # @param  {Function}            callback (optional)
+ # @param  {Boolean}             compress, default = true
+ # @return String
+ compile: (data, callback, compress = on) ->
+   opcode = if isArray data then data else @ast(data, callback, false)
+   @load(opcode, compress)</p></div></div></div></div></body></html>

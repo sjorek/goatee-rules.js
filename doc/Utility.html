@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="en"><head><title>Utility</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="Utility"><meta name="groc-project-path" content="src/Utility.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/Utility.coffee</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="cm">###</span>
+<span class="cm">© Copyright 2013 Stephan Jorek &lt;stephan.jorek@gmail.com&gt;</span>
+
+<span class="cm">Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="cm">you may not use this file except in compliance with the License.</span>
+<span class="cm">You may obtain a copy of the License at</span>
+
+<span class="cm">http://www.apache.org/licenses/LICENSE-2.0</span>
+
+<span class="cm">Unless required by applicable law or agreed to in writing, software</span>
+<span class="cm">distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="cm">WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or</span>
+<span class="cm">implied. See the License for the specific language governing</span>
+<span class="cm">permissions and limitations under the License.</span>
+<span class="cm">###</span>
+
+<span class="nv">exports = </span><span class="nx">module</span><span class="o">?</span><span class="p">.</span><span class="nx">exports</span> <span class="o">?</span> <span class="k">this</span>
+
+<span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@class
+@namespace GoateeRules</p></div></div><div class="code"><div class="wrapper"><span class="nv">exports.Utility = </span><span class="k">class</span> <span class="nx">Utility</span>
+
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {Object}
+@return {Boolean}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.isRuleMap = </span><span class="nf">(obj) -&gt;</span>
+    <span class="nx">obj</span><span class="o">?</span> <span class="o">and</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">rules</span><span class="o">?</span> <span class="o">and</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">priority</span><span class="o">?</span>
+
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {String}     code
+@return {Expression}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.parse = </span><span class="o">\</span>
+  <span class="nv">Utility.parseExpression = </span><span class="nx">do</span> <span class="nf">-&gt;</span>
+    <span class="nv">parser = </span><span class="kc">null</span>
+    <span class="nv">cache  = </span><span class="p">{}</span>
+    <span class="nf">(code) -&gt;</span>
+      <span class="k">return</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">code</span><span class="p">]</span> <span class="k">if</span> <span class="nx">cache</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">code</span><span class="p">)</span>
+      <span class="nx">parser</span> <span class="o">?=</span> <span class="nx">require</span> <span class="s">&#39;./Parser&#39;</span>
+      <span class="nv">expression = </span><span class="nx">parser</span><span class="p">.</span><span class="nx">parse</span> <span class="nx">code</span>
+      <span class="nx">cache</span><span class="p">[</span><span class="nx">code</span><span class="p">]</span> <span class="o">=</span> <span class="nx">cache</span><span class="p">[</span><span class="s">&#39;&#39;</span> <span class="o">+</span> <span class="nx">expression</span><span class="p">]</span> <span class="o">=</span> <span class="nx">expression</span>
+
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>NON-STANDARD
+lightweight version of CSSOM.CSSStyleRule.parse</p></div></div><div class="code"><div class="wrapper">  <span class="c1">#</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {String}          rules
+@param  {UnorderedRules}  _map  Optional instance to merge rules into
+                                meant to be used for internally.
+@return {UnorderedRules}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.parseRules    = </span><span class="nx">do</span> <span class="nf">-&gt;</span>
+    <span class="nv">parser = </span><span class="kc">null</span>
+    <span class="nv">cache  = </span><span class="p">{}</span>
+    <span class="nf">(code) -&gt;</span>
+      <span class="k">return</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">code</span><span class="p">]</span> <span class="k">if</span> <span class="nx">cache</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">code</span><span class="p">)</span>
+      <span class="nx">parser</span> <span class="o">?=</span> <span class="nx">require</span> <span class="s">&#39;./Rules&#39;</span>
+      <span class="nv">rules = </span><span class="nx">parser</span><span class="p">.</span><span class="nx">parse</span> <span class="nx">code</span>
+      <span class="nx">cache</span><span class="p">[</span><span class="nx">code</span><span class="p">]</span> <span class="o">=</span> <span class="nx">cache</span><span class="p">[</span><span class="s">&#39;&#39;</span> <span class="o">+</span> <span class="nx">rules</span><span class="p">]</span> <span class="o">=</span> <span class="nx">rules</span>
+
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Trim whitespace from begin and end of string.</p></div></div><div class="code"><div class="wrapper">  <span class="c1">#</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {String}  string  Input string.
+@return {String}  Trimmed string.</p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.trim          =</span>
+    <span class="k">if</span> <span class="nb">String</span><span class="o">::</span><span class="nx">trim</span><span class="o">?</span>
+      <span class="nf">(string) -&gt;</span> <span class="nx">string</span><span class="p">.</span><span class="nx">trim</span><span class="p">()</span>
+    <span class="k">else</span> <span class="nx">do</span> <span class="nf">-&gt;</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Un-inlined literal, to avoid object creation.</p></div></div><div class="code"><div class="wrapper">      <span class="nv">_REGEXP_trim = </span><span class="sr">/^\s+|\s+$/g</span>
+      <span class="nf">(string)    -&gt;</span> <span class="nx">string</span><span class="p">.</span><span class="nx">replace</span> <span class="nx">_REGEXP_trim</span><span class="p">,</span> <span class="s">&#39;&#39;</span>
+
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Converts “a-property-name” to “aPropertyName”</p></div></div><div class="code"><div class="wrapper">  <span class="c1">#</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {String}  string  Input string.
+@return {String}  Camelized string.</p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.camelize      = </span><span class="nx">do</span> <span class="nf">-&gt;</span>
+    <span class="nv">_REGEXP_camelize    = </span><span class="sr">/-([a-z0-9])/gi</span>
+    <span class="nv">_camelize           = </span> <span class="nf">(match, char, index, str) -&gt;</span> <span class="nx">char</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span>
+    <span class="nf">(string)            -&gt;</span> <span class="nx">string</span><span class="p">.</span><span class="nx">replace</span> <span class="nx">_REGEXP_camelize</span><span class="p">,</span> <span class="nx">_camelize</span>
+
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Converts “aPropertyName” to “a-property-name”</p></div></div><div class="code"><div class="wrapper">  <span class="c1">#</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {String}  string  Input string.
+@return {String}  Dashed string.</p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.dashify       = </span><span class="nx">do</span> <span class="nf">-&gt;</span>
+    <span class="nv">_CHAR_dash          = </span><span class="s">&#39;-&#39;</span>
+    <span class="nv">_REGEXP_dashify     = </span><span class="sr">/(^|[a-z0-9])([A-Z])/g</span>
+    <span class="nv">_dashify            = </span><span class="nf">(match, char, camel, index, str) -&gt;</span>
+      <span class="nx">char</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="o">+</span> <span class="nx">_CHAR_dash</span> <span class="o">+</span> <span class="nx">camel</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span>
+    <span class="nf">(string)            -&gt;</span> <span class="nx">string</span><span class="p">.</span><span class="nx">replace</span> <span class="nx">_REGEXP_dashify</span><span class="p">,</span> <span class="nx">_dashify</span></div></div></div></div></body></html>

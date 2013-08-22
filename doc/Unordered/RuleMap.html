@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="en"><head><title>Unordered/RuleMap</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="Unordered/RuleMap"><meta name="groc-project-path" content="src/Unordered/RuleMap.coffee"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/Unordered/RuleMap.coffee</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="cm">###</span>
+<span class="cm">© Copyright 2013 Stephan Jorek &lt;stephan.jorek@gmail.com&gt;</span>
+
+<span class="cm">Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="cm">you may not use this file except in compliance with the License.</span>
+<span class="cm">You may obtain a copy of the License at</span>
+
+<span class="cm">http://www.apache.org/licenses/LICENSE-2.0</span>
+
+<span class="cm">Unless required by applicable law or agreed to in writing, software</span>
+<span class="cm">distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="cm">WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or</span>
+<span class="cm">implied. See the License for the specific language governing</span>
+<span class="cm">permissions and limitations under the License.</span>
+<span class="cm">###</span>
+
+<span class="p">{</span><span class="nx">Rules</span><span class="o">:</span><span class="p">{</span>
+  <span class="nx">parse</span>
+<span class="p">}}</span>          <span class="o">=</span> <span class="nx">require</span> <span class="s">&#39;../Rules&#39;</span>
+
+<span class="p">{</span><span class="nx">Utility</span><span class="o">:</span><span class="p">{</span>
+  <span class="nx">trim</span>
+<span class="p">}}</span>          <span class="o">=</span> <span class="nx">require</span> <span class="s">&#39;../Utility&#39;</span>
+
+<span class="nv">exports = </span><span class="nx">module</span><span class="o">?</span><span class="p">.</span><span class="nx">exports</span> <span class="o">?</span> <span class="k">this</span>
+
+<span class="c1">## RuleMap</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>RuleMap look like “identifier: expression; identifier2: expression2”.</p></div></div><div class="code"><div class="wrapper"><span class="c1">#</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>They provide a simplified implementation of:
+@see http://www.w3.org/TR/2000/REC-DOM-Level-2-Style-20001113/css.html#CSS-ElementCSSInlineStyle
+@see http://www.w3.org/TR/1998/REC-html40-19980424/present/styles.html#h-14.2.2</p></div></div><div class="code"><div class="wrapper"><span class="c1">#</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@class
+@namespace GoateeRules.Unordered</p></div></div><div class="code"><div class="wrapper"><span class="nv">exports.RuleMap = </span><span class="k">class</span> <span class="nx">RuleMap</span>
+
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param {Object} rules
+@param {Object} priority
+@constructor</p></div></div><div class="code"><div class="wrapper">  <span class="nv">constructor: </span><span class="nf">(@rules = {}, @priority = {}) -&gt;</span>
+
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>adds a new rule to this instance
+@param  {String} string
+@return {RuleMap}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">add: </span><span class="nf">(key, value, important) -&gt;</span>
+
+    <span class="nv">id     = </span><span class="nx">@normalizeKey</span> <span class="nx">key</span>
+    <span class="nv">exists = </span><span class="nx">@rules</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="k">this</span> <span class="k">unless</span> <span class="nx">important</span> <span class="o">is</span> <span class="kc">true</span> <span class="o">or</span> <span class="o">\</span>
+                       <span class="nx">exists</span> <span class="o">is</span> <span class="kc">false</span> <span class="o">or</span> <span class="o">\</span>
+                       <span class="nx">@priority</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="o">is</span> <span class="kc">false</span>
+
+    <span class="nx">@rules</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span>    <span class="o">=</span> <span class="nx">@normalizeValue</span> <span class="nx">value</span>
+    <span class="nx">@priority</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span> <span class="k">if</span> <span class="nx">important</span> <span class="o">is</span> <span class="kc">true</span>
+
+    <span class="k">this</span>
+
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Call fn for each rule's key, value and priority and return this.</p></div></div><div class="code"><div class="wrapper">  <span class="c1">#</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {Function} fn
+@return {RuleMap}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">each: </span><span class="nf">(fn) -&gt;</span>
+    <span class="nx">@map</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span>
+    <span class="nx">@</span>
+
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Call fn for each rule's key, value and priority and return the resulting
+Array.</p></div></div><div class="code"><div class="wrapper">  <span class="c1">#</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {Function} fn
+@return {Array}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">map: </span><span class="nf">(fn) -&gt;</span>
+    <span class="nx">fn</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">@priority</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="k">for</span> <span class="k">own</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span> <span class="k">of</span> <span class="nx">@rules</span>
+
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Parses the given string  and applies the resulting map to this map, taking
+priorities into consideration.</p></div></div><div class="code"><div class="wrapper">  <span class="c1">#</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {String} string
+@return {RuleMap}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">apply: </span><span class="nf">(string) -&gt;</span>
+    <span class="nx">parse</span> <span class="nx">string</span><span class="p">,</span> <span class="nx">@</span>
+
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Opposite of @project(map). Returns this map with all rules from given map
+applied to this map, taking my and their priorities into consideration.</p></div></div><div class="code"><div class="wrapper">  <span class="c1">#</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {RuleMap} map
+@return {RuleMap}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">inject: </span><span class="nf">(map) -&gt;</span>
+    <span class="nx">map</span><span class="p">.</span><span class="nx">project</span> <span class="k">this</span>
+    <span class="k">this</span>
+
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Opposite of @inject(map). Returns the given map with all my rules applied
+to given map, taking their and my priorities into consideration.</p></div></div><div class="code"><div class="wrapper">  <span class="c1">#</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {RuleMap} map
+@return {RuleMap}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">project: </span><span class="nf">(map) -&gt;</span>
+    <span class="nx">@each</span> <span class="nf">(key, value, priority) -&gt;</span>
+      <span class="nx">map</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">priority</span><span class="p">)</span>
+    <span class="k">this</span>
+
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {String} string
+@return {String}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">normalizeKey: </span><span class="nf">(string) -&gt;</span>
+    <span class="nx">trim</span> <span class="nx">string</span>
+
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {String} string
+@return {String}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">normalizeValue: </span><span class="nf">(string) -&gt;</span>
+    <span class="nx">trim</span> <span class="nx">string</span>
+
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Return each rule's key, value and priority as Array of Arrays.</p></div></div><div class="code"><div class="wrapper">  <span class="c1">#</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {Function} fn
+@return {Array}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">flatten: </span><span class="nf">(fn) -&gt;</span>
+    <span class="nx">@map</span> <span class="nf">(key, value, priority) -&gt;</span>
+      <span class="p">[</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">priority</span><span class="p">]</span>
+
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Return a css-like representation of this maps' rules. It looks, like:</p></div></div><div class="code"><div class="wrapper">  <span class="c1">#</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>identifier: value; key: expression=1+1; action: expr( … ; … );</p></div></div><div class="code"><div class="wrapper">  <span class="c1">#</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@return {String}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">toString: </span><span class="p">()</span> <span class="nf">-&gt;</span>
+    <span class="nv">rules = </span><span class="nx">@map</span> <span class="nf">(key, value, priority) -&gt;</span>
+      <span class="nv">rule  = </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">key</span><span class="si">}</span><span class="s">:</span><span class="si">#{</span><span class="nx">value</span><span class="si">}</span><span class="s">&quot;</span>
+      <span class="nx">rule</span> <span class="o">+=</span> <span class="s">&quot; !important&quot;</span> <span class="k">if</span> <span class="nx">priority</span> <span class="o">is</span> <span class="kc">true</span>
+      <span class="nx">rule</span>
+    <span class="nx">rules</span><span class="p">.</span><span class="nx">join</span> <span class="s">&#39;;&#39;</span></div></div></div></div></body></html>

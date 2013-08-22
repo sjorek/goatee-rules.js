@@ -1,6 +1,6 @@
 
-goatee-rules
-============
+[goatee-rules](http://sjorek.github.io/goatee-rules/)
+=====================================================
 
          _______  _______  _______  _______  _______  _______
         |    ___||       ||       ||_     _||    ___||    ___|
@@ -35,15 +35,15 @@ goatee-rules
            |   |  | ||       ||       ||   |___  _____| |
            |___|  |_||_______||_______||_______||_______|
 
-> :-{>~ A goatee is the perfect complement for handlebar mustaches. ~<}-:
+A goatee is the perfect complement for handlebar mustaches. :-{>~
+
+## Objective
 
 GoateeRules are the combination of goatee-script and the syntax of inline
 css-rules.
 
-## Objective
-
-See “[goatee-js](https://github.com/sjorek/goatee-js)” and
-“[goatee-script](https://github.com/sjorek/goatee-script)”.
+See “[goatee-js](http://sjorek.github.io/goatee-js)” and
+“[goatee-script](http://sjorek.github.io/goatee-script)”.
 
 ## Installation
 

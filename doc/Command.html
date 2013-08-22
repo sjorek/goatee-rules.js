@@ -1,0 +1,34 @@
+<!DOCTYPE html><html lang="en"><head><title>Command</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="Command"><meta name="groc-project-path" content="src/Command.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/Command.coffee</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="cm">###</span>
+<span class="cm">© Copyright 2013 Stephan Jorek &lt;stephan.jorek@gmail.com&gt;</span>
+<span class="cm">© Copyright 2009-2013 Jeremy Ashkenas</span>
+
+<span class="cm">Permission is hereby granted, free of charge, to any person</span>
+<span class="cm">obtaining a copy of this software and associated documentation</span>
+<span class="cm">files (the &quot;Software&quot;), to deal in the Software without</span>
+<span class="cm">restriction, including without limitation the rights to use,</span>
+<span class="cm">copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span class="cm">copies of the Software, and to permit persons to whom the</span>
+<span class="cm">Software is furnished to do so, subject to the following</span>
+<span class="cm">conditions:</span>
+
+<span class="cm">The above copyright notice and this permission notice shall be</span>
+<span class="cm">included in all copies or substantial portions of the Software.</span>
+
+<span class="cm">THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,</span>
+<span class="cm">EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES</span>
+<span class="cm">OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND</span>
+<span class="cm">NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT</span>
+<span class="cm">HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,</span>
+<span class="cm">WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING</span>
+<span class="cm">FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR</span>
+<span class="cm">OTHER DEALINGS IN THE SOFTWARE.</span>
+<span class="cm">###</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>The <code>goatee-rules</code> utility. Handles evaluation of statements or launch an
+interactive REPL.</p></div></div><div class="code"><div class="wrapper"><span class="nv">ScriptCommand = </span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;goatee-script/lib/Command&#39;</span><span class="p">).</span><span class="nx">Command</span>
+
+<span class="nv">exports = </span><span class="nx">module</span><span class="o">?</span><span class="p">.</span><span class="nx">exports</span> <span class="o">?</span> <span class="k">this</span>
+
+<span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@class
+@namespace GoateeRules</p></div></div><div class="code"><div class="wrapper"><span class="nv">exports.Command = </span><span class="k">class</span> <span class="nx">Command</span> <span class="k">extends</span> <span class="nx">ScriptCommand</span>
+
+  <span class="nv">constructor: </span><span class="p">(</span><span class="nv">command = </span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;./GoateeRules&#39;</span><span class="p">).</span><span class="nx">GoateeRules</span><span class="p">)</span> <span class="nf">-&gt;</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">command</span><span class="p">)</span></div></div></div></div></body></html>
