@@ -1,5 +1,6 @@
 
-> :-{>~ A goatee is the perfect complement for handlebar mustaches. ~<}-:
+goatee-rules
+============
 
          _______  _______  _______  _______  _______  _______
         |    ___||       ||       ||_     _||    ___||    ___|
@@ -34,7 +35,7 @@
            |   |  | ||       ||       ||   |___  _____| |
            |___|  |_||_______||_______||_______||_______|
 
-# goatee-rules
+> :-{>~ A goatee is the perfect complement for handlebar mustaches. ~<}-:
 
 GoateeRules are the combination of goatee-script and the syntax of inline
 css-rules.
@@ -87,3 +88,4 @@ See “[goatee-js](https://github.com/sjorek/goatee-js)” and
 
 - … [Nodeclipse v0.4](https://github.com/Nodeclipse/nodeclipse-1)
  ([Eclipse Marketplace](http://marketplace.eclipse.org/content/nodeclipse), [site](http://www.nodeclipse.org))
+
