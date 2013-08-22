@@ -17,10 +17,10 @@
   "bin": {
     "goatee-rules": "./bin/goatee-rules"
   },
-  "files": {
+  "files": [
     "LICENSE",
     "README.md"
-  },
+  ],
   "directories": {
     "lib": "./lib"
   },
