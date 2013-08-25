@@ -16,16 +16,23 @@
 
 <span class="nv">exports = </span><span class="nx">module</span><span class="o">?</span><span class="p">.</span><span class="nx">exports</span> <span class="o">?</span> <span class="k">this</span>
 
-<span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@class
-@namespace GoateeRules</p></div></div><div class="code"><div class="wrapper"><span class="nv">exports.Rules = </span><span class="k">class</span> <span class="nx">Rules</span>
+<span class="c1">##</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'> </span></p></div></div><div class="code"><div class="wrapper"><span class="nv">exports.Rules = </span><span class="k">class</span> <span class="nx">Rules</span>
 
-  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>NON-STANDARD
-lightweight version of CSSOM.CSSStyleRule.parse</p></div></div><div class="code"><div class="wrapper">  <span class="c1">#</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {String} rules
-@param  {AttributeMap|PropertyMap|RuleMap}  <em>map  Optional instance to merge
-                                                  rules into, internally.
-@return {AttributeMap|PropertyMap|RuleMap}        The filled <strong></em>map</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nv">Rules.parse             = </span><span class="nx">do</span> <span class="nf">-&gt;</span>
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
 
-    <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Un-inlined literals, to avoid object creation.</p></div></div><div class="code"><div class="wrapper">    <span class="nv">_CHAR_space           = </span><span class="s">&quot; &quot;</span>
+<p>NON-STANDARD
+lightweight version of CSSOM.CSSStyleRule.parse</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>rules must be a String.</strong></p></li>
+<li><p><strong>_map can be an AttributeMap, a PropertyMap, or a RuleMap.</strong><br/>(Optional instance to merge rules into, internally.)</p></li>
+</ul>
+
+<p><strong>Returns an AttributeMap or a PropertyMap or a RuleMap</strong><br/>(The filled <strong>_map</strong>)</p></div></div><div class="code"><div class="wrapper">  <span class="nv">Rules.parse             = </span><span class="nx">do</span> <span class="nf">-&gt;</span>
+
+    <span class="c1">##</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Un-inlined literals, to avoid object creation.</p></div></div><div class="code"><div class="wrapper">    <span class="nv">_CHAR_space           = </span><span class="s">&quot; &quot;</span>
     <span class="nv">_CHAR_tab             = </span><span class="s">&quot;\t&quot;</span> <span class="c1"># tabulator</span>
     <span class="nv">_CHAR_vtab            = </span><span class="s">&quot;\v&quot;</span> <span class="c1"># vertical tabulator</span>
     <span class="nv">_CHAR_cr              = </span><span class="s">&quot;\r&quot;</span> <span class="c1"># carriage return</span>
@@ -47,8 +54,9 @@ lightweight version of CSSOM.CSSStyleRule.parse</p></div></div><div class="code"
 
     <span class="nv">_REGEXP_isEscaped     = </span><span class="sr">/[^\\](\\\\)*$/</span>
 
-    <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Internal list of error messages, used by UnorderedRules.parse
-@type {Array}</p></div></div><div class="code"><div class="wrapper">    <span class="nv">_errors               = </span><span class="p">[</span>
+    <span class="c1">##</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'> </span></p>
+
+<p>Internal list of error messages, used by UnorderedRules.parse</p></div></div><div class="code"><div class="wrapper">    <span class="nv">_errors               = </span><span class="p">[</span>
       <span class="s">&quot;Unexpected content after important declaration&quot;</span>
       <span class="s">&quot;Missing closing string&quot;</span>
       <span class="s">&quot;Missing closing comment&quot;</span>
@@ -57,10 +65,18 @@ lightweight version of CSSOM.CSSStyleRule.parse</p></div></div><div class="code"
       <span class="s">&quot;Important already declared&quot;</span>
     <span class="p">]</span>
 
-    <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Internal error message function
-@param  {Number} num
-@param  {String} rules
-@return {String}</p></div></div><div class="code"><div class="wrapper">    <span class="nv">_error                = </span><span class="nf">(num, rules, i) -&gt;</span>
+    <span class="c1">##</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
+
+<p>Internal error message function</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>num must be a Number.</strong></p></li>
+<li><p><strong>rules must be a String.</strong></p></li>
+</ul>
+
+<p><strong>Returns a String</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nv">_error                = </span><span class="nf">(num, rules, i) -&gt;</span>
       <span class="s">&quot;&quot;&quot;</span>
 <span class="s">      </span><span class="si">#{</span><span class="nx">_errors</span><span class="p">[</span><span class="nx">num</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s">:</span>
 <span class="s">      “</span><span class="si">#{</span><span class="nx">rules</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span><span class="si">}</span><span class="s">»»»</span><span class="si">#{</span><span class="nx">rules</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span><span class="si">}</span><span class="s">«««</span><span class="si">#{</span><span class="nx">rules</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s">”</span>
@@ -80,9 +96,9 @@ lightweight version of CSSOM.CSSStyleRule.parse</p></div></div><div class="code"
       <span class="nv">value      = </span><span class="s">&quot;&quot;</span>
       <span class="nv">important  = </span><span class="kc">false</span>
 
-      <span class="o">`</span><span class="k">for</span> <span class="p">(</span><span class="nv">char = </span><span class="s">&quot;&quot;</span><span class="p">;</span> <span class="p">(</span><span class="nv">char = </span><span class="nx">rules</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span> <span class="o">!==</span> <span class="s">&quot;&quot;</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span><span class="o">`</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>console.log 'Processing', i, '=', char</p></div></div><div class="code"><div class="wrapper">      <span class="k">switch</span> <span class="nx">char</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>" ", "\t", "\v", "\r", "\n", "\f"</p></div></div><div class="code"><div class="wrapper">        <span class="k">when</span> <span class="nx">_CHAR_space</span><span class="p">,</span> <span class="nx">_CHAR_tab</span><span class="p">,</span> <span class="nx">_CHAR_vtab</span><span class="p">,</span> <span class="nx">_CHAR_cr</span><span class="p">,</span> <span class="nx">_CHAR_lf</span><span class="p">,</span> <span class="nx">_CHAR_ff</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>SIGNIFICANT_WHITESPACE</p></div></div><div class="code"><div class="wrapper">          <span class="nx">buffer</span> <span class="o">+=</span> <span class="nx">char</span> <span class="k">if</span> <span class="nx">state</span> <span class="o">is</span> <span class="nx">stateValue</span> <span class="o">and</span> <span class="o">not</span> <span class="nx">important</span>
+      <span class="o">`</span><span class="k">for</span> <span class="p">(</span><span class="nv">char = </span><span class="s">&quot;&quot;</span><span class="p">;</span> <span class="p">(</span><span class="nv">char = </span><span class="nx">rules</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span> <span class="o">!==</span> <span class="s">&quot;&quot;</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span><span class="o">`</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>console.log 'Processing', i, '=', char</p></div></div><div class="code"><div class="wrapper">      <span class="k">switch</span> <span class="nx">char</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>" ", "\t", "\v", "\r", "\n", "\f"</p></div></div><div class="code"><div class="wrapper">        <span class="k">when</span> <span class="nx">_CHAR_space</span><span class="p">,</span> <span class="nx">_CHAR_tab</span><span class="p">,</span> <span class="nx">_CHAR_vtab</span><span class="p">,</span> <span class="nx">_CHAR_cr</span><span class="p">,</span> <span class="nx">_CHAR_lf</span><span class="p">,</span> <span class="nx">_CHAR_ff</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>SIGNIFICANT_WHITESPACE</p></div></div><div class="code"><div class="wrapper">          <span class="nx">buffer</span> <span class="o">+=</span> <span class="nx">char</span> <span class="k">if</span> <span class="nx">state</span> <span class="o">is</span> <span class="nx">stateValue</span> <span class="o">and</span> <span class="o">not</span> <span class="nx">important</span>
           <span class="k">continue</span>
-          <span class="k">break</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>String
+          <span class="k">break</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>String
 "'", '"'</p></div></div><div class="code"><div class="wrapper">        <span class="k">when</span> <span class="nx">_CHAR_singlequote</span><span class="p">,</span> <span class="nx">_CHAR_doublequote</span>
           <span class="k">if</span> <span class="nx">important</span>
             <span class="k">throw</span> <span class="p">(</span><span class="nx">_error</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">rules</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
@@ -100,7 +116,7 @@ lightweight version of CSSOM.CSSStyleRule.parse</p></div></div><div class="code"
             <span class="k">continue</span>
           <span class="k">else</span>
             <span class="k">throw</span> <span class="p">(</span><span class="nx">_error</span> <span class="mi">4</span><span class="p">,</span> <span class="nx">rules</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span>
-          <span class="k">break</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Comment
+          <span class="k">break</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Comment
 "/"</p></div></div><div class="code"><div class="wrapper">        <span class="k">when</span> <span class="nx">_CHAR_slash</span>
           <span class="k">if</span> <span class="nx">rules</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">is</span> <span class="nx">_CHAR_asterisk</span> <span class="c1"># &quot;*&quot;</span>
             <span class="nx">i</span> <span class="o">+=</span> <span class="mi">2</span>
@@ -113,7 +129,7 @@ lightweight version of CSSOM.CSSStyleRule.parse</p></div></div><div class="code"
           <span class="k">else</span>
             <span class="nx">buffer</span> <span class="o">+=</span> <span class="nx">char</span>
             <span class="k">continue</span>
-          <span class="k">break</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>":"</p></div></div><div class="code"><div class="wrapper">        <span class="k">when</span> <span class="nx">_CHAR_colon</span>
+          <span class="k">break</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>":"</p></div></div><div class="code"><div class="wrapper">        <span class="k">when</span> <span class="nx">_CHAR_colon</span>
           <span class="k">if</span> <span class="nx">state</span> <span class="o">is</span> <span class="nx">stateKey</span>
             <span class="nx">key</span>   <span class="o">+=</span> <span class="nx">buffer</span>
             <span class="k">throw</span> <span class="p">(</span><span class="nx">_error</span> <span class="mi">5</span><span class="p">,</span> <span class="nx">rules</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="k">if</span> <span class="nx">key</span> <span class="o">is</span> <span class="nx">_STRING_empty</span>
@@ -125,7 +141,7 @@ lightweight version of CSSOM.CSSStyleRule.parse</p></div></div><div class="code"
           <span class="k">else</span>
             <span class="nx">buffer</span> <span class="o">+=</span> <span class="nx">char</span>
             <span class="k">continue</span>
-          <span class="k">break</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>"!"</p></div></div><div class="code"><div class="wrapper">        <span class="k">when</span> <span class="nx">_CHAR_exclamation</span>
+          <span class="k">break</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>"!"</p></div></div><div class="code"><div class="wrapper">        <span class="k">when</span> <span class="nx">_CHAR_exclamation</span>
           <span class="k">if</span> <span class="nx">state</span> <span class="o">is</span> <span class="nx">stateValue</span> <span class="o">and</span> <span class="nx">rules</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">_STRING_nonimportant</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="o">is</span> <span class="nx">i</span>
             <span class="k">throw</span> <span class="p">(</span><span class="nx">_error</span> <span class="mi">6</span><span class="p">,</span> <span class="nx">rules</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="k">if</span> <span class="nx">important</span>
             <span class="nv">important = </span><span class="kc">true</span>
@@ -136,7 +152,7 @@ lightweight version of CSSOM.CSSStyleRule.parse</p></div></div><div class="code"
           <span class="k">else</span>
             <span class="nx">buffer</span> <span class="o">+=</span> <span class="nx">char</span><span class="p">;</span>
             <span class="k">continue</span>
-          <span class="k">break</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>";"</p></div></div><div class="code"><div class="wrapper">        <span class="k">when</span> <span class="nx">_CHAR_semicolon</span>
+          <span class="k">break</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>";"</p></div></div><div class="code"><div class="wrapper">        <span class="k">when</span> <span class="nx">_CHAR_semicolon</span>
           <span class="k">if</span> <span class="nx">state</span> <span class="o">is</span> <span class="nx">stateKey</span>
             <span class="k">continue</span>
           <span class="k">if</span> <span class="nx">state</span> <span class="o">is</span> <span class="nx">stateValue</span>

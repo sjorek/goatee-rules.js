@@ -16,15 +16,28 @@
 
 <span class="nv">exports = </span><span class="nx">module</span><span class="o">?</span><span class="p">.</span><span class="nx">exports</span> <span class="o">?</span> <span class="k">this</span>
 
-<span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@class
-@namespace GoateeRules</p></div></div><div class="code"><div class="wrapper"><span class="nv">exports.Utility = </span><span class="k">class</span> <span class="nx">Utility</span>
+<span class="c1">##</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'> </span></p></div></div><div class="code"><div class="wrapper"><span class="nv">exports.Utility = </span><span class="k">class</span> <span class="nx">Utility</span>
 
-  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {Object}
-@return {Boolean}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.isRuleMap = </span><span class="nf">(obj) -&gt;</span>
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>The must be an Object.</strong><br/>(object to test)</li>
+</ul>
+
+<p><strong>Returns a Boolean</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.isRuleMap = </span><span class="nf">(obj) -&gt;</span>
     <span class="nx">obj</span><span class="o">?</span> <span class="o">and</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">rules</span><span class="o">?</span> <span class="o">and</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">priority</span><span class="o">?</span>
 
-  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {String}     code
-@return {Expression}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.parse = </span><span class="o">\</span>
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>code must be a String.</strong></li>
+</ul>
+
+<p><strong>Returns an Expression</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.parse = </span><span class="o">\</span>
   <span class="nv">Utility.parseExpression = </span><span class="nx">do</span> <span class="nf">-&gt;</span>
     <span class="nv">parser = </span><span class="kc">null</span>
     <span class="nv">cache  = </span><span class="p">{}</span>
@@ -34,11 +47,19 @@
       <span class="nv">expression = </span><span class="nx">parser</span><span class="p">.</span><span class="nx">parse</span> <span class="nx">code</span>
       <span class="nx">cache</span><span class="p">[</span><span class="nx">code</span><span class="p">]</span> <span class="o">=</span> <span class="nx">cache</span><span class="p">[</span><span class="s">&#39;&#39;</span> <span class="o">+</span> <span class="nx">expression</span><span class="p">]</span> <span class="o">=</span> <span class="nx">expression</span>
 
-  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>NON-STANDARD
-lightweight version of CSSOM.CSSStyleRule.parse</p></div></div><div class="code"><div class="wrapper">  <span class="c1">#</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {String}          rules
-@param  {UnorderedRules}  _map  Optional instance to merge rules into
-                                meant to be used for internally.
-@return {UnorderedRules}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.parseRules    = </span><span class="nx">do</span> <span class="nf">-&gt;</span>
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
+
+<p>NON-STANDARD
+lightweight version of CSSOM.CSSStyleRule.parse</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>rules must be a String.</strong></p></li>
+<li><p><strong>_map must be an UnorderedRules.</strong><br/>(Optional instance to merge rules into meant to be used for internally.)</p></li>
+</ul>
+
+<p><strong>Returns an UnorderedRules</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.parseRules    = </span><span class="nx">do</span> <span class="nf">-&gt;</span>
     <span class="nv">parser = </span><span class="kc">null</span>
     <span class="nv">cache  = </span><span class="p">{}</span>
     <span class="nf">(code) -&gt;</span>
@@ -47,21 +68,48 @@ lightweight version of CSSOM.CSSStyleRule.parse</p></div></div><div class="code"
       <span class="nv">rules = </span><span class="nx">parser</span><span class="p">.</span><span class="nx">parse</span> <span class="nx">code</span>
       <span class="nx">cache</span><span class="p">[</span><span class="nx">code</span><span class="p">]</span> <span class="o">=</span> <span class="nx">cache</span><span class="p">[</span><span class="s">&#39;&#39;</span> <span class="o">+</span> <span class="nx">rules</span><span class="p">]</span> <span class="o">=</span> <span class="nx">rules</span>
 
-  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Trim whitespace from begin and end of string.</p></div></div><div class="code"><div class="wrapper">  <span class="c1">#</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {String}  string  Input string.
-@return {String}  Trimmed string.</p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.trim          =</span>
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
+
+<p>Trim whitespace from begin and end of string.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>string must be a String.</strong><br/>(Input string.)</li>
+</ul>
+
+<p><strong>Returns a String</strong><br/>(Trimmed string.)</p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.trim          =</span>
     <span class="k">if</span> <span class="nb">String</span><span class="o">::</span><span class="nx">trim</span><span class="o">?</span>
       <span class="nf">(string) -&gt;</span> <span class="nx">string</span><span class="p">.</span><span class="nx">trim</span><span class="p">()</span>
-    <span class="k">else</span> <span class="nx">do</span> <span class="nf">-&gt;</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Un-inlined literal, to avoid object creation.</p></div></div><div class="code"><div class="wrapper">      <span class="nv">_REGEXP_trim = </span><span class="sr">/^\s+|\s+$/g</span>
+    <span class="k">else</span> <span class="nx">do</span> <span class="nf">-&gt;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Un-inlined literal, to avoid object creation.</p></div></div><div class="code"><div class="wrapper">      <span class="nv">_REGEXP_trim = </span><span class="sr">/^\s+|\s+$/g</span>
       <span class="nf">(string)    -&gt;</span> <span class="nx">string</span><span class="p">.</span><span class="nx">replace</span> <span class="nx">_REGEXP_trim</span><span class="p">,</span> <span class="s">&#39;&#39;</span>
 
-  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Converts “a-property-name” to “aPropertyName”</p></div></div><div class="code"><div class="wrapper">  <span class="c1">#</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {String}  string  Input string.
-@return {String}  Camelized string.</p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.camelize      = </span><span class="nx">do</span> <span class="nf">-&gt;</span>
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
+
+<p>Converts “a-property-name” to “aPropertyName”</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>string must be a String.</strong><br/>(Input string.)</li>
+</ul>
+
+<p><strong>Returns a String</strong><br/>(Camelized string.)</p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.camelize      = </span><span class="nx">do</span> <span class="nf">-&gt;</span>
     <span class="nv">_REGEXP_camelize    = </span><span class="sr">/-([a-z0-9])/gi</span>
     <span class="nv">_camelize           = </span> <span class="nf">(match, char, index, str) -&gt;</span> <span class="nx">char</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span>
     <span class="nf">(string)            -&gt;</span> <span class="nx">string</span><span class="p">.</span><span class="nx">replace</span> <span class="nx">_REGEXP_camelize</span><span class="p">,</span> <span class="nx">_camelize</span>
 
-  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Converts “aPropertyName” to “a-property-name”</p></div></div><div class="code"><div class="wrapper">  <span class="c1">#</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {String}  string  Input string.
-@return {String}  Dashed string.</p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.dashify       = </span><span class="nx">do</span> <span class="nf">-&gt;</span>
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
+
+<p>Converts “aPropertyName” to “a-property-name”</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>string must be a String.</strong><br/>(Input string.)</li>
+</ul>
+
+<p><strong>Returns a String</strong><br/>(Dashed string.)</p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.dashify       = </span><span class="nx">do</span> <span class="nf">-&gt;</span>
     <span class="nv">_CHAR_dash          = </span><span class="s">&#39;-&#39;</span>
     <span class="nv">_REGEXP_dashify     = </span><span class="sr">/(^|[a-z0-9])([A-Z])/g</span>
     <span class="nv">_dashify            = </span><span class="nf">(match, char, camel, index, str) -&gt;</span>

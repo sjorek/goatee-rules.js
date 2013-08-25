@@ -135,7 +135,7 @@ exports.RuleMap = class RuleMap
   #   identifier: value; key: expression=1+1; action: expr( … ; … );
   #
   # @return {String}
-  toString: () ->
+  toString: ->
     rules = @map (key, value, priority) ->
       rule  = "#{key}:#{value}"
       rule += " !important" if priority is true

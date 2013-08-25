@@ -18,20 +18,34 @@
 
 <span class="nv">exports = </span><span class="nx">module</span><span class="o">?</span><span class="p">.</span><span class="nx">exports</span> <span class="o">?</span> <span class="k">this</span>
 
-<span class="c1">## RuleMap</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>RuleMaps look like “identifier: expression; identifier2: expression2”.
-They provide a simplified implementation of RuleMap keeping the
-initial order of all rules added.</p></div></div><div class="code"><div class="wrapper"><span class="c1">#</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@class
-@namespace GoateeRules.Ordered</p></div></div><div class="code"><div class="wrapper"><span class="nv">exports.RuleMap = </span><span class="k">class</span> <span class="nx">RuleMap</span> <span class="k">extends</span> <span class="nx">UnorderedRuleMap</span>
+<span class="c1">## RuleMap</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'> </span></p>
 
-  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param {Array}  sequence
-@param {Object} rules
-@param {Object} priority
-@constructor</p></div></div><div class="code"><div class="wrapper">  <span class="nv">constructor: </span><span class="nf">(@sequence = [], @rules, @priority) -&gt;</span>
+<p>RuleMaps look like “identifier: expression; identifier2: expression2”.
+They provide a simplified implementation of RuleMap keeping the
+initial order of all rules added.</p></div></div><div class="code"><div class="wrapper"><span class="nv">exports.RuleMap = </span><span class="k">class</span> <span class="nx">RuleMap</span> <span class="k">extends</span> <span class="nx">UnorderedRuleMap</span>
+
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Constructor</span></p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>sequence must be an Array.</strong></p></li>
+<li><p><strong>rules must be an Object.</strong></p></li>
+<li><p><strong>priority must be an Object.</strong></p></li>
+</ul></div></div><div class="code"><div class="wrapper">  <span class="nv">constructor: </span><span class="nf">(@sequence = [], @rules, @priority) -&gt;</span>
     <span class="k">super</span> <span class="nx">@rules</span><span class="p">,</span> <span class="nx">@priority</span>
 
-  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>adds a new rule to this instance
-@param  {String} string
-@return {RuleMap}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">add: </span><span class="nf">(key, value, important) -&gt;</span>
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
+
+<p>adds a new rule to this instance</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>string must be a String.</strong></li>
+</ul>
+
+<p><strong>Returns a RuleMap</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nv">add: </span><span class="nf">(key, value, important) -&gt;</span>
 
     <span class="nv">id     = </span><span class="nx">@normalizeKey</span> <span class="nx">key</span>
     <span class="nv">exists = </span><span class="nx">@rules</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span>
@@ -47,7 +61,16 @@ initial order of all rules added.</p></div></div><div class="code"><div class="w
 
     <span class="k">this</span>
 
-  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>Call fn for each rule's key, value and priority and return the resulting
-Array.</p></div></div><div class="code"><div class="wrapper">  <span class="c1">#</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {Function} fn
-@return {Array}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">map: </span><span class="nf">(fn) -&gt;</span>
+  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
+
+<p>Call fn for each rule's key, value and priority and return the resulting
+Array.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>fn must be a Function.</strong></li>
+</ul>
+
+<p><strong>Returns an Array</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nv">map: </span><span class="nf">(fn) -&gt;</span>
     <span class="nx">fn</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">@rules</span><span class="p">[</span><span class="nx">key</span><span class="p">],</span> <span class="nx">@priority</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="k">for</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">@sequence</span></div></div></div></div></body></html>

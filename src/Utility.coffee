@@ -22,7 +22,7 @@ exports = module?.exports ? this
 exports.Utility = class Utility
 
   ##
-  # @param  {Object}
+  # @param  {Object}  The object to test
   # @return {Boolean}
   Utility.isRuleMap = (obj) ->
     obj? and obj.rules? and obj.priority?
