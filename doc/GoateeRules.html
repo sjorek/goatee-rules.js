@@ -34,7 +34,7 @@
   <span class="nv">_compiler = </span><span class="kc">null</span>
 
   <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param {String} code
-@return Expression</p></div></div><div class="code"><div class="wrapper">  <span class="nv">GoateeRules.parse = </span><span class="nf">(code) -&gt;</span>
+@return {Expression}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">GoateeRules.parse = </span><span class="nf">(code) -&gt;</span>
     <span class="nx">_compiler</span> <span class="o">?=</span> <span class="k">new</span> <span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;./Compiler&#39;</span><span class="p">).</span><span class="nx">Compiler</span><span class="p">)</span>
     <span class="nx">_compiler</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">code</span><span class="p">)</span>
 
@@ -43,12 +43,12 @@
 @param {Object} variables (optional)
 @param {Array}  scope (optional)
 @param {Array}  stack (optional)
-@return mixed</p></div></div><div class="code"><div class="wrapper">  <span class="nv">GoateeRules.evaluate  = </span><span class="nf">(code, context, variables, scope, stack) -&gt;</span>
+@return {mixed}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">GoateeRules.evaluate  = </span><span class="nf">(code, context, variables, scope, stack) -&gt;</span>
     <span class="nx">_compiler</span> <span class="o">?=</span> <span class="k">new</span> <span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;./Compiler&#39;</span><span class="p">).</span><span class="nx">Compiler</span><span class="p">)</span>
     <span class="nx">_compiler</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">code</span><span class="p">,</span> <span class="nx">context</span><span class="p">,</span> <span class="nx">variables</span><span class="p">,</span> <span class="nx">scope</span><span class="p">,</span> <span class="nx">stack</span><span class="p">)</span>
 
   <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param {String} code
-@return String</p></div></div><div class="code"><div class="wrapper">  <span class="nv">GoateeRules.render = </span><span class="nf">(code) -&gt;</span>
+@return {String}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">GoateeRules.render = </span><span class="nf">(code) -&gt;</span>
     <span class="nx">_compiler</span> <span class="o">?=</span> <span class="k">new</span> <span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;./Compiler&#39;</span><span class="p">).</span><span class="nx">Compiler</span><span class="p">)</span>
     <span class="nx">_compiler</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">code</span><span class="p">)</span>
 
@@ -62,13 +62,13 @@
   <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {String|Expression} data
 @param  {Function}          callback (optional)
 @param  {Boolean}           compress, default is true
-@return String</p></div></div><div class="code"><div class="wrapper">  <span class="nv">GoateeRules.stringify = </span><span class="nf">(data, callback, compress) -&gt;</span>
+@return {String}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">GoateeRules.stringify = </span><span class="nf">(data, callback, compress) -&gt;</span>
     <span class="nx">_compiler</span> <span class="o">?=</span> <span class="k">new</span> <span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;./Compiler&#39;</span><span class="p">).</span><span class="nx">Compiler</span><span class="p">)</span>
     <span class="nx">_compiler</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">callback</span><span class="p">,</span> <span class="nx">compress</span><span class="p">)</span>
 
   <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {String|Array} data, code-String or opcode-Array
 @param  {Function}     callback (optional)
 @param  {Boolean}      compress, default = true
-@return String</p></div></div><div class="code"><div class="wrapper">  <span class="nv">GoateeRules.compile = </span><span class="nf">(data, callback, compress) -&gt;</span>
+@return {String}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">GoateeRules.compile = </span><span class="nf">(data, callback, compress) -&gt;</span>
     <span class="nx">_compiler</span> <span class="o">?=</span> <span class="k">new</span> <span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;./Compiler&#39;</span><span class="p">).</span><span class="nx">Compiler</span><span class="p">)</span>
     <span class="nx">_compiler</span><span class="p">.</span><span class="nx">compile</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">callback</span><span class="p">,</span> <span class="nx">compress</span><span class="p">)</span></div></div></div></div></body></html>

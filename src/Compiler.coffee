@@ -44,7 +44,7 @@ exports.Compiler = class Compiler extends ScriptCompiler
   ##
   # @param  {Array|String|Object} code, a String, opcode-Array or Object with
   #                               toString method
-  # @return Expression
+  # @return {Expression}
   parse: (code) ->
     return @parseImpl(code.toString()) if not isArray code
     map = new Expressions
@@ -60,7 +60,7 @@ exports.Compiler = class Compiler extends ScriptCompiler
   # @param  {Object}              variables (optional)
   # @param  {Array}               scope (optional)
   # @param  {Array}               stack (optional)
-  # @return mixed
+  # @return {mixed}
   evaluate: (code, context={}, variables={}, scope, stack) ->
     map = @parse(code)
     map.each (key, value, important) ->
@@ -117,14 +117,14 @@ exports.Compiler = class Compiler extends ScriptCompiler
 #  # @param  {String|Expression} data
 #  # @param  {Function}          callback (optional)
 #  # @param  {Boolean}           compress, default is on
-#  # @return Function
+#  # @return {Function}
 #  closure: (data, callback, compress = on, prefix) ->
 #    super(data, callback, compress, prefix)
 
   ##
   # @param  {String|Array} data, opcode-String or -Array
   # @param  {Boolean}      compress, default = true
-  # @return String
+  # @return {String}
   load: (data, compress = on) ->
     opcode = if isArray data then data else @expand(data)
     code   = []
@@ -139,7 +139,7 @@ exports.Compiler = class Compiler extends ScriptCompiler
 #  #                               toString method
 #  # @param  {Function}            callback (optional)
 #  # @param  {Boolean}             compress, default = true
-#  # @return String
+#  # @return {String}
 #  compile: (data, callback, compress = on) ->
 #    opcode = if isArray data then data else @ast(data, callback, false)
 #    @load(opcode, compress)

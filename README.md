@@ -70,9 +70,21 @@ See “[goatee-js](http://sjorek.github.io/goatee-js)” and
 
 ## Development
 
+Preperation (once):
+
     $ git clone https://github.com/sjorek/goatee-rules
     $ cd goatee-rules
+    $ npm install
+
+For *nix-like environments (verified):
+
     $ PATH=$PATH:./node_modules/.bin cake all
+
+For Windows environments (not verified):
+
+    $ set path=%PATH%;.\node_modules\.bin
+    $ setx path "%PATH%"
+    $ cake all
 
 ## Credits go to …
 

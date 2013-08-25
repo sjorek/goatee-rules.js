@@ -39,7 +39,7 @@
 
   <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {Array|String|Object} code, a String, opcode-Array or Object with
                               toString method
-@return Expression</p></div></div><div class="code"><div class="wrapper">  <span class="nv">parse: </span><span class="nf">(code) -&gt;</span>
+@return {Expression}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">parse: </span><span class="nf">(code) -&gt;</span>
     <span class="k">return</span> <span class="nx">@parseImpl</span><span class="p">(</span><span class="nx">code</span><span class="p">.</span><span class="nx">toString</span><span class="p">())</span> <span class="k">if</span> <span class="o">not</span> <span class="nx">isArray</span> <span class="nx">code</span>
     <span class="nv">map = </span><span class="k">new</span> <span class="nx">Expressions</span>
     <span class="k">for</span> <span class="nx">rule</span> <span class="k">in</span> <span class="nx">code</span>
@@ -53,7 +53,7 @@
 @param  {Object}              variables (optional)
 @param  {Array}               scope (optional)
 @param  {Array}               stack (optional)
-@return mixed</p></div></div><div class="code"><div class="wrapper">  <span class="nv">evaluate: </span><span class="nf">(code, context={}, variables={}, scope, stack) -&gt;</span>
+@return {mixed}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">evaluate: </span><span class="nf">(code, context={}, variables={}, scope, stack) -&gt;</span>
     <span class="nv">map = </span><span class="nx">@parse</span><span class="p">(</span><span class="nx">code</span><span class="p">)</span>
     <span class="nx">map</span><span class="p">.</span><span class="nx">each</span> <span class="nf">(key, value, important) -&gt;</span>
       <span class="nx">map</span><span class="p">.</span><span class="nx">rules</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">variables</span><span class="p">,</span> <span class="nx">scope</span><span class="p">,</span> <span class="nx">stack</span><span class="p">)</span>
@@ -99,11 +99,11 @@
  # @param  {String|Expression} data
  # @param  {Function}          callback (optional)
  # @param  {Boolean}           compress, default is on
- # @return Function
+ # @return {Function}
  closure: (data, callback, compress = on, prefix) ->
    super(data, callback, compress, prefix)</p></div></div><div class="code"><div class="wrapper">  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>@param  {String|Array} data, opcode-String or -Array
 @param  {Boolean}      compress, default = true
-@return String</p></div></div><div class="code"><div class="wrapper">  <span class="nv">load: </span><span class="nf">(data, compress = on) -&gt;</span>
+@return {String}</p></div></div><div class="code"><div class="wrapper">  <span class="nv">load: </span><span class="nf">(data, compress = on) -&gt;</span>
     <span class="nv">opcode = </span><span class="k">if</span> <span class="nx">isArray</span> <span class="nx">data</span> <span class="k">then</span> <span class="nx">data</span> <span class="k">else</span> <span class="nx">@expand</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
     <span class="nv">code   = </span><span class="p">[]</span>
     <span class="k">for</span> <span class="nx">rule</span> <span class="k">in</span> <span class="nx">opcode</span>
@@ -115,7 +115,7 @@
  #                               toString method
  # @param  {Function}            callback (optional)
  # @param  {Boolean}             compress, default = true
- # @return String
+ # @return {String}
  compile: (data, callback, compress = on) ->
    opcode = if isArray data then data else @ast(data, callback, false)
    @load(opcode, compress)</p></div></div></div></div></body></html>

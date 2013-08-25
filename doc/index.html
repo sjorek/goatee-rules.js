@@ -71,9 +71,23 @@ If called without options, `goatee-rules` will run interactive.
 
 <h2 id="development">Development</h2>
 
+<p>Preperation (once):</p>
+
 <pre><code>$ git clone https://github.com/sjorek/goatee-rules
 $ cd goatee-rules
-$ PATH=$PATH:./node_modules/.bin cake all
+$ npm install
+</code></pre>
+
+<p>For *nix-like environments (verified):</p>
+
+<pre><code>$ PATH=$PATH:./node_modules/.bin cake all
+</code></pre>
+
+<p>For Windows environments (not verified):</p>
+
+<pre><code>$ set path=%PATH%;.\node_modules\.bin
+$ setx path "%PATH%"
+$ cake all
 </code></pre>
 
 <h2 id="credits-go-to-">Credits go to …</h2>
