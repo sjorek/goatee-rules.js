@@ -86,6 +86,12 @@ For Windows environments (not verified):
     $ setx path "%PATH%"
     $ cake all
 
+## Documentation
+
+Annotated sources are available here:
+[http://sjorek.github.io/goatee-rules/](http://sjorek.github.io/goatee-rules/)
+
+
 ## Credits go to …
 
 - … Zachary Carter and all contributors for their

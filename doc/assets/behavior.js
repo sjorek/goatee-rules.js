@@ -16,6 +16,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "sourcePath": "/Users/sjorek/Documents/Projects/Mesch/Workspace/goatee-rules/README.md",
         "projectPath": "README.md",
         "targetPath": "index",
+        "pageTitle": "goatee-rules",
         "title": "index"
       },
       "depth": 1,
@@ -56,6 +57,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "heading",
           "data": {
             "level": 2,
+            "title": "Documentation",
+            "slug": "documentation"
+          },
+          "depth": 2
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 2,
             "title": "Credits go to …",
             "slug": "credits-go-to-"
           },
@@ -76,6 +85,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "sourcePath": "/Users/sjorek/Documents/Projects/Mesch/Workspace/goatee-rules/Cakefile",
         "projectPath": "Cakefile",
         "targetPath": "Cakefile",
+        "pageTitle": "Cakefile",
         "title": "Cakefile"
       },
       "depth": 1,
@@ -94,6 +104,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "sourcePath": "/Users/sjorek/Documents/Projects/Mesch/Workspace/goatee-rules/src/Command.coffee",
         "projectPath": "src/Command.coffee",
         "targetPath": "Command",
+        "pageTitle": "Command",
         "title": "Command"
       },
       "depth": 1,
@@ -112,6 +123,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "sourcePath": "/Users/sjorek/Documents/Projects/Mesch/Workspace/goatee-rules/src/Compiler.coffee",
         "projectPath": "src/Compiler.coffee",
         "targetPath": "Compiler",
+        "pageTitle": "Compiler",
         "title": "Compiler"
       },
       "depth": 1,
@@ -130,6 +142,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "sourcePath": "/Users/sjorek/Documents/Projects/Mesch/Workspace/goatee-rules/src/Expressions.coffee",
         "projectPath": "src/Expressions.coffee",
         "targetPath": "Expressions",
+        "pageTitle": "Expressions",
         "title": "Expressions"
       },
       "depth": 1,
@@ -148,6 +161,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "sourcePath": "/Users/sjorek/Documents/Projects/Mesch/Workspace/goatee-rules/src/GoateeRules.coffee",
         "projectPath": "src/GoateeRules.coffee",
         "targetPath": "GoateeRules",
+        "pageTitle": "GoateeRules",
         "title": "GoateeRules"
       },
       "depth": 1,
@@ -166,6 +180,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "sourcePath": "/Users/sjorek/Documents/Projects/Mesch/Workspace/goatee-rules/src/Grammar.coffee",
         "projectPath": "src/Grammar.coffee",
         "targetPath": "Grammar",
+        "pageTitle": "Grammar",
         "title": "Grammar"
       },
       "depth": 1,
@@ -192,6 +207,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "sourcePath": "/Users/sjorek/Documents/Projects/Mesch/Workspace/goatee-rules/src/Ordered/AttributeMap.coffee",
             "projectPath": "src/Ordered/AttributeMap.coffee",
             "targetPath": "Ordered/AttributeMap",
+            "pageTitle": "Ordered/AttributeMap",
             "title": "AttributeMap"
           },
           "depth": 2,
@@ -210,6 +226,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "sourcePath": "/Users/sjorek/Documents/Projects/Mesch/Workspace/goatee-rules/src/Ordered/PropertyMap.coffee",
             "projectPath": "src/Ordered/PropertyMap.coffee",
             "targetPath": "Ordered/PropertyMap",
+            "pageTitle": "Ordered/PropertyMap",
             "title": "PropertyMap"
           },
           "depth": 2,
@@ -228,6 +245,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "sourcePath": "/Users/sjorek/Documents/Projects/Mesch/Workspace/goatee-rules/src/Ordered/RuleMap.coffee",
             "projectPath": "src/Ordered/RuleMap.coffee",
             "targetPath": "Ordered/RuleMap",
+            "pageTitle": "Ordered/RuleMap",
             "title": "RuleMap"
           },
           "depth": 2,
@@ -248,6 +266,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "sourcePath": "/Users/sjorek/Documents/Projects/Mesch/Workspace/goatee-rules/src/Parser.coffee",
         "projectPath": "src/Parser.coffee",
         "targetPath": "Parser",
+        "pageTitle": "Parser",
         "title": "Parser"
       },
       "depth": 1,
@@ -266,6 +285,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "sourcePath": "/Users/sjorek/Documents/Projects/Mesch/Workspace/goatee-rules/src/Rules.coffee",
         "projectPath": "src/Rules.coffee",
         "targetPath": "Rules",
+        "pageTitle": "Rules",
         "title": "Rules"
       },
       "depth": 1,
@@ -284,6 +304,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "sourcePath": "/Users/sjorek/Documents/Projects/Mesch/Workspace/goatee-rules/src/Scope.coffee",
         "projectPath": "src/Scope.coffee",
         "targetPath": "Scope",
+        "pageTitle": "Scope",
         "title": "Scope"
       },
       "depth": 1,
@@ -310,6 +331,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "sourcePath": "/Users/sjorek/Documents/Projects/Mesch/Workspace/goatee-rules/src/Tests/GoateeRulesTestSpec.coffee",
             "projectPath": "src/Tests/GoateeRulesTestSpec.coffee",
             "targetPath": "Tests/GoateeRulesTestSpec",
+            "pageTitle": "Tests/GoateeRulesTestSpec",
             "title": "GoateeRulesTestSpec"
           },
           "depth": 2,
@@ -338,6 +360,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "sourcePath": "/Users/sjorek/Documents/Projects/Mesch/Workspace/goatee-rules/src/Unordered/AttributeMap.coffee",
             "projectPath": "src/Unordered/AttributeMap.coffee",
             "targetPath": "Unordered/AttributeMap",
+            "pageTitle": "Unordered/AttributeMap",
             "title": "AttributeMap"
           },
           "depth": 2,
@@ -356,6 +379,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "sourcePath": "/Users/sjorek/Documents/Projects/Mesch/Workspace/goatee-rules/src/Unordered/PropertyMap.coffee",
             "projectPath": "src/Unordered/PropertyMap.coffee",
             "targetPath": "Unordered/PropertyMap",
+            "pageTitle": "Unordered/PropertyMap",
             "title": "PropertyMap"
           },
           "depth": 2,
@@ -374,6 +398,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "sourcePath": "/Users/sjorek/Documents/Projects/Mesch/Workspace/goatee-rules/src/Unordered/RuleMap.coffee",
             "projectPath": "src/Unordered/RuleMap.coffee",
             "targetPath": "Unordered/RuleMap",
+            "pageTitle": "Unordered/RuleMap",
             "title": "RuleMap"
           },
           "depth": 2,
@@ -394,6 +419,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "sourcePath": "/Users/sjorek/Documents/Projects/Mesch/Workspace/goatee-rules/src/Utility.coffee",
         "projectPath": "src/Utility.coffee",
         "targetPath": "Utility",
+        "pageTitle": "Utility",
         "title": "Utility"
       },
       "depth": 1,
