@@ -42,12 +42,19 @@ A goatee is the perfect complement for handlebar mustaches. :-{>~
 GoateeRules are the combination of goatee-script and the syntax of inline
 css-rules.
 
-See “[goatee-js](http://sjorek.github.io/goatee-js)” and
+Example:
+
+    test: 1 + 2 * 3 ; /* line-breaks are optional */
+    an-attribute: 'tester'.replace('r','d') ; aProperty: null
+
+Also see “[goatee-js](http://sjorek.github.io/goatee-js)” and
 “[goatee-script](http://sjorek.github.io/goatee-script)”.
+
 
 ## Installation
 
     $ npm install -g goatee-rules
+
 
 ## Usage
 
@@ -68,43 +75,45 @@ See “[goatee-js](http://sjorek.github.io/goatee-js)” and
 
     If called without options, `goatee-rules` will run interactive.
 
+
+## Documentation
+
+Read the [annotated sources](http://sjorek.github.io/goatee-rules/).
+
+
 ## Development
 
-Preperation (once):
+Install dependencies:
+
+- [git-scm](http://git-scm.com)
+- [node.js *(≥ 0.10)*](http://nodejs.org)
+- [pygments](http://pygments.org)
+
+Install project:
 
     $ git clone https://github.com/sjorek/goatee-rules
     $ cd goatee-rules
     $ npm install
 
-For *nix-like environments (verified):
+Run build in *nix-like environments:
 
     $ PATH=$PATH:./node_modules/.bin cake all
 
-For Windows environments (not verified):
+Run build in Windows environments (**not tested**):
 
     $ set path=%PATH%;.\node_modules\.bin
     $ setx path "%PATH%"
     $ cake all
 
-## Documentation
-
-Annotated sources are available here:
-[http://sjorek.github.io/goatee-rules/](http://sjorek.github.io/goatee-rules/)
-
 
 ## Credits go to …
 
-- … Zachary Carter and all contributors for their
+- … Zachary Carter and all contributors of
   [jison parser generator](http://zaach.github.io/jison/)
 
-- … Jeremy Ashkenas and all contributors for their
+- … Jeremy Ashkenas and all contributors of
   [Coffee-Script](http://coffeescript.org/)
   as a source of inspiration
 
 - … Kris Nye for his [Glass-Script](https://github.com/krisnye/glass-script/)
   as a source of inspiration
-
-- … [Nodeclipse v0.4](https://github.com/Nodeclipse/nodeclipse-1)
- ([Eclipse Marketplace](http://marketplace.eclipse.org/content/nodeclipse),
-  [site](http://www.nodeclipse.org))
-
