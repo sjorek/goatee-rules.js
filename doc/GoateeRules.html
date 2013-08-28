@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><title>GoateeRules</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="GoateeRules"><meta name="groc-project-path" content="src/GoateeRules.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/GoateeRules.coffee</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><p>© Copyright 2013 Stephan Jorek <a href="&#109;&#x61;&#x69;&#x6c;&#116;&#111;:&#x73;&#x74;&#x65;&#112;h&#97;n&#x2e;&#x6a;&#x6f;&#x72;&#x65;&#x6b;&#x40;&#x67;&#x6d;&#97;i&#x6c;&#x2e;&#x63;o&#109;">&#x73;&#x74;&#x65;&#112;h&#97;n&#x2e;&#x6a;&#x6f;&#x72;&#x65;&#x6b;&#x40;&#x67;&#x6d;&#97;i&#x6c;&#x2e;&#x63;o&#109;</a></p>
+<!DOCTYPE html><html lang="en"><head><title>GoateeRules</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="GoateeRules"><meta name="groc-project-path" content="src/GoateeRules.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/GoateeRules.coffee</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><p>© Copyright 2013 Stephan Jorek <a href="m&#97;&#105;&#x6c;&#116;&#111;:&#115;&#116;&#101;&#112;&#104;&#97;&#x6e;&#x2e;&#x6a;&#111;&#x72;e&#107;&#64;&#x67;m&#97;&#105;&#108;&#46;&#99;&#x6f;m">&#115;&#116;&#101;&#112;&#104;&#97;&#x6e;&#x2e;&#x6a;&#111;&#x72;e&#107;&#64;&#x67;m&#97;&#105;&#108;&#46;&#99;&#x6f;m</a></p>
 
 <p>Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
@@ -19,16 +19,16 @@ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
 HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.</p></div></div><div class="code"><div class="wrapper"><span class="nv">exports = </span><span class="nx">module</span><span class="o">?</span><span class="p">.</span><span class="nx">exports</span> <span class="o">?</span> <span class="k">this</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>#</p>
+OTHER DEALINGS IN THE SOFTWARE.</p></div></div><div class="code"><div class="wrapper"><span class="nv">exports = </span><span class="nx">module</span><span class="o">?</span><span class="p">.</span><span class="nx">exports</span> <span class="o">?</span> <span class="k">this</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'> namespace GoateeRules</span></p>
 
-<p><span class='doc-section-header'> namespace GoateeRules</span></p></div></div><div class="code"><div class="wrapper"><span class="nv">exports.GoateeRules = </span><span class="k">class</span> <span class="nx">GoateeRules</span>
+<p>#</p></div></div><div class="code"><div class="wrapper"><span class="nv">exports.GoateeRules = </span><span class="k">class</span> <span class="nx">GoateeRules</span>
 
   <span class="nv">GoateeRules.NAME      = </span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;../package.json&#39;</span><span class="p">).</span><span class="nx">name</span>
   <span class="nv">GoateeRules.VERSION   = </span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;../package.json&#39;</span><span class="p">).</span><span class="nx">version</span>
 
-  <span class="nv">_compiler = </span><span class="kc">null</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>#</p>
+  <span class="nv">_compiler = </span><span class="kc">null</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
 
-<p><span class='doc-section-header'></span></p>
+<p>#</p>
 
 <p>Parameters:</p>
 
@@ -38,9 +38,9 @@ OTHER DEALINGS IN THE SOFTWARE.</p></div></div><div class="code"><div class="wra
 
 <p><strong>Returns an Expression</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nv">GoateeRules.parse = </span><span class="nf">(code) -&gt;</span>
     <span class="nx">_compiler</span> <span class="o">?=</span> <span class="k">new</span> <span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;./Compiler&#39;</span><span class="p">).</span><span class="nx">Compiler</span><span class="p">)</span>
-    <span class="nx">_compiler</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">code</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>#</p>
+    <span class="nx">_compiler</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">code</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
 
-<p><span class='doc-section-header'></span></p>
+<p>#</p>
 
 <p>Parameters:</p>
 
@@ -54,9 +54,9 @@ OTHER DEALINGS IN THE SOFTWARE.</p></div></div><div class="code"><div class="wra
 
 <p><strong>Returns a mixed</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nv">GoateeRules.evaluate  = </span><span class="nf">(code, context, variables, scope, stack) -&gt;</span>
     <span class="nx">_compiler</span> <span class="o">?=</span> <span class="k">new</span> <span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;./Compiler&#39;</span><span class="p">).</span><span class="nx">Compiler</span><span class="p">)</span>
-    <span class="nx">_compiler</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">code</span><span class="p">,</span> <span class="nx">context</span><span class="p">,</span> <span class="nx">variables</span><span class="p">,</span> <span class="nx">scope</span><span class="p">,</span> <span class="nx">stack</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>#</p>
+    <span class="nx">_compiler</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">code</span><span class="p">,</span> <span class="nx">context</span><span class="p">,</span> <span class="nx">variables</span><span class="p">,</span> <span class="nx">scope</span><span class="p">,</span> <span class="nx">stack</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
 
-<p><span class='doc-section-header'></span></p>
+<p>#</p>
 
 <p>Parameters:</p>
 
@@ -66,9 +66,9 @@ OTHER DEALINGS IN THE SOFTWARE.</p></div></div><div class="code"><div class="wra
 
 <p><strong>Returns a String</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nv">GoateeRules.render = </span><span class="nf">(code) -&gt;</span>
     <span class="nx">_compiler</span> <span class="o">?=</span> <span class="k">new</span> <span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;./Compiler&#39;</span><span class="p">).</span><span class="nx">Compiler</span><span class="p">)</span>
-    <span class="nx">_compiler</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">code</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>#</p>
+    <span class="nx">_compiler</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">code</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
 
-<p><span class='doc-section-header'></span></p>
+<p>#</p>
 
 <p>Parameters:</p>
 
@@ -80,9 +80,9 @@ OTHER DEALINGS IN THE SOFTWARE.</p></div></div><div class="code"><div class="wra
 
 <p><strong>Returns an Array or a String or a Number or a true or a false or a null</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nv">GoateeRules.ast = </span><span class="nf">(data, callback, compress) -&gt;</span>
     <span class="nx">_compiler</span> <span class="o">?=</span> <span class="k">new</span> <span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;./Compiler&#39;</span><span class="p">).</span><span class="nx">Compiler</span><span class="p">)</span>
-    <span class="nx">_compiler</span><span class="p">.</span><span class="nx">ast</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">callback</span><span class="p">,</span> <span class="nx">compress</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>#</p>
+    <span class="nx">_compiler</span><span class="p">.</span><span class="nx">ast</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">callback</span><span class="p">,</span> <span class="nx">compress</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
 
-<p><span class='doc-section-header'></span></p>
+<p>#</p>
 
 <p>Parameters:</p>
 
@@ -94,9 +94,9 @@ OTHER DEALINGS IN THE SOFTWARE.</p></div></div><div class="code"><div class="wra
 
 <p><strong>Returns a String</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nv">GoateeRules.stringify = </span><span class="nf">(data, callback, compress) -&gt;</span>
     <span class="nx">_compiler</span> <span class="o">?=</span> <span class="k">new</span> <span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;./Compiler&#39;</span><span class="p">).</span><span class="nx">Compiler</span><span class="p">)</span>
-    <span class="nx">_compiler</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">callback</span><span class="p">,</span> <span class="nx">compress</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>#</p>
+    <span class="nx">_compiler</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">callback</span><span class="p">,</span> <span class="nx">compress</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
 
-<p><span class='doc-section-header'></span></p>
+<p>#</p>
 
 <p>Parameters:</p>
 
