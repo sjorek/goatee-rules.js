@@ -1,27 +1,22 @@
-<!DOCTYPE html><html lang="en"><head><title>Rules</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="Rules"><meta name="groc-project-path" content="src/Rules.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/Rules.coffee</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="cm">###</span>
-<span class="cm">© Copyright 2013 Stephan Jorek &lt;stephan.jorek@gmail.com&gt;</span>
+<!DOCTYPE html><html lang="en"><head><title>Rules</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="Rules"><meta name="groc-project-path" content="src/Rules.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/Rules.coffee</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><p>© Copyright 2013 Stephan Jorek <a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;:&#x73;&#116;&#101;&#112;&#104;a&#x6e;&#x2e;&#x6a;&#111;r&#101;&#x6b;&#64;&#x67;&#109;&#97;&#x69;&#108;&#x2e;&#x63;&#111;&#109;">&#x73;&#116;&#101;&#112;&#104;a&#x6e;&#x2e;&#x6a;&#111;r&#101;&#x6b;&#64;&#x67;&#109;&#97;&#x69;&#108;&#x2e;&#x63;&#111;&#109;</a></p>
 
-<span class="cm">Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
-<span class="cm">you may not use this file except in compliance with the License.</span>
-<span class="cm">You may obtain a copy of the License at</span>
+<p>Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at</p>
 
-<span class="cm">http://www.apache.org/licenses/LICENSE-2.0</span>
+<p>http://www.apache.org/licenses/LICENSE-2.0</p>
 
-<span class="cm">Unless required by applicable law or agreed to in writing, software</span>
-<span class="cm">distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
-<span class="cm">WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or</span>
-<span class="cm">implied. See the License for the specific language governing</span>
-<span class="cm">permissions and limitations under the License.</span>
-<span class="cm">###</span>
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied. See the License for the specific language governing
+permissions and limitations under the License.</p></div></div><div class="code"><div class="wrapper"><span class="nv">exports = </span><span class="nx">module</span><span class="o">?</span><span class="p">.</span><span class="nx">exports</span> <span class="o">?</span> <span class="k">this</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>#</p>
 
-<span class="nv">exports = </span><span class="nx">module</span><span class="o">?</span><span class="p">.</span><span class="nx">exports</span> <span class="o">?</span> <span class="k">this</span>
-
-<span class="c1">##</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'> </span></p></div></div><div class="code"><div class="wrapper"><span class="nv">exports.Rules = </span><span class="k">class</span> <span class="nx">Rules</span>
-
-  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
-
-<p>NON-STANDARD
+<p><span class='doc-section-header'> namespace GoateeRules</span></p></div></div><div class="code"><div class="wrapper"><span class="nv">exports.Rules = </span><span class="k">class</span> <span class="nx">Rules</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>#
+NON-STANDARD
 lightweight version of CSSOM.CSSStyleRule.parse</p>
+
+<p><span class='doc-section-header'></span></p>
 
 <p>Parameters:</p>
 
@@ -30,9 +25,8 @@ lightweight version of CSSOM.CSSStyleRule.parse</p>
 <li><p><strong>_map can be an AttributeMap, a PropertyMap, or a RuleMap.</strong><br/>(Optional instance to merge rules into, internally.)</p></li>
 </ul>
 
-<p><strong>Returns an AttributeMap or a PropertyMap or a RuleMap</strong><br/>(The filled <strong>_map</strong>)</p></div></div><div class="code"><div class="wrapper">  <span class="nv">Rules.parse             = </span><span class="nx">do</span> <span class="nf">-&gt;</span>
-
-    <span class="c1">##</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Un-inlined literals, to avoid object creation.</p></div></div><div class="code"><div class="wrapper">    <span class="nv">_CHAR_space           = </span><span class="s">&quot; &quot;</span>
+<p><strong>Returns an AttributeMap or a PropertyMap or a RuleMap</strong><br/>(The filled <strong>_map</strong>)</p></div></div><div class="code"><div class="wrapper">  <span class="nv">Rules.parse             = </span><span class="nx">do</span> <span class="nf">-&gt;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>#
+Un-inlined literals, to avoid object creation.</p></div></div><div class="code"><div class="wrapper">    <span class="nv">_CHAR_space           = </span><span class="s">&quot; &quot;</span>
     <span class="nv">_CHAR_tab             = </span><span class="s">&quot;\t&quot;</span> <span class="c1"># tabulator</span>
     <span class="nv">_CHAR_vtab            = </span><span class="s">&quot;\v&quot;</span> <span class="c1"># vertical tabulator</span>
     <span class="nv">_CHAR_cr              = </span><span class="s">&quot;\r&quot;</span> <span class="c1"># carriage return</span>
@@ -52,22 +46,20 @@ lightweight version of CSSOM.CSSStyleRule.parse</p>
     <span class="nv">_STRING_closecomment  = </span><span class="s">&#39;*/&#39;</span>
     <span class="nv">_STRING_nonimportant  = </span><span class="s">&#39;!important&#39;</span>
 
-    <span class="nv">_REGEXP_isEscaped     = </span><span class="sr">/[^\\](\\\\)*$/</span>
+    <span class="nv">_REGEXP_isEscaped     = </span><span class="sr">/[^\\](\\\\)*$/</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>#
+Internal list of error messages, used by UnorderedRules.parse</p>
 
-    <span class="c1">##</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'> </span></p>
-
-<p>Internal list of error messages, used by UnorderedRules.parse</p></div></div><div class="code"><div class="wrapper">    <span class="nv">_errors               = </span><span class="p">[</span>
+<p><span class='doc-section-header'> of type <em>Array</em></span></p></div></div><div class="code"><div class="wrapper">    <span class="nv">_errors               = </span><span class="p">[</span>
       <span class="s">&quot;Unexpected content after important declaration&quot;</span>
       <span class="s">&quot;Missing closing string&quot;</span>
       <span class="s">&quot;Missing closing comment&quot;</span>
       <span class="s">&quot;Unexpected string opener&quot;</span>
       <span class="s">&quot;Missing identifier key&quot;</span>
       <span class="s">&quot;Important already declared&quot;</span>
-    <span class="p">]</span>
+    <span class="p">]</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>#
+Internal error message function</p>
 
-    <span class="c1">##</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
-
-<p>Internal error message function</p>
+<p><span class='doc-section-header'></span></p>
 
 <p>Parameters:</p>
 
@@ -77,9 +69,7 @@ lightweight version of CSSOM.CSSStyleRule.parse</p>
 </ul>
 
 <p><strong>Returns a String</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nv">_error                = </span><span class="nf">(num, rules, i) -&gt;</span>
-      <span class="s">&quot;&quot;&quot;</span>
-<span class="s">      </span><span class="si">#{</span><span class="nx">_errors</span><span class="p">[</span><span class="nx">num</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s">:</span>
-<span class="s">      “</span><span class="si">#{</span><span class="nx">rules</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span><span class="si">}</span><span class="s">»»»</span><span class="si">#{</span><span class="nx">rules</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span><span class="si">}</span><span class="s">«««</span><span class="si">#{</span><span class="nx">rules</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s">”</span>
+      <span class="s">&quot;&quot;&quot;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>{_errors[num - 1]}:</p></div></div><div class="code"><div class="wrapper"><span class="s">      “</span><span class="si">#{</span><span class="nx">rules</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span><span class="si">}</span><span class="s">»»»</span><span class="si">#{</span><span class="nx">rules</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span><span class="si">}</span><span class="s">«««</span><span class="si">#{</span><span class="nx">rules</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s">”</span>
 <span class="s">      &quot;&quot;&quot;</span>
 
     <span class="nf">(rules, _map)       -&gt;</span>

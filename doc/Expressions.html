@@ -1,37 +1,29 @@
-<!DOCTYPE html><html lang="en"><head><title>Expressions</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="Expressions"><meta name="groc-project-path" content="src/Expressions.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/Expressions.coffee</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="cm">###</span>
-<span class="cm">© Copyright 2013 Stephan Jorek &lt;stephan.jorek@gmail.com&gt;</span>
+<!DOCTYPE html><html lang="en"><head><title>Expressions</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="Expressions"><meta name="groc-project-path" content="src/Expressions.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/Expressions.coffee</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><p>© Copyright 2013 Stephan Jorek <a href="&#109;&#97;&#105;&#108;&#116;&#111;:&#115;&#116;&#x65;&#x70;&#x68;a&#110;&#x2e;&#106;&#111;&#114;&#101;k&#x40;g&#109;a&#105;&#108;&#46;&#99;&#x6f;&#109;">&#115;&#116;&#x65;&#x70;&#x68;a&#110;&#x2e;&#106;&#111;&#114;&#101;k&#x40;g&#109;a&#105;&#108;&#46;&#99;&#x6f;&#109;</a></p>
 
-<span class="cm">Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
-<span class="cm">you may not use this file except in compliance with the License.</span>
-<span class="cm">You may obtain a copy of the License at</span>
+<p>Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at</p>
 
-<span class="cm">http://www.apache.org/licenses/LICENSE-2.0</span>
+<p>http://www.apache.org/licenses/LICENSE-2.0</p>
 
-<span class="cm">Unless required by applicable law or agreed to in writing, software</span>
-<span class="cm">distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
-<span class="cm">WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or</span>
-<span class="cm">implied. See the License for the specific language governing</span>
-<span class="cm">permissions and limitations under the License.</span>
-<span class="cm">###</span>
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied. See the License for the specific language governing
+permissions and limitations under the License.</p></div></div><div class="code"><div class="wrapper"><span class="nv">exports = </span><span class="nx">module</span><span class="o">?</span><span class="p">.</span><span class="nx">exports</span> <span class="o">?</span> <span class="k">this</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h1 id="expressionmap">ExpressionMap</h1></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>ExpressionMaps look like “attribute-key: expression; another-key: expression”.
+They provide a implementation of normalized to dash-seperated RuleMap.</p>
 
-<span class="nv">exports = </span><span class="nx">module</span><span class="o">?</span><span class="p">.</span><span class="nx">exports</span> <span class="o">?</span> <span class="k">this</span>
+<p><span class='doc-section-header'> namespace GoateeRules</span></p></div></div><div class="code"><div class="wrapper"><span class="nv">_create = </span><span class="nf">(ParentClass) -&gt;</span>
 
-<span class="c1">## ExpressionMap</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'> </span></p>
+  <span class="nv">ExpressionMap = </span><span class="k">class</span> <span class="nx">ExpressionMap</span> <span class="k">extends</span> <span class="nx">ParentClass</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>lazy reference to <strong>Parser.parse</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nv">parse = </span><span class="kc">null</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>#
+Compatibilliy layer for expressions</p>
 
-<p>ExpressionMaps look like “attribute-key: expression; another-key: expression”.
-They provide a implementation of normalized to dash-seperated RuleMap.</p></div></div><div class="code"><div class="wrapper"><span class="nv">_create = </span><span class="nf">(ParentClass) -&gt;</span>
-
-  <span class="nv">ExpressionMap = </span><span class="k">class</span> <span class="nx">ExpressionMap</span> <span class="k">extends</span> <span class="nx">ParentClass</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>lazy reference to <strong>Parser.parse</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nv">parse = </span><span class="kc">null</span>
-
-    <span class="c1">##</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'> </span></p>
-
-<p>Compatibilliy layer for expressions</p></div></div><div class="code"><div class="wrapper">    <span class="nv">operator:</span>
-      <span class="nv">name: </span><span class="s">&#39;rules&#39;</span>
-
-    <span class="c1">##</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
-
-<p>Parses the given string  and applies the resulting map to this map, taking
+<p><span class='doc-section-header'> of type <em>Object</em></span></p></div></div><div class="code"><div class="wrapper">    <span class="nv">operator:</span>
+      <span class="nv">name: </span><span class="s">&#39;rules&#39;</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>#
+Parses the given string  and applies the resulting map to this map, taking
 priorities into consideration.</p>
+
+<p><span class='doc-section-header'></span></p>
 
 <p>Parameters:</p>
 
@@ -40,9 +32,9 @@ priorities into consideration.</p>
 </ul>
 
 <p><strong>Returns a RuleMap</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nv">apply: </span><span class="nf">(string) -&gt;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Delayed require to allow circular dependency during parser creation</p></div></div><div class="code"><div class="wrapper">      <span class="nx">parse</span> <span class="o">?=</span> <span class="nx">require</span><span class="p">(</span><span class="s">&#39;./Parser&#39;</span><span class="p">).</span><span class="nx">parse</span>
-      <span class="nx">@inject</span> <span class="nx">parse</span><span class="p">(</span><span class="nx">string</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span>
+      <span class="nx">@inject</span> <span class="nx">parse</span><span class="p">(</span><span class="nx">string</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>#</p>
 
-    <span class="c1">##</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
+<p><span class='doc-section-header'></span></p>
 
 <p>Parameters:</p>
 
@@ -51,9 +43,9 @@ priorities into consideration.</p>
 </ul>
 
 <p><strong>Returns an Expression</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nv">normalizeValue: </span><span class="nf">(expression) -&gt;</span>
-      <span class="nx">expression</span>
+      <span class="nx">expression</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>#</p>
 
-    <span class="c1">##</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
+<p><span class='doc-section-header'></span></p>
 
 <p>Parameters:</p>
 
@@ -63,9 +55,9 @@ priorities into consideration.</p>
 
 <p><strong>Returns an Array</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nv">toJSON: </span><span class="nf">(callback) -&gt;</span>
       <span class="k">return</span> <span class="nx">callback</span> <span class="k">this</span> <span class="k">if</span> <span class="nx">callback</span>
-      <span class="nx">@flatten</span><span class="p">()</span>
+      <span class="nx">@flatten</span><span class="p">()</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>#</p>
 
-    <span class="c1">##</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
+<p><span class='doc-section-header'></span></p>
 
 <p>Parameters:</p>
 
@@ -75,9 +67,9 @@ priorities into consideration.</p>
 
 <p><strong>Returns an ExpressionMap</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nv">callback: </span><span class="nf">(callback) -&gt;</span>
       <span class="nx">@each</span> <span class="nf">(key, expression, important) -&gt;</span>
-        <span class="nx">expression</span><span class="p">.</span><span class="nx">callback</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span>
+        <span class="nx">expression</span><span class="p">.</span><span class="nx">callback</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>#</p>
 
-    <span class="c1">##</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
+<p><span class='doc-section-header'></span></p>
 
 <p>Parameters:</p>
 
@@ -94,9 +86,8 @@ priorities into consideration.</p>
         <span class="nx">rules</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">expression</span><span class="p">.</span><span class="nx">evaluate</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">variables</span><span class="p">,</span> <span class="nx">scope</span><span class="p">,</span> <span class="nx">stack</span><span class="p">)</span>
       <span class="nx">rules</span>
 
-  <span class="nx">ExpressionMap</span>
-
-<span class="c1">#for _kind in [&#39;Attribute&#39;,&#39;Property&#39;, &#39;Rule&#39;]</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>exports["Ordered#{<em>kind}Expressions"]   = \
-   _create require("./Ordered/#{</em>kind}Map")["#{<em>kind}Map"]
+  <span class="nx">ExpressionMap</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>for <em>kind in ['Attribute','Property', 'Rule']
+ exports["Ordered#{</em>kind}Expressions"]   = \
+   <em>create require("./Ordered/#{</em>kind}Map")["#{<em>kind}Map"]
  exports["Unordered#{</em>kind}Expressions"] = \
    <em>create require("./Unordered/#{</em>kind}Map")["#{_kind}Map"]</p></div></div><div class="code"><div class="wrapper"><span class="nv">exports.Expressions = </span><span class="nx">_create</span> <span class="nx">require</span><span class="p">(</span><span class="s">&quot;./Ordered/PropertyMap&quot;</span><span class="p">).</span><span class="nx">PropertyMap</span></div></div></div></div></body></html>

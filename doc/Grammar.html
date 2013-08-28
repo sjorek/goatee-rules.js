@@ -1,20 +1,16 @@
-<!DOCTYPE html><html lang="en"><head><title>Grammar</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="Grammar"><meta name="groc-project-path" content="src/Grammar.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/Grammar.coffee</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="cm">###</span>
-<span class="cm">© Copyright 2013 Stephan Jorek &lt;stephan.jorek@gmail.com&gt;</span>
+<!DOCTYPE html><html lang="en"><head><title>Grammar</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="Grammar"><meta name="groc-project-path" content="src/Grammar.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/Grammar.coffee</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><p>© Copyright 2013 Stephan Jorek <a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;:&#115;&#116;&#101;&#112;&#104;&#97;&#x6e;&#46;&#106;&#111;&#x72;&#x65;&#107;&#64;&#x67;ma&#105;&#108;&#46;&#x63;&#111;&#x6d;">&#115;&#116;&#101;&#112;&#104;&#97;&#x6e;&#46;&#106;&#111;&#x72;&#x65;&#107;&#64;&#x67;ma&#105;&#108;&#46;&#x63;&#111;&#x6d;</a></p>
 
-<span class="cm">Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
-<span class="cm">you may not use this file except in compliance with the License.</span>
-<span class="cm">You may obtain a copy of the License at</span>
+<p>Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at</p>
 
-<span class="cm">http://www.apache.org/licenses/LICENSE-2.0</span>
+<p>http://www.apache.org/licenses/LICENSE-2.0</p>
 
-<span class="cm">Unless required by applicable law or agreed to in writing, software</span>
-<span class="cm">distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
-<span class="cm">WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or</span>
-<span class="cm">implied. See the License for the specific language governing</span>
-<span class="cm">permissions and limitations under the License.</span>
-<span class="cm">###</span>
-
-<span class="p">{</span><span class="nx">Notator</span><span class="o">:</span><span class="p">{</span>
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied. See the License for the specific language governing
+permissions and limitations under the License.</p></div></div><div class="code"><div class="wrapper"><span class="p">{</span><span class="nx">Notator</span><span class="o">:</span><span class="p">{</span>
   <span class="nx">r</span><span class="p">,</span><span class="nx">o</span><span class="p">,</span><span class="nx">c</span>
 <span class="p">}}</span>            <span class="o">=</span> <span class="nx">require</span> <span class="s">&#39;goatee-script/lib/Notator&#39;</span>
 
@@ -26,11 +22,10 @@
 
 <span class="nv">exports.Grammar = </span><span class="k">class</span> <span class="nx">Grammar</span> <span class="k">extends</span> <span class="nx">ScriptGrammar</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Actually this is not needed, but it looks nicer ;-)</p></div></div><div class="code"><div class="wrapper">  <span class="nv">$1 = $2 = $3 = $4 = $5 = $6 = $7 = $8 = </span><span class="kc">null</span>
 
-  <span class="nv">yy = </span><span class="k">new</span> <span class="nx">Scope</span>
+  <span class="nv">yy = </span><span class="k">new</span> <span class="nx">Scope</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>#
+Initializes the <strong>Parser</strong> with our <strong>Grammar</strong></p>
 
-  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
-
-<p>Initializes the <strong>Parser</strong> with our <strong>Grammar</strong></p>
+<p><span class='doc-section-header'></span></p>
 
 <p>Parameters:</p>
 
@@ -40,12 +35,11 @@
 </ul>
 
 <p><strong>Returns a Parser</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nv">Grammar.createParser = </span><span class="nf">(grammar = new Grammar, scope = yy) -&gt;</span>
-    <span class="nx">ScriptGrammar</span><span class="p">.</span><span class="nx">createParser</span> <span class="nx">grammar</span><span class="p">,</span> <span class="nx">scope</span>
-
-  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
-
-<p>Create and return the parsers source code wrapped into a closure, still
+    <span class="nx">ScriptGrammar</span><span class="p">.</span><span class="nx">createParser</span> <span class="nx">grammar</span><span class="p">,</span> <span class="nx">scope</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>#
+Create and return the parsers source code wrapped into a closure, still
 keeping the value of <code>this</code>.</p>
+
+<p><span class='doc-section-header'></span></p>
 
 <p><strong>Returns a String</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nv">create: </span><span class="p">(</span><span class="nv">comment  = </span><span class="s">&#39;Goatee Rules Parser&#39;</span><span class="p">,</span> <span class="nv">prefix   = </span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="o">\</span>
            <span class="nv">suffix   = </span><span class="s">&#39;parser.yy = new (require(&quot;./Scope&quot;).Scope);&#39;</span><span class="p">)</span> <span class="nf">-&gt;</span>
@@ -70,9 +64,9 @@ keeping the value of <code>this</code>.</p>
     <span class="p">{</span>
       <span class="nv">startConditions :</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>“rule” is implicit (1), not explicit (0)</p></div></div><div class="code"><div class="wrapper">        <span class="nv">rule          : </span><span class="mi">1</span>
       <span class="nv">rules           : </span><span class="nx">rules</span>
-    <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>The <strong>Rules</strong> is the top-level node in the syntax tree.</p></div></div><div class="code"><div class="wrapper">  <span class="nv">startSymbol : </span><span class="s">&#39;Rules&#39;</span>
+    <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>The <strong>Rules</strong> is the top-level node in the syntax tree.</p></div></div><div class="code"><div class="wrapper">  <span class="nv">startSymbol : </span><span class="s">&#39;Rules&#39;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>#</p>
 
-  <span class="c1">##</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>The syntax description notated in Backus-Naur-Format</p></div></div><div class="code folded"><div class="marker wrapper"><span class="c1">  # ----------------------------------------------------</span></div><div class="wrapper">  <span class="nv">bnf: </span><span class="nx">do</span> <span class="nf">-&gt;</span>
+<h2 id="the-syntax-description-notated-in-backus-naur-format">The syntax description notated in Backus-Naur-Format</h2></div></div><div class="code"><div class="wrapper">  <span class="nv">bnf: </span><span class="nx">do</span> <span class="nf">-&gt;</span>
 
     <span class="nv">grammar =</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Since we parse bottom-up, all parsing must end here.</p></div></div><div class="code"><div class="wrapper">      <span class="nv">Rules: </span><span class="p">[</span>
         <span class="nx">r</span> <span class="s">&#39;End&#39;</span>                       <span class="p">,</span> <span class="nf">-&gt;</span> <span class="nx">yy</span><span class="p">.</span><span class="nx">create</span> <span class="s">&#39;scalar&#39;</span><span class="p">,</span> <span class="p">[</span><span class="kc">undefined</span><span class="p">]</span>
