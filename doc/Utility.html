@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><title>Utility</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="Utility"><meta name="groc-project-path" content="src/Utility.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/Utility.coffee</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><p>© Copyright 2013 Stephan Jorek <a href="&#x6d;&#x61;&#105;&#108;&#116;&#111;:&#115;&#116;e&#x70;&#x68;&#97;n&#x2e;&#x6a;&#x6f;&#114;e&#107;&#64;g&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#x6f;&#109;">&#115;&#116;e&#x70;&#x68;&#97;n&#x2e;&#x6a;&#x6f;&#114;e&#107;&#64;g&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#x6f;&#109;</a>  </p>
+<!DOCTYPE html><html lang="en"><head><title>Utility</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="Utility"><meta name="groc-project-path" content="src/Utility.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/Utility.coffee</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><p>© Copyright 2013 Stephan Jorek <a href="&#109;&#x61;&#105;&#x6c;&#x74;&#111;:&#115;&#116;&#101;&#112;&#104;&#x61;&#110;.&#x6a;&#111;&#x72;&#x65;k&#64;&#103;&#x6d;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#x6d;">&#115;&#116;&#101;&#112;&#104;&#x61;&#110;.&#x6a;&#111;&#x72;&#x65;k&#64;&#103;&#x6d;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#x6d;</a>  </p>
 
 <p>Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -10,30 +10,33 @@ You may obtain a copy of the License at</p>
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
 implied. See the License for the specific language governing
-permissions and limitations under the License.</p></div></div><div class="code"><div class="wrapper"><span class="nv">exports = </span><span class="nx">module</span><span class="o">?</span><span class="p">.</span><span class="nx">exports</span> <span class="o">?</span> <span class="k">this</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Class is in namespace <em>GoateeRules</em></span></p>
-
-<p>#</p></div></div><div class="code"><div class="wrapper"><span class="nv">exports.Utility = </span><span class="k">class</span> <span class="nx">Utility</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
+permissions and limitations under the License.</p></div></div><div class="code"><div class="wrapper"><span class="nv">exports = </span><span class="nx">module</span><span class="o">?</span><span class="p">.</span><span class="nx">exports</span> <span class="o">?</span> <span class="k">this</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Class  is in namespace <em>GoateeRules</em></span></p>
 
 <p>#</p>
 
-<p>Parameters:</p>
+<p><br/><br/></p></div></div><div class="code"><div class="wrapper"><span class="nv">exports.Utility = </span><span class="k">class</span> <span class="nx">Utility</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>#</p>
+
+<p><strong>Parameter:</strong></p>
 
 <ul>
-<li><strong>The must be an Object.</strong><br/>(object to test)</li>
+<li><strong><em>The</em> must be an <em><a href="https://developer.mozilla.org/en/docs/JavaScript/Reference/Global_Objects/Object">Object</a></em></strong> <br />
+object to test</li>
 </ul>
 
-<p><strong>Returns a Boolean</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.isRuleMap = </span><span class="nf">(obj) -&gt;</span>
-    <span class="nx">obj</span><span class="o">?</span> <span class="o">and</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">rules</span><span class="o">?</span> <span class="o">and</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">priority</span><span class="o">?</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
+<p><strong>Returns a <em><a href="https://developer.mozilla.org/en/docs/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></em></strong></p>
 
-<p>#</p>
+<p><br/><br/></p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.isRuleMap = </span><span class="nf">(obj) -&gt;</span>
+    <span class="nx">obj</span><span class="o">?</span> <span class="o">and</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">rules</span><span class="o">?</span> <span class="o">and</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">priority</span><span class="o">?</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>#</p>
 
-<p>Parameters:</p>
+<p><strong>Parameter:</strong></p>
 
 <ul>
-<li><strong>code must be a String.</strong></li>
+<li><strong><em>code</em> must be a <em><a href="https://developer.mozilla.org/en/docs/JavaScript/Reference/Global_Objects/String">String</a></em></strong></li>
 </ul>
 
-<p><strong>Returns an Expression</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.parse = </span><span class="o">\</span>
+<p><strong>Returns an <em>Expression</em></strong></p>
+
+<p><br/><br/></p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.parse = </span><span class="o">\</span>
   <span class="nv">Utility.parseExpression = </span><span class="nx">do</span> <span class="nf">-&gt;</span>
     <span class="nv">parser = </span><span class="kc">null</span>
     <span class="nv">cache  = </span><span class="p">{}</span>
@@ -41,67 +44,71 @@ permissions and limitations under the License.</p></div></div><div class="code">
       <span class="k">return</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">code</span><span class="p">]</span> <span class="k">if</span> <span class="nx">cache</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">code</span><span class="p">)</span>
       <span class="nx">parser</span> <span class="o">?=</span> <span class="nx">require</span> <span class="s">&#39;./Parser&#39;</span>
       <span class="nv">expression = </span><span class="nx">parser</span><span class="p">.</span><span class="nx">parse</span> <span class="nx">code</span>
-      <span class="nx">cache</span><span class="p">[</span><span class="nx">code</span><span class="p">]</span> <span class="o">=</span> <span class="nx">cache</span><span class="p">[</span><span class="s">&#39;&#39;</span> <span class="o">+</span> <span class="nx">expression</span><span class="p">]</span> <span class="o">=</span> <span class="nx">expression</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
-
-<p>#
+      <span class="nx">cache</span><span class="p">[</span><span class="nx">code</span><span class="p">]</span> <span class="o">=</span> <span class="nx">cache</span><span class="p">[</span><span class="s">&#39;&#39;</span> <span class="o">+</span> <span class="nx">expression</span><span class="p">]</span> <span class="o">=</span> <span class="nx">expression</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>#
 NON-STANDARD
 lightweight version of CSSOM.CSSStyleRule.parse</p>
 
-<p>Parameters:</p>
+<p><strong>Parameters:</strong></p>
 
 <ul>
-<li><p><strong>rules must be a String.</strong></p></li>
-<li><p><strong>_map must be an UnorderedRules.</strong><br/>(Optional instance to merge rules into meant to be used for internally.)</p></li>
+<li><p><strong><em>rules</em> must be a <em><a href="https://developer.mozilla.org/en/docs/JavaScript/Reference/Global_Objects/String">String</a></em></strong></p></li>
+<li><p><strong><em>_map</em> must be an <em>UnorderedRules</em></strong> <br />
+Optional instance to merge rules into meant to be used for internally.</p></li>
 </ul>
 
-<p><strong>Returns an UnorderedRules</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.parseRules    = </span><span class="nx">do</span> <span class="nf">-&gt;</span>
+<p><strong>Returns an <em>UnorderedRules</em></strong></p>
+
+<p><br/><br/></p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.parseRules    = </span><span class="nx">do</span> <span class="nf">-&gt;</span>
     <span class="nv">parser = </span><span class="kc">null</span>
     <span class="nv">cache  = </span><span class="p">{}</span>
     <span class="nf">(code) -&gt;</span>
       <span class="k">return</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">code</span><span class="p">]</span> <span class="k">if</span> <span class="nx">cache</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">code</span><span class="p">)</span>
       <span class="nx">parser</span> <span class="o">?=</span> <span class="nx">require</span> <span class="s">&#39;./Rules&#39;</span>
       <span class="nv">rules = </span><span class="nx">parser</span><span class="p">.</span><span class="nx">parse</span> <span class="nx">code</span>
-      <span class="nx">cache</span><span class="p">[</span><span class="nx">code</span><span class="p">]</span> <span class="o">=</span> <span class="nx">cache</span><span class="p">[</span><span class="s">&#39;&#39;</span> <span class="o">+</span> <span class="nx">rules</span><span class="p">]</span> <span class="o">=</span> <span class="nx">rules</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
-
-<p>#
+      <span class="nx">cache</span><span class="p">[</span><span class="nx">code</span><span class="p">]</span> <span class="o">=</span> <span class="nx">cache</span><span class="p">[</span><span class="s">&#39;&#39;</span> <span class="o">+</span> <span class="nx">rules</span><span class="p">]</span> <span class="o">=</span> <span class="nx">rules</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>#
 Trim whitespace from begin and end of string.</p>
 
-<p>Parameters:</p>
+<p><strong>Parameter:</strong></p>
 
 <ul>
-<li><strong>string must be a String.</strong><br/>(Input string.)</li>
+<li><strong><em>string</em> must be a <em><a href="https://developer.mozilla.org/en/docs/JavaScript/Reference/Global_Objects/String">String</a></em></strong> <br />
+Input string.</li>
 </ul>
 
-<p><strong>Returns a String</strong><br/>(Trimmed string.)</p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.trim          =</span>
+<p><strong>Returns a <em><a href="https://developer.mozilla.org/en/docs/JavaScript/Reference/Global_Objects/String">String</a></em></strong><br/>Trimmed string.<br/></p>
+
+<p><br/><br/></p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.trim          =</span>
     <span class="k">if</span> <span class="nb">String</span><span class="o">::</span><span class="nx">trim</span><span class="o">?</span>
       <span class="nf">(string) -&gt;</span> <span class="nx">string</span><span class="p">.</span><span class="nx">trim</span><span class="p">()</span>
     <span class="k">else</span> <span class="nx">do</span> <span class="nf">-&gt;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Un-inlined literal, to avoid object creation.</p></div></div><div class="code"><div class="wrapper">      <span class="nv">_REGEXP_trim = </span><span class="sr">/^\s+|\s+$/g</span>
-      <span class="nf">(string)    -&gt;</span> <span class="nx">string</span><span class="p">.</span><span class="nx">replace</span> <span class="nx">_REGEXP_trim</span><span class="p">,</span> <span class="s">&#39;&#39;</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
-
-<p>#
+      <span class="nf">(string)    -&gt;</span> <span class="nx">string</span><span class="p">.</span><span class="nx">replace</span> <span class="nx">_REGEXP_trim</span><span class="p">,</span> <span class="s">&#39;&#39;</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>#
 Converts “a-property-name” to “aPropertyName”</p>
 
-<p>Parameters:</p>
+<p><strong>Parameter:</strong></p>
 
 <ul>
-<li><strong>string must be a String.</strong><br/>(Input string.)</li>
+<li><strong><em>string</em> must be a <em><a href="https://developer.mozilla.org/en/docs/JavaScript/Reference/Global_Objects/String">String</a></em></strong> <br />
+Input string.</li>
 </ul>
 
-<p><strong>Returns a String</strong><br/>(Camelized string.)</p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.camelize      = </span><span class="nx">do</span> <span class="nf">-&gt;</span>
+<p><strong>Returns a <em><a href="https://developer.mozilla.org/en/docs/JavaScript/Reference/Global_Objects/String">String</a></em></strong><br/>Camelized string.<br/></p>
+
+<p><br/><br/></p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.camelize      = </span><span class="nx">do</span> <span class="nf">-&gt;</span>
     <span class="nv">_REGEXP_camelize    = </span><span class="sr">/-([a-z0-9])/gi</span>
     <span class="nv">_camelize           = </span> <span class="nf">(match, char, index, str) -&gt;</span> <span class="nx">char</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span>
-    <span class="nf">(string)            -&gt;</span> <span class="nx">string</span><span class="p">.</span><span class="nx">replace</span> <span class="nx">_REGEXP_camelize</span><span class="p">,</span> <span class="nx">_camelize</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'></span></p>
-
-<p>#
+    <span class="nf">(string)            -&gt;</span> <span class="nx">string</span><span class="p">.</span><span class="nx">replace</span> <span class="nx">_REGEXP_camelize</span><span class="p">,</span> <span class="nx">_camelize</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>#
 Converts “aPropertyName” to “a-property-name”</p>
 
-<p>Parameters:</p>
+<p><strong>Parameter:</strong></p>
 
 <ul>
-<li><strong>string must be a String.</strong><br/>(Input string.)</li>
+<li><strong><em>string</em> must be a <em><a href="https://developer.mozilla.org/en/docs/JavaScript/Reference/Global_Objects/String">String</a></em></strong> <br />
+Input string.</li>
 </ul>
 
-<p><strong>Returns a String</strong><br/>(Dashed string.)</p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.dashify       = </span><span class="nx">do</span> <span class="nf">-&gt;</span>
+<p><strong>Returns a <em><a href="https://developer.mozilla.org/en/docs/JavaScript/Reference/Global_Objects/String">String</a></em></strong><br/>Dashed string.<br/></p>
+
+<p><br/><br/></p></div></div><div class="code"><div class="wrapper">  <span class="nv">Utility.dashify       = </span><span class="nx">do</span> <span class="nf">-&gt;</span>
     <span class="nv">_CHAR_dash          = </span><span class="s">&#39;-&#39;</span>
     <span class="nv">_REGEXP_dashify     = </span><span class="sr">/(^|[a-z0-9])([A-Z])/g</span>
     <span class="nv">_dashify            = </span><span class="nf">(match, char, camel, index, str) -&gt;</span>
