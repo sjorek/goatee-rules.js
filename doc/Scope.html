@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><title>Scope</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="Scope"><meta name="groc-project-path" content="src/Scope.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/Scope.coffee</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><p>© Copyright 2013 Stephan Jorek <a href="&#x6d;&#97;&#105;&#x6c;&#116;&#x6f;:&#x73;t&#x65;&#112;&#104;&#97;&#110;&#x2e;&#x6a;&#x6f;&#114;ek&#64;&#x67;&#x6d;&#97;&#105;&#x6c;&#46;&#99;&#x6f;m">&#x73;t&#x65;&#112;&#104;&#97;&#110;&#x2e;&#x6a;&#x6f;&#114;ek&#64;&#x67;&#x6d;&#97;&#105;&#x6c;&#46;&#99;&#x6f;m</a>  </p>
+<!DOCTYPE html><html lang="en"><head><title>Scope</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="Scope"><meta name="groc-project-path" content="src/Scope.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/Scope.coffee</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><p>© Copyright 2013 Stephan Jorek <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#x6f;:&#x73;&#116;&#101;&#x70;&#104;&#x61;&#110;&#46;&#106;&#111;&#114;&#x65;&#107;&#x40;g&#x6d;&#97;&#105;&#108;&#x2e;&#x63;&#111;&#x6d;">&#x73;&#116;&#101;&#x70;&#104;&#x61;&#110;&#46;&#106;&#111;&#114;&#x65;&#107;&#x40;g&#x6d;&#97;&#105;&#108;&#x2e;&#x63;&#111;&#x6d;</a>  </p>
 
 <p>Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,23 +14,19 @@ permissions and limitations under the License.</p></div></div><div class="code">
 
 <span class="p">{</span><span class="nx">Expressions</span><span class="p">}</span> <span class="o">=</span> <span class="nx">require</span> <span class="s">&#39;./Expressions&#39;</span>
 
-<span class="nv">exports = </span><span class="nx">module</span><span class="o">?</span><span class="p">.</span><span class="nx">exports</span> <span class="o">?</span> <span class="k">this</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'> is in namespace <em>GoateeRules</em></span></p>
+<span class="nv">exports = </span><span class="nx">module</span><span class="o">?</span><span class="p">.</span><span class="nx">exports</span> <span class="o">?</span> <span class="k">this</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'> namespace GoateeRules</span></p>
 
-<p>#</p>
-
-<p><br/><br/></p></div></div><div class="code"><div class="wrapper"><span class="nv">exports.Scope = </span><span class="k">class</span> <span class="nx">Scope</span> <span class="k">extends</span> <span class="nx">ScriptScope</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>#
+<p>#</p></div></div><div class="code"><div class="wrapper"><span class="nv">exports.Scope = </span><span class="k">class</span> <span class="nx">Scope</span> <span class="k">extends</span> <span class="nx">ScriptScope</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>#
 Create a new <strong>Expression</strong> or <strong>Expressions</strong> instance</p>
 
-<p><strong>Parameters:</strong></p>
+<p>Parameters:</p>
 
 <ul>
-<li><p><strong><em>operator</em> must be a <em><a href="https://developer.mozilla.org/en/docs/JavaScript/Reference/Global_Objects/String">String</a></em></strong></p></li>
-<li><p><strong><em>parameters</em> must be an <em><a href="https://developer.mozilla.org/en/docs/JavaScript/Reference/Global_Objects/Array">Array</a></em></strong></p></li>
+<li><p><strong>operator must be a String.</strong></p></li>
+<li><p><strong>parameters must be an Array.</strong></p></li>
 </ul>
 
-<p><strong>Returns an <em>Expressions</em> or an <em>Expression</em></strong></p>
-
-<p><br/><br/></p></div></div><div class="code"><div class="wrapper">  <span class="nv">create  : </span><span class="nf">(operator, parameters) -&gt;</span>
+<p><strong>Returns an Expressions or an Expression</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nv">create  : </span><span class="nf">(operator, parameters) -&gt;</span>
     <span class="k">return</span> <span class="nx">@addRule</span> <span class="k">new</span> <span class="nx">Expressions</span><span class="p">,</span> <span class="nx">parameters</span> <span class="k">if</span> <span class="nx">operator</span> <span class="o">is</span> <span class="s">&#39;rules&#39;</span>
     <span class="k">super</span><span class="p">(</span><span class="nx">operator</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">)</span>
 
