@@ -63,7 +63,10 @@ task 'build', 'invokes “build:once” and “build:parser” in given order', 
 
 task 'clean', 'cleans “lib/” and “test/” folders', ->
   console.log 'clean'
+  clean 'doc'
+  fs.mkdirSync 'doc'
   clean 'lib'
+  fs.mkdirSync 'lib'
 
 task 'build:watch', 'compile coffee-script in “src/” to javascript in “lib/” continiously', ->
   console.log 'build:watch'

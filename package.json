@@ -28,7 +28,7 @@
     "url": "git://github.com/sjorek/goatee-rules.git"
   },
   "dependencies": {
-    "goatee-script": "~0.1"
+    "goatee-script": "sjorek/goatee-script"
   },
   "devDependencies": {
     "coffee-script": "~1",

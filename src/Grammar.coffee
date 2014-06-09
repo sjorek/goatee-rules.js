@@ -45,9 +45,8 @@ exports.Grammar = class Grammar extends ScriptGrammar
   # keeping the value of `this`.
   #
   # @return {String}
-  create: (comment  = '/* Goatee Rules Parser */', args...) ->
-    args.unshift(comment)
-    super.apply(null, args)
+  create: (comment  = '/* Goatee Rules Parser */', prefix, scope, suffix) ->
+    super(comment, prefix, scope, suffix)
 
   # Use the default jison-lexer
   lex: do ->
