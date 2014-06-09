@@ -1,5 +1,5 @@
 ###
-© Copyright 2013 Stephan Jorek <stephan.jorek@gmail.com>  
+© Copyright 2013-2014 Stephan Jorek <stephan.jorek@gmail.com>  
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -45,9 +45,9 @@ exports.Grammar = class Grammar extends ScriptGrammar
   # keeping the value of `this`.
   #
   # @return {String}
-  create: (comment  = 'Goatee Rules Parser', prefix   = '', \
-           suffix   = 'parser.yy = new (require("./Scope").Scope);') ->
-    super(comment, prefix, suffix)
+  create: (comment  = '/* Goatee Rules Parser */', args...) ->
+    args.unshift(comment)
+    super.apply(null, args)
 
   # Use the default jison-lexer
   lex: do ->
