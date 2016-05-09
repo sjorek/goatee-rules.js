@@ -14,22 +14,39 @@ implied. See the License for the specific language governing
 permissions and limitations under the License.
 ###
 
-##
-# @class
+###
+# # Utilities
+# -------------
+#
+###
+
+###*
+# -------------
+# @class Utility
 # @namespace GoateeRules
+###
 class Utility
 
-  ##
-  # @param  {Object}  The object to test
+  ###*
+  # -------------
+  # @method isRuleMap
+  # @param {mixed} obj
   # @return {Boolean}
+  # @static
+  ###
   Utility.isRuleMap = (obj) ->
     obj? and obj.rules? and obj.priority?
 
-  ##
+  ###*
+  # -------------
+  # @method parseScript
+  # @alias  parse
   # @param  {String}     code
   # @return {Expression}
+  # @static
+  ###
   Utility.parse = \
-  Utility.parseExpression = do ->
+  Utility.parseScript = do ->
     parser = null
     cache  = {}
     (code) ->
@@ -38,14 +55,16 @@ class Utility
       expression = parser.parse code
       cache[code] = cache['' + expression] = expression
 
-  ##
+  ###*
+  # -------------
   # NON-STANDARD
-  # lightweight version of CSSOM.CSSStyleRule.parse
+  # caching lightweight version of CSSOM.CSSStyleRule.parse
   #
-  # @param  {String}          rules
-  # @param  {UnorderedRules}  _map  Optional instance to merge rules into
-  #                                 meant to be used for internally.
-  # @return {UnorderedRules}
+  # @method parseRules
+  # @param  {String}       code
+  # @return {Expressions}
+  # @static
+  ###
   Utility.parseRules    = do ->
     parser = null
     cache  = {}
@@ -55,11 +74,14 @@ class Utility
       rules = parser.parse code
       cache[code] = cache['' + rules] = rules
 
-  ##
+  ###*
+  # -------------
   # Trim whitespace from begin and end of string.
-  #
+  # @method trim
   # @param  {String}  string  Input string.
   # @return {String}  Trimmed string.
+  # @static
+  ###
   Utility.trim          =
     if String::trim?
       (string) -> string.trim()
@@ -68,21 +90,29 @@ class Utility
       _REGEXP_trim = /^\s+|\s+$/g
       (string)    -> string.replace _REGEXP_trim, ''
 
-  ##
+  ###*
+  # -------------
   # Converts “a-property-name” to “aPropertyName”
   #
+  # @method camelize
   # @param  {String}  string  Input string.
-  # @return {String}  Camelized string.
+  # @return {String}  a camelized string.
+  # @static
+  ###
   Utility.camelize      = do ->
     _REGEXP_camelize    = /-([a-z0-9])/gi
     _camelize           =  (match, char, index, str) -> char.toUpperCase()
     (string)            -> string.replace _REGEXP_camelize, _camelize
 
-  ##
+  ###*
+  # -------------
   # Converts “aPropertyName” to “a-property-name”
   #
+  # @method dashify
   # @param  {String}  string  Input string.
   # @return {String}  Dashed string.
+  # @static
+  ###
   Utility.dashify       = do ->
     _CHAR_dash          = '-'
     _REGEXP_dashify     = /(^|[a-z0-9])([A-Z])/g

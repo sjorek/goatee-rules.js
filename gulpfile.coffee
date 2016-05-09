@@ -19,21 +19,21 @@ gulp = require 'gulp'
 beautify = require 'gulp-beautify'
 coffee = require 'gulp-coffee'
 #cson = require 'gulp-cson'
-cson = require "#{__dirname}/src/misc/gulp/gulp-cson"
+cson = require 'goatee-script.js/lib/misc/gulp/gulp-cson'
 footer = require 'gulp-footer'
 fs = require 'fs'
-grammar = require "#{__dirname}/src/misc/gulp/gulp-jison-grammar"
+grammar = require 'goatee-script.js/lib/misc/gulp/gulp-jison-grammar'
 groc = require 'gulp-groc'
 header = require 'gulp-header'
 jasmine = require 'gulp-jasmine'
 #jison = require 'gulp-jison'
-parser = require "#{__dirname}/src/misc/gulp/gulp-jison-parser"
+parser = require 'goatee-script.js/lib/misc/gulp/gulp-jison-parser'
 rename = require 'gulp-rename'
 replace = require 'gulp-replace'
 del = require 'del'
 sequence = require 'run-sequence'
 sourcemaps = require 'gulp-sourcemaps'
-taskqueue = require "#{__dirname}/src/misc/gulp/gulp-taskqueue"
+taskqueue = require 'goatee-script.js/lib/misc/gulp/gulp-taskqueue'
 template = require 'gulp-template'
 # enable for debuggin purposes:
 #logger = require 'gulp-logger'
@@ -41,7 +41,7 @@ util = require 'gulp-util'
 
 {
   isString
-} = require 'goatee-script.js/Utility'
+} = require 'goatee-script.js/lib/Utility'
 
 Grammar = require "#{__dirname}/src/Grammar"
 
@@ -69,7 +69,7 @@ load = (filename) ->
 #
 ###
 task = 'coffee:transpile'
-deps = taskqueue.build task, deps, load, \
+deps = taskqueue.build task, deps, load, gulp, \
   (source, destination, name, config) ->
     if name is 'coffee:transpile:gulpfile'
       config.footer = [
@@ -130,11 +130,11 @@ deps.transpile.push task
 #
 ###
 task = 'cson:transpile'
-deps = taskqueue.build task, deps, load, \
+deps = taskqueue.build task, deps, load, gulp, \
   (source, destination, name, config) ->
     if name.match /^cson:transpile:groc:config/
       config.template = {'__dirname': __dirname}
-      util.log 'set', config.template, 'for', name
+      #util.log 'set', config.template, 'for', name
     ->
       util.log name, source, destination
 
@@ -173,7 +173,7 @@ gulp.task 'transpile', deps.transpile, -> util.log 'Transpiling done'
 #
 ###
 task = 'jison:grammar'
-deps = taskqueue.build task, deps, load, \
+deps = taskqueue.build task, deps, load, gulp, \
   (source, destination, name, config) ->
 
     defaults = taskqueue.cloneObject config.defaults
@@ -208,7 +208,7 @@ deps.jison.push task
 #
 ###
 task = 'jison:parser'
-deps = taskqueue.build task, deps, load, \
+deps = taskqueue.build task, deps, load, gulp, \
   (source, destination, name, config) ->
 
     defaults = taskqueue.cloneObject config.defaults
@@ -270,7 +270,7 @@ gulp.task 'build', deps.build, (callback) ->
 #
 ###
 task = 'test:jasmine'
-deps = taskqueue.build task, deps, load, \
+deps = taskqueue.build task, deps, load, gulp, \
   (source, destination, name, config) ->
 
     (callback) ->
@@ -299,7 +299,7 @@ gulp.task 'test', deps.test, ->
 #
 ###
 task = 'groc:doc'
-deps = taskqueue.build task, deps, load, \
+deps = taskqueue.build task, deps, load, gulp, \
   (source, destination, name, config) ->
     ->
       defaults = taskqueue.cloneObject config.defaults

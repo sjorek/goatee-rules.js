@@ -14,30 +14,45 @@ implied. See the License for the specific language governing
 permissions and limitations under the License.
 ###
 
+# External dependencies.
 UnorderedRuleMap = require '../Unordered/RuleMap'
 
-## RuleMap
-
-# RuleMaps look like “identifier: expression; identifier2: expression2”.
+###
+# # RuleMaps …
+# -----------------
+#
+# … look like “identifier: expression; identifier2: expression2”.
 # They provide a simplified implementation of RuleMap keeping the
 # initial order of all rules added.
-#
-# @class
+###
+
+###*
+# -------------
+# @class RuleMap
 # @namespace GoateeRules.Ordered
+###
 class RuleMap extends UnorderedRuleMap
 
-  ##
-  # @param {Array}  sequence
+  ###*
+  # -------------
+  # @param {Array}  [sequence]
   # @param {Object} rules
   # @param {Object} priority
   # @constructor
+  ###
   constructor: (@sequence = [], @rules, @priority) ->
     super @rules, @priority
 
-  ##
+  ###*
+  # -------------
   # adds a new rule to this instance
-  # @param  {String} string
+  #
+  # @method add
+  # @param  {String}  key
+  # @param  {mixed}   value
+  # @param  {Boolean} important
   # @return {RuleMap}
+  ###
   add: (key, value, important) ->
 
     id     = @normalizeKey key
@@ -54,12 +69,15 @@ class RuleMap extends UnorderedRuleMap
 
     this
 
-  ##
+  ###*
+  # -------------
   # Call fn for each rule's key, value and priority and return the resulting
   # Array.
   #
+  # @method map
   # @param  {Function} fn
   # @return {Array}
+  ###
   map: (fn) ->
     fn key, @rules[key], @priority.hasOwnProperty(key) for key in @sequence
 

@@ -1,0 +1,37 @@
+{
+  "default": {
+    "deps": [
+      "coffee:transpile:jison:grammar:default"
+    ],
+    "title": "Creating “goatee-rules” jison grammar",
+    "defaults": {
+      "indent": true,
+      "moduleName": "./grammar/jison"
+    },
+    "assets": [
+      {
+        "src/grammar": [
+          [
+            "src/grammar/jison.coffee"
+          ]
+        ]
+      }
+    ],
+    "replace": [
+      [
+        "grammar/jison.coffee",
+        "grammar/jison"
+      ]
+    ],
+    "clean": [
+      "src/grammar/jison.json"
+    ],
+    "watch": true,
+    "logger": {
+      "before": "Start creating the “goatee-rules” grammar …",
+      "after": "The “goatee-rules” grammar has been created.",
+      "extname": ".json",
+      "showChange": true
+    }
+  }
+}

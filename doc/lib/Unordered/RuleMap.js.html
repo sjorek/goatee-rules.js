@@ -1,0 +1,169 @@
+<!DOCTYPE html><html lang="en"><head><title>lib/Unordered/RuleMap</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="lib/Unordered/RuleMap.js"><meta name="groc-project-path" content="lib/Unordered/RuleMap.js"><meta name="groc-github-url" content="https://github.com/sjorek/goatee-rules.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/sjorek/goatee-rules.js/blob/master/lib/Unordered/RuleMap.js">lib/Unordered/RuleMap.js</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><p>© Copyright 2013-2016 Stephan Jorek <a href="&#109;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#x73;&#116;&#101;&#x70;&#x68;&#x61;&#x6e;&#46;&#x6a;&#x6f;&#x72;&#x65;&#x6b;&#x40;&#x67;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#x73;&#116;&#101;&#x70;&#x68;&#x61;&#x6e;&#46;&#x6a;&#x6f;&#x72;&#x65;&#x6b;&#x40;&#x67;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a></p>
+<p>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at</p>
+<p><a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied. See the License for the specific language governing
+permissions and limitations under the License.</p></div></div><div class="code"><div class="wrapper">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> RuleMap, parse, trim,
+        hasProp = {}.hasOwnProperty;
+
+    parse = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../Rules'</span>).parse;
+
+    trim = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../Utility'</span>).trim;</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'> see <a href="http://www.w3.org/TR/2000/REC-DOM-Level-2-Style-20001113/css.html#CSS-ElementCSSInlineStyle">http://www.w3.org/TR/2000/REC-DOM-Level-2-Style-20001113/css.html#CSS-ElementCSSInlineStyle</a> and see <a href="http://www.w3.org/TR/1998/REC-html40-19980424/present/styles.html#h-14.2.2">http://www.w3.org/TR/1998/REC-html40-19980424/present/styles.html#h-14.2.2</a></span></p>
+<h1 id="rulemaps-">RuleMaps …</h1>
+<hr>
+<p>… look like “identifier: expression; identifier2: expression2”. They
+provide a simplified implementation of:</p></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'> class RuleMap and namespace GoateeRules.Unordered</span></p>
+<hr></div></div><div class="code"><div class="wrapper">    RuleMap = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Constructor</span></p>
+<hr>
+<p>Parameters:</p>
+<ul>
+<li><p><strong>rules is optional and must be an Object.</strong></p>
+</li>
+<li><p><strong>priority is optional and must be an Object.</strong></p>
+</li>
+</ul></div></div><div class="code"><div class="wrapper">        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">RuleMap</span>(<span class="hljs-params">rules1, priority1</span>) </span>{
+            <span class="hljs-keyword">this</span>.rules = rules1 != <span class="hljs-literal">null</span> ? rules1 : {};
+            <span class="hljs-keyword">this</span>.priority = priority1 != <span class="hljs-literal">null</span> ? priority1 : {};
+        }</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Method add</span></p>
+<hr>
+<p>adds a new rule to this instance</p>
+<p>Parameters:</p>
+<ul>
+<li><p><strong>key must be a String.</strong></p>
+</li>
+<li><p><strong>value must be a mixed.</strong></p>
+</li>
+<li><p><strong>important must be a Boolean.</strong></p>
+</li>
+</ul>
+<p><strong>Returns a RuleMap</strong></p></div></div><div class="code"><div class="wrapper">        RuleMap.prototype.add = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">key, value, important</span>) </span>{
+            <span class="hljs-keyword">var</span> exists, id;
+            id = <span class="hljs-keyword">this</span>.normalizeKey(key);
+            exists = <span class="hljs-keyword">this</span>.rules.hasOwnProperty(id);
+            <span class="hljs-keyword">if</span> (!(important === <span class="hljs-literal">true</span> || exists === <span class="hljs-literal">false</span> || <span class="hljs-keyword">this</span>.priority.hasOwnProperty(id) === <span class="hljs-literal">false</span>)) {
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+            }
+            <span class="hljs-keyword">this</span>.rules[id] = <span class="hljs-keyword">this</span>.normalizeValue(value);
+            <span class="hljs-keyword">if</span> (important === <span class="hljs-literal">true</span>) {
+                <span class="hljs-keyword">this</span>.priority[id] = <span class="hljs-literal">true</span>;
+            }
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+        };</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Method map</span></p>
+<hr>
+<p>Call fn for each rule&#39;s key, value and priority and return this.</p>
+<p>Parameters:</p>
+<ul>
+<li><strong>fn must be a Function.</strong></li>
+</ul>
+<p><strong>Returns an Array</strong></p></div></div><div class="code"><div class="wrapper">        RuleMap.prototype.each = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fn</span>) </span>{
+            <span class="hljs-keyword">this</span>.map(fn);
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+        };</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Method map</span></p>
+<hr>
+<p>Call fn for each rule&#39;s key, value and priority and return the resulting
+Array.</p>
+<p>Parameters:</p>
+<ul>
+<li><strong>fn must be a Function.</strong></li>
+</ul>
+<p><strong>Returns an Array</strong></p></div></div><div class="code"><div class="wrapper">        RuleMap.prototype.map = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fn</span>) </span>{
+            <span class="hljs-keyword">var</span> key, ref, results, value;
+            ref = <span class="hljs-keyword">this</span>.rules;
+            results = [];
+            <span class="hljs-keyword">for</span> (key <span class="hljs-keyword">in</span> ref) {
+                <span class="hljs-keyword">if</span> (!hasProp.call(ref, key)) <span class="hljs-keyword">continue</span>;
+                value = ref[key];
+                results.push(fn(key, value, <span class="hljs-keyword">this</span>.priority.hasOwnProperty(key)));
+            }
+            <span class="hljs-keyword">return</span> results;
+        };</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Method apply</span></p>
+<hr>
+<p>Parses the given string  and applies the resulting map to this map, taking
+priorities into consideration.</p>
+<p>Parameters:</p>
+<ul>
+<li><strong>string must be a String.</strong></li>
+</ul>
+<p><strong>Returns a RuleMap</strong></p></div></div><div class="code"><div class="wrapper">        RuleMap.prototype.apply = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">string</span>) </span>{
+            <span class="hljs-keyword">return</span> parse(string, <span class="hljs-keyword">this</span>);
+        };</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Method inject</span></p>
+<hr>
+<p>Opposite of @project(map). Returns this map with all rules from given map
+applied to this map, taking my and their priorities into consideration.</p>
+<p>Parameters:</p>
+<ul>
+<li><strong>map must be a RuleMap.</strong></li>
+</ul>
+<p><strong>Returns a RuleMap</strong></p></div></div><div class="code"><div class="wrapper">        RuleMap.prototype.inject = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">map</span>) </span>{
+            map.project(<span class="hljs-keyword">this</span>);
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+        };</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Method inject</span></p>
+<hr>
+<p>Opposite of @inject(map). Returns the given map with all my rules applied
+to given map, taking their and my priorities into consideration.</p>
+<p>Parameters:</p>
+<ul>
+<li><strong>map must be a RuleMap.</strong></li>
+</ul>
+<p><strong>Returns a RuleMap</strong></p></div></div><div class="code"><div class="wrapper">        RuleMap.prototype.project = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">map</span>) </span>{
+            <span class="hljs-keyword">this</span>.each(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">key, value, priority</span>) </span>{
+                <span class="hljs-keyword">return</span> map.add(key, value, priority);
+            });
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+        };</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Method normalizeKey</span></p>
+<hr>
+<p>Parameters:</p>
+<ul>
+<li><strong>string must be a String.</strong></li>
+</ul>
+<p><strong>Returns a String</strong></p></div></div><div class="code"><div class="wrapper">        RuleMap.prototype.normalizeKey = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">string</span>) </span>{
+            <span class="hljs-keyword">return</span> trim(string);
+        };</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Method normalizeValue</span></p>
+<hr>
+<p>Parameters:</p>
+<ul>
+<li><strong>string must be a String.</strong></li>
+</ul>
+<p><strong>Returns a String</strong></p></div></div><div class="code"><div class="wrapper">        RuleMap.prototype.normalizeValue = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">string</span>) </span>{
+            <span class="hljs-keyword">return</span> trim(string);
+        };</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Method flatten</span></p>
+<hr>
+<p>Return each rule&#39;s key, value and priority as Array of Arrays.</p>
+<p>Parameters:</p>
+<ul>
+<li><strong>fn must be a Function.</strong></li>
+</ul>
+<p><strong>Returns an Array</strong></p></div></div><div class="code"><div class="wrapper">        RuleMap.prototype.flatten = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fn</span>) </span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.map(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">key, value, priority</span>) </span>{
+                <span class="hljs-keyword">return</span> [key, value, priority];
+            });
+        };</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Method toString</span></p>
+<hr>
+<p>Return a css-like representation of this maps&#39; rules. It looks, like:</p>
+<pre><code>identifier: value; key: expression=1+1; action: expr( … ; … );</code></pre>
+<p><strong>Returns a String</strong></p></div></div><div class="code"><div class="wrapper">        RuleMap.prototype.toString = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">var</span> rules;
+            rules = <span class="hljs-keyword">this</span>.map(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">key, value, priority</span>) </span>{
+                <span class="hljs-keyword">var</span> rule;
+                rule = key + <span class="hljs-string">":"</span> + value;
+                <span class="hljs-keyword">if</span> (priority === <span class="hljs-literal">true</span>) {
+                    rule += <span class="hljs-string">" !important"</span>;
+                }
+                <span class="hljs-keyword">return</span> rule;
+            });
+            <span class="hljs-keyword">return</span> rules.join(<span class="hljs-string">';'</span>);
+        };
+
+        <span class="hljs-keyword">return</span> RuleMap;
+
+    })();
+
+    <span class="hljs-built_in">module</span>.exports = RuleMap;
+
+}).call(<span class="hljs-keyword">this</span>);
+<span class="hljs-comment">//# sourceMappingURL=RuleMap.js.map</span></div></div></div></div></body></html>

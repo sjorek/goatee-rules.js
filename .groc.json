@@ -1,8 +1,27 @@
 {
-  "glob": ["src/**/*.coffee", "README.md", "Cakefile"],
-  "strip": ["src/"],
+  "glob": [
+    "src/**/*.coffee",
+    "src/**/*.cson",
+    "spec/**/*.coffee",
+    "spec/**/*.cson",
+    "spec/**/*.js",
+    "spec/**/*.json",
+    "lib/**/*.js",
+    "lib/**/*.json",
+    "gulpfile.coffee",
+    "gulpfile.js",
+    "README.md"
+  ],
+  "out": "doc",
+  "strip": [
+    ""
+  ],
   "index": "README.md",
-  "title": "goatee-rules",
-  "showdown": ["table"],
-  "whitespace-after-token": false
+  "index-page-title": "goatee-rules.js",
+  "style": "/Users/sjorek/Documents/Projects/Goatee/Workspace/goatee-rules.js/lib/misc/groc/style",
+  "languages": "/Users/sjorek/Documents/Projects/Goatee/Workspace/goatee-rules.js/lib/misc/groc/languages",
+  "showdown": [
+    "table"
+  ],
+  "whitespace-after-token": true
 }

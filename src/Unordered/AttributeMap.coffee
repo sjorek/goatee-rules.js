@@ -20,18 +20,28 @@ RuleMap   = require './RuleMap'
   dashify
 }         = require '../Utility'
 
-## AttributeMap
-
-# AttributeMap look like “attribute-key: expression; another-key: value”.
-# They provide a implementation of normalized to dash-seperated RuleMap.
+###
+# # AttributeMaps …
+# -----------------
 #
-# @class
+# … look like “attribute-key: expression; another-key: value”. They
+# provide a implementation of unordered `RuleMap`s having its keys
+# normalized to dash-seperation.
+###
+
+###*
+# -------------
+# @class AttributeMap
 # @namespace GoateeRules.Unordered
+###
 class AttributeMap extends RuleMap
 
-  ##
+  ###*
+  # -------------
+  # @method normalizeKey
   # @param  {String} string
   # @return {String}
+  ###
   normalizeKey: (string) ->
     dashify super(string)
 

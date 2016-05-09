@@ -1,0 +1,101 @@
+<!DOCTYPE html><html lang="en"><head><title>lib/Ordered/RuleMap</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="lib/Ordered/RuleMap.js"><meta name="groc-project-path" content="lib/Ordered/RuleMap.js"><meta name="groc-github-url" content="https://github.com/sjorek/goatee-rules.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/sjorek/goatee-rules.js/blob/master/lib/Ordered/RuleMap.js">lib/Ordered/RuleMap.js</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><p>© Copyright 2013-2016 Stephan Jorek <a href="&#109;&#x61;&#105;&#108;&#116;&#x6f;&#58;&#115;&#x74;&#101;&#x70;&#104;&#97;&#x6e;&#46;&#x6a;&#x6f;&#114;&#x65;&#x6b;&#64;&#103;&#109;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;">&#115;&#x74;&#101;&#x70;&#104;&#97;&#x6e;&#46;&#x6a;&#x6f;&#114;&#x65;&#x6b;&#64;&#103;&#109;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;</a></p>
+<p>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at</p>
+<p><a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied. See the License for the specific language governing
+permissions and limitations under the License.</p></div></div><div class="code"><div class="wrapper">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> RuleMap, UnorderedRuleMap,
+        extend = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">child, parent</span>) </span>{
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> key <span class="hljs-keyword">in</span> parent) {
+                <span class="hljs-keyword">if</span> (hasProp.call(parent, key)) child[key] = parent[key];
+            }
+
+            <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ctor</span>(<span class="hljs-params"></span>) </span>{
+                <span class="hljs-keyword">this</span>.constructor = child;
+            }
+            ctor.prototype = parent.prototype;
+            child.prototype = <span class="hljs-keyword">new</span> ctor();
+            child.__super__ = parent.prototype;
+            <span class="hljs-keyword">return</span> child;
+        },
+        hasProp = {}.hasOwnProperty;
+
+    UnorderedRuleMap = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../Unordered/RuleMap'</span>);</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h1 id="rulemaps-">RuleMaps …</h1>
+<hr>
+<p>… look like “identifier: expression; identifier2: expression2”.
+They provide a simplified implementation of RuleMap keeping the
+initial order of all rules added.</p></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'> class RuleMap and namespace GoateeRules.Ordered</span></p>
+<hr></div></div><div class="code"><div class="wrapper">    RuleMap = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">superClass</span>) </span>{
+        extend(RuleMap, superClass);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Constructor</span></p>
+<hr>
+<p>Parameters:</p>
+<ul>
+<li><p><strong>sequence is optional and must be an Array.</strong></p>
+</li>
+<li><p><strong>rules must be an Object.</strong></p>
+</li>
+<li><p><strong>priority must be an Object.</strong></p>
+</li>
+</ul></div></div><div class="code"><div class="wrapper">        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">RuleMap</span>(<span class="hljs-params">sequence, rules, priority</span>) </span>{
+            <span class="hljs-keyword">this</span>.sequence = sequence != <span class="hljs-literal">null</span> ? sequence : [];
+            <span class="hljs-keyword">this</span>.rules = rules;
+            <span class="hljs-keyword">this</span>.priority = priority;
+            RuleMap.__super__.constructor.call(<span class="hljs-keyword">this</span>, <span class="hljs-keyword">this</span>.rules, <span class="hljs-keyword">this</span>.priority);
+        }</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Method add</span></p>
+<hr>
+<p>adds a new rule to this instance</p>
+<p>Parameters:</p>
+<ul>
+<li><p><strong>key must be a String.</strong></p>
+</li>
+<li><p><strong>value must be a mixed.</strong></p>
+</li>
+<li><p><strong>important must be a Boolean.</strong></p>
+</li>
+</ul>
+<p><strong>Returns a RuleMap</strong></p></div></div><div class="code"><div class="wrapper">        RuleMap.prototype.add = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">key, value, important</span>) </span>{
+            <span class="hljs-keyword">var</span> exists, id;
+            id = <span class="hljs-keyword">this</span>.normalizeKey(key);
+            exists = <span class="hljs-keyword">this</span>.rules.hasOwnProperty(id);
+            <span class="hljs-keyword">if</span> (!(important === <span class="hljs-literal">true</span> || exists === <span class="hljs-literal">false</span> || <span class="hljs-keyword">this</span>.priority.hasOwnProperty(id) === <span class="hljs-literal">false</span>)) {
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+            }
+            <span class="hljs-keyword">this</span>.rules[id] = <span class="hljs-keyword">this</span>.normalizeValue(value);
+            <span class="hljs-keyword">if</span> (important === <span class="hljs-literal">true</span>) {
+                <span class="hljs-keyword">this</span>.priority[id] = <span class="hljs-literal">true</span>;
+            }
+            <span class="hljs-keyword">if</span> (exists === <span class="hljs-literal">false</span>) {
+                <span class="hljs-keyword">this</span>.sequence.push(id);
+            }
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+        };</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Method map</span></p>
+<hr>
+<p>Call fn for each rule&#39;s key, value and priority and return the resulting
+Array.</p>
+<p>Parameters:</p>
+<ul>
+<li><strong>fn must be a Function.</strong></li>
+</ul>
+<p><strong>Returns an Array</strong></p></div></div><div class="code"><div class="wrapper">        RuleMap.prototype.map = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fn</span>) </span>{
+            <span class="hljs-keyword">var</span> i, key, len, ref, results;
+            ref = <span class="hljs-keyword">this</span>.sequence;
+            results = [];
+            <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>, len = ref.length; i &lt; len; i++) {
+                key = ref[i];
+                results.push(fn(key, <span class="hljs-keyword">this</span>.rules[key], <span class="hljs-keyword">this</span>.priority.hasOwnProperty(key)));
+            }
+            <span class="hljs-keyword">return</span> results;
+        };
+
+        <span class="hljs-keyword">return</span> RuleMap;
+
+    })(UnorderedRuleMap);
+
+    <span class="hljs-built_in">module</span>.exports = RuleMap;
+
+}).call(<span class="hljs-keyword">this</span>);
+<span class="hljs-comment">//# sourceMappingURL=RuleMap.js.map</span></div></div></div></div></body></html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html><html lang="en"><head><title>lib/Rules</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="lib/Rules.js"><meta name="groc-project-path" content="lib/Rules.js"><meta name="groc-github-url" content="https://github.com/sjorek/goatee-rules.js"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/sjorek/goatee-rules.js/blob/master/lib/Rules.js">lib/Rules.js</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><p>© Copyright 2013-2016 Stephan Jorek <a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#x6f;&#58;&#115;&#116;&#x65;&#x70;&#104;&#97;&#x6e;&#46;&#106;&#x6f;&#x72;&#101;&#107;&#x40;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#x6d;">&#115;&#116;&#x65;&#x70;&#104;&#97;&#x6e;&#46;&#106;&#x6f;&#x72;&#101;&#107;&#x40;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#x6d;</a></p>
+<p>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at</p>
+<p><a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied. See the License for the specific language governing
+permissions and limitations under the License.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h1 id="rules-">Rules …</h1>
+<hr>
+<p>… provide a lightweight version of CSSOM.CSSStyleRule.</p></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'> class Rules and namespace GoateeRules</span></p>
+<hr></div></div><div class="code"><div class="wrapper">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> Rules;
+
+    Rules = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'> see implementation below</span></p>
+<hr>
+<p>NON-STANDARD
+lightweight version of CSSOM.CSSStyleRule.parse</p></div></div><div class="code"><div class="wrapper">        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Rules</span>(<span class="hljs-params"></span>) </span>{}
+
+        Rules.parse = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">var</span> _CHAR_asterisk, _CHAR_backslash, _CHAR_colon, _CHAR_cr, _CHAR_doublequote, _CHAR_exclamation, _CHAR_ff, _CHAR_lf, _CHAR_semicolon, _CHAR_singlequote, _CHAR_slash, _CHAR_space, _CHAR_tab, _CHAR_vtab, _REGEXP_isEscaped, _STRING_closecomment, _STRING_empty, _STRING_nonimportant, _STRING_opencomment, _error, _errors;
+            _CHAR_space = <span class="hljs-string">' '</span>;
+            _CHAR_tab = <span class="hljs-string">'\t'</span>;
+            _CHAR_vtab = <span class="hljs-string">'\v'</span>;
+            _CHAR_cr = <span class="hljs-string">'\r'</span>;
+            _CHAR_lf = <span class="hljs-string">'\n'</span>;
+            _CHAR_ff = <span class="hljs-string">'\f'</span>;
+            _CHAR_doublequote = <span class="hljs-string">'"'</span>;
+            _CHAR_singlequote = <span class="hljs-string">"'"</span>;
+            _CHAR_slash = <span class="hljs-string">'/'</span>;
+            _CHAR_backslash = <span class="hljs-string">'\\'</span>;
+            _CHAR_colon = <span class="hljs-string">':'</span>;
+            _CHAR_semicolon = <span class="hljs-string">';'</span>;
+            _CHAR_exclamation = <span class="hljs-string">'!'</span>;
+            _CHAR_asterisk = <span class="hljs-string">'*'</span>;
+            _STRING_empty = <span class="hljs-string">''</span>;
+            _STRING_opencomment = <span class="hljs-string">'/*'</span>;
+            _STRING_closecomment = <span class="hljs-string">'*/'</span>;
+            _STRING_nonimportant = <span class="hljs-string">'!important'</span>;
+            _REGEXP_isEscaped = <span class="hljs-regexp">/[^\\](\\\\)*$/</span>;</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'> of type <em>Array</em></span></p>
+<hr>
+<p>Internal list of error messages, used by Expressions.parse</p></div></div><div class="code"><div class="wrapper">            _errors = [<span class="hljs-string">'Unexpected content after important declaration'</span>, <span class="hljs-string">'Missing closing string'</span>, <span class="hljs-string">'Missing closing comment'</span>, <span class="hljs-string">'Unexpected string opener'</span>, <span class="hljs-string">'Missing identifier key'</span>, <span class="hljs-string">'Important already declared'</span>];</div></div></div><div class="segment"><div class="comments doc-section doc-section-private"><div class="wrapper"><p><span class='doc-section-header'>Private function _error</span></p>
+<hr>
+<p>Internal error message function</p>
+<p>Parameters:</p>
+<ul>
+<li><p><strong>num must be a Number.</strong></p>
+</li>
+<li><p><strong>rules must be a String.</strong></p>
+</li>
+<li><p><strong>i must be a Number.</strong></p>
+</li>
+</ul>
+<p><strong>Returns a String</strong></p></div></div><div class="code"><div class="wrapper">            _error = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">num, rules, i</span>) </span>{
+                <span class="hljs-keyword">return</span> _errors[num - <span class="hljs-number">1</span>] + <span class="hljs-string">":\n“"</span> + (rules.slice(<span class="hljs-number">0</span>, i)) + <span class="hljs-string">"»»»"</span> + (rules.charAt(i)) + <span class="hljs-string">"«««"</span> + (rules.slice(i + <span class="hljs-number">1</span>)) + <span class="hljs-string">"”"</span>;
+            };</div></div></div><div class="segment"><div class="comments doc-section doc-section-static"><div class="wrapper"><p><span class='doc-section-header'>Static method parse</span></p>
+<hr>
+<p>NON-STANDARD
+lightweight version of CSSOM.CSSStyleRule.parse</p>
+<p>Parameters:</p>
+<ul>
+<li><p><strong>rules must be a String.</strong></p>
+</li>
+<li><p><strong>_map is optional and can be an AttributeMap, a PropertyMap, or a RuleMap.</strong><br/>(Optional instance to merge rules into.)</p>
+</li>
+</ul>
+<p><strong>Returns an AttributeMap or a PropertyMap or a RuleMap</strong><br/>(The filled <strong>_map</strong>)</p></div></div><div class="code"><div class="wrapper">            <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">rules, _map</span>) </span>{
+                <span class="hljs-keyword">var</span> buffer, char, i, important, index, j, key, state, stateKey, stateValue, value;
+                <span class="hljs-keyword">if</span> (_map == <span class="hljs-literal">null</span>) {
+                    _map = <span class="hljs-keyword">new</span>(<span class="hljs-built_in">require</span>(<span class="hljs-string">'./Unordered/RuleMap'</span>));
+                }
+                i = <span class="hljs-number">0</span>;
+                j = i;
+                stateKey = <span class="hljs-string">'key'</span>;
+                stateValue = <span class="hljs-string">'value'</span>;
+                state = stateKey;
+                buffer = <span class="hljs-string">''</span>;
+                char = <span class="hljs-string">''</span>;
+                key = <span class="hljs-string">''</span>;
+                value = <span class="hljs-string">''</span>;
+                important = <span class="hljs-literal">false</span>;
+                <span class="hljs-keyword">for</span> (char = <span class="hljs-string">''</span>;
+                    (char = rules.charAt(i)) !== <span class="hljs-string">''</span>; i++) {;
+                    <span class="hljs-keyword">switch</span> (char) {
+                        <span class="hljs-keyword">case</span> _CHAR_space:
+                        <span class="hljs-keyword">case</span> _CHAR_tab:
+                        <span class="hljs-keyword">case</span> _CHAR_vtab:
+                        <span class="hljs-keyword">case</span> _CHAR_cr:
+                        <span class="hljs-keyword">case</span> _CHAR_lf:
+                        <span class="hljs-keyword">case</span> _CHAR_ff:
+                            <span class="hljs-keyword">if</span> (state === stateValue &amp;&amp; !important) {
+                                buffer += char;
+                            }
+                            <span class="hljs-keyword">continue</span>;
+                            <span class="hljs-keyword">break</span>;
+                        <span class="hljs-keyword">case</span> _CHAR_singlequote:
+                        <span class="hljs-keyword">case</span> _CHAR_doublequote:
+                            <span class="hljs-keyword">if</span> (important) {
+                                <span class="hljs-keyword">throw</span> _error(<span class="hljs-number">1</span>, rules, i);
+                            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (state === stateValue) {
+                                j = i + <span class="hljs-number">1</span>;
+                                <span class="hljs-keyword">while</span> (index = rules.indexOf(char, j) + <span class="hljs-number">1</span>) {
+                                    <span class="hljs-keyword">if</span> (rules.charAt(index - <span class="hljs-number">2</span>) !== _CHAR_backslash || _REGEXP_isEscaped.test(rules.slice(i, index - <span class="hljs-number">1</span>))) {
+                                        <span class="hljs-keyword">break</span>;
+                                    }
+                                    j = index;
+                                }
+                                <span class="hljs-keyword">if</span> (index === <span class="hljs-number">0</span>) {
+                                    <span class="hljs-keyword">throw</span> _error(<span class="hljs-number">2</span>, rules, i);
+                                }
+                                buffer += rules.slice(i, index);
+                                i = index - <span class="hljs-number">1</span>;
+                                <span class="hljs-keyword">continue</span>;
+                            } <span class="hljs-keyword">else</span> {
+                                <span class="hljs-keyword">throw</span> _error(<span class="hljs-number">4</span>, rules, i);
+                            }
+                            <span class="hljs-keyword">break</span>;
+                        <span class="hljs-keyword">case</span> _CHAR_slash:
+                            <span class="hljs-keyword">if</span> (rules.charAt(i + <span class="hljs-number">1</span>) === _CHAR_asterisk) {
+                                i += <span class="hljs-number">2</span>;
+                                index = rules.indexOf(_STRING_closecomment, i);
+                                <span class="hljs-keyword">if</span> (index === -<span class="hljs-number">1</span>) {
+                                    <span class="hljs-keyword">throw</span> _error(<span class="hljs-number">3</span>, rules, i);
+                                }
+                                i = index + <span class="hljs-number">1</span>;
+                                <span class="hljs-keyword">continue</span>;
+                            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (important) {
+                                <span class="hljs-keyword">throw</span> _error(<span class="hljs-number">1</span>, rules, i);
+                            } <span class="hljs-keyword">else</span> {
+                                buffer += char;
+                                <span class="hljs-keyword">continue</span>;
+                            }
+                            <span class="hljs-keyword">break</span>;
+                        <span class="hljs-keyword">case</span> _CHAR_colon:
+                            <span class="hljs-keyword">if</span> (state === stateKey) {
+                                key += buffer;
+                                <span class="hljs-keyword">if</span> (key === _STRING_empty) {
+                                    <span class="hljs-keyword">throw</span> _error(<span class="hljs-number">5</span>, rules, i);
+                                }
+                                buffer = <span class="hljs-string">''</span>;
+                                state = stateValue;
+                                <span class="hljs-keyword">continue</span>;
+                            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (important) {
+                                <span class="hljs-keyword">throw</span> _error(<span class="hljs-number">1</span>, rules, i);
+                            } <span class="hljs-keyword">else</span> {
+                                buffer += char;
+                                <span class="hljs-keyword">continue</span>;
+                            }
+                            <span class="hljs-keyword">break</span>;
+                        <span class="hljs-keyword">case</span> _CHAR_exclamation:
+                            <span class="hljs-keyword">if</span> (state === stateValue &amp;&amp; rules.indexOf(_STRING_nonimportant, i) === i) {
+                                <span class="hljs-keyword">if</span> (important) {
+                                    <span class="hljs-keyword">throw</span> _error(<span class="hljs-number">6</span>, rules, i);
+                                }
+                                important = <span class="hljs-literal">true</span>;
+                                i += <span class="hljs-number">9</span>;
+                                <span class="hljs-keyword">continue</span>;
+                            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (important) {
+                                <span class="hljs-keyword">throw</span> _error(<span class="hljs-number">1</span>, rules, i);
+                            } <span class="hljs-keyword">else</span> {
+                                buffer += char;
+                                <span class="hljs-keyword">continue</span>;
+                            }
+                            <span class="hljs-keyword">break</span>;
+                        <span class="hljs-keyword">case</span> _CHAR_semicolon:
+                            <span class="hljs-keyword">if</span> (state === stateKey) {
+                                <span class="hljs-keyword">continue</span>;
+                            }
+                            <span class="hljs-keyword">if</span> (state === stateValue) {
+                                value += buffer;
+                                _map.add(key, value, important);
+                                important = <span class="hljs-literal">false</span>;
+                                key = <span class="hljs-string">''</span>;
+                                value = <span class="hljs-string">''</span>;
+                                buffer = <span class="hljs-string">''</span>;
+                                state = stateKey;
+                                <span class="hljs-keyword">continue</span>;
+                            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (important) {
+                                <span class="hljs-keyword">throw</span> _error(<span class="hljs-number">1</span>, rules, i);
+                            } <span class="hljs-keyword">else</span> {
+                                buffer += char;
+                                <span class="hljs-keyword">continue</span>;
+                            }
+                            <span class="hljs-keyword">break</span>;
+                        <span class="hljs-keyword">default</span>:
+                            <span class="hljs-keyword">if</span> (important) {
+                                <span class="hljs-keyword">throw</span> _error(<span class="hljs-number">1</span>, rules, i);
+                            }
+                            buffer += char;
+                            <span class="hljs-keyword">continue</span>;
+                            <span class="hljs-keyword">break</span>;
+                    }
+                };
+                <span class="hljs-keyword">if</span> (state === stateValue) {
+                    _map.add(key, value + buffer, important);
+                }
+                <span class="hljs-keyword">return</span> _map;
+            };
+        })();
+
+        <span class="hljs-keyword">return</span> Rules;
+
+    })();
+
+    <span class="hljs-built_in">module</span>.exports = Rules;
+
+}).call(<span class="hljs-keyword">this</span>);
+<span class="hljs-comment">//# sourceMappingURL=Rules.js.map</span></div></div></div></div></body></html>

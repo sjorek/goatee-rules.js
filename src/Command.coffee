@@ -24,16 +24,29 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 ###
 
-# The `goatee-rules` utility. Handles evaluation of statements or launch an
-# interactive REPL.
-
+# External dependencies.
 ScriptCommand = require 'goatee-script.js/lib/Command'
 
-##
-# @class
+###
+# # Commandline …
+# ---------------
+#
+# … of the `goatee-rules` utility. Handles evaluation of
+# statements or launches an interactive REPL.
+###
+
+###*
+# -------------
+# @class Command
 # @namespace GoateeRules
+###
 class Command extends ScriptCommand
 
+  ###*
+  # -------------
+  # @constructor
+  # @param {Function} [command=GoateeRules.GoateeRules] class function
+  ###
   constructor: (command = require('./GoateeRules')) ->
     super(command)
 

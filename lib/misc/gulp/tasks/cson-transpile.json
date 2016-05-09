@@ -1,0 +1,129 @@
+{
+  "default": {
+    "title": "Transpiling cson files",
+    "defaults": {
+      "indention": true
+    },
+    "assets": [
+      {
+        "lib/": [
+          [
+            "src/**/*.cson",
+            "!src/misc/groc/config.cson",
+            "!src/grammar/jison*.cson"
+          ]
+        ],
+        "spec/": [
+          [
+            "spec/**/*.cson"
+          ]
+        ]
+      }
+    ],
+    "replace": [
+      [
+        "lib/misc/groc/languages",
+        "lib/misc/groc/languages"
+      ]
+    ],
+    "clean": [
+      "lib/**/*.json",
+      "spec/**/*.json"
+    ],
+    "watch": true,
+    "logger": {
+      "before": "Start transpiling cson files …",
+      "after": "Transpiling cson files complete.",
+      "extname": ".json",
+      "showChange": true
+    }
+  },
+  "jison:grammar:default:json": {
+    "deps": [
+      "jison:grammar:default"
+    ],
+    "title": "Transpiling “src/grammar/jison*.json” to cson",
+    "defaults": {
+      "indent": "  "
+    },
+    "assets": [
+      {
+        "src/grammar/": [
+          "src/grammar/jison*.json"
+        ]
+      }
+    ],
+    "clean": [
+      "src/grammar/jison*.cson"
+    ],
+    "watch": true,
+    "logger": {
+      "before": "Start transpiling jison grammar to cson …",
+      "after": "Transpiling transpiling jison grammar to cson complete.",
+      "extname": ".cson",
+      "showChange": true
+    }
+  },
+  "jison:grammar:default:cson": {
+    "deps": [
+      "cson:transpile:jison:grammar:default:json"
+    ],
+    "title": "Transpiling “src/grammar/jison*.cson” to json",
+    "defaults": {
+      "indention": true
+    },
+    "assets": [
+      {
+        "lib/grammar": [
+          [
+            "src/grammar/jison*.cson"
+          ]
+        ]
+      }
+    ],
+    "clean": [
+      "lib/grammar/jison*.json"
+    ],
+    "watch": true,
+    "logger": {
+      "before": "Start transpiling jison grammar to json …",
+      "after": "Transpiling transpiling jison grammar to json complete.",
+      "extname": ".json",
+      "showChange": true
+    }
+  },
+  "groc:config": {
+    "title": "Transpiling “src/misc/groc/config.cson” to “.groc.json”",
+    "defaults": {
+      "indention": true
+    },
+    "assets": [
+      {
+        ".": [
+          "src/misc/groc/config.cson"
+        ]
+      }
+    ],
+    "rename": ".groc.json",
+    "replace": [
+      [
+        "src/misc/groc",
+        "lib/misc/groc"
+      ],
+      [
+        "./",
+        "<%= __dirname %>/"
+      ]
+    ],
+    "clean": [
+      ".groc.json"
+    ],
+    "watch": true,
+    "logger": {
+      "before": "Start transpiling groc configuration …",
+      "after": "Transpiling groc configuration complete.",
+      "extname": ".json",
+      "showChange": true
+    }
+  }
+}

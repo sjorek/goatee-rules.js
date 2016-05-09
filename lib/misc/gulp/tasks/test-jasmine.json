@@ -1,0 +1,52 @@
+{
+  "coffee": {
+    "title": "Testing coffee with jasmine",
+    "defaults": {
+      "config": "spec/support/jasmine.json",
+      "verbose": true,
+      "includeStackTrace": true
+    },
+    "assets": [
+      {
+        "spec": [
+          "spec/*TestSpec.coffee"
+        ]
+      }
+    ],
+    "watch": [
+      "lib/**/*.coffee",
+      "lib/**/*.cson",
+      "!lib/misc/**/*.coffee",
+      "!lib/misc/**/*.cson"
+    ],
+    "logger": {
+      "before": "Start testing coffee with jasmine …",
+      "after": "Testing coffee with jasmine finished."
+    }
+  },
+  "javascript": {
+    "title": "Testing javascript with jasmine",
+    "defaults": {
+      "config": "spec/support/jasmine.json",
+      "verbose": true,
+      "includeStackTrace": true
+    },
+    "assets": [
+      {
+        "spec": [
+          "spec/*TestSpec.js"
+        ]
+      }
+    ],
+    "watch": [
+      "lib/**/*.js",
+      "lib/**/*.json",
+      "!lib/misc/**/*.js",
+      "!lib/misc/**/*.json"
+    ],
+    "logger": {
+      "before": "Start testing coffee with jasmine …",
+      "after": "Testing coffee with jasmine finished."
+    }
+  }
+}

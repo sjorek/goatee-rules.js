@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="en"><head><title>src/Unordered/RuleMap</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/Unordered/RuleMap.coffee"><meta name="groc-project-path" content="src/Unordered/RuleMap.coffee"><meta name="groc-github-url" content="https://github.com/sjorek/goatee-rules.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/sjorek/goatee-rules.js/blob/master/src/Unordered/RuleMap.coffee">src/Unordered/RuleMap.coffee</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><p>© Copyright 2013-2016 Stephan Jorek <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#58;&#115;&#x74;&#101;&#112;&#x68;&#97;&#110;&#46;&#106;&#x6f;&#114;&#101;&#x6b;&#x40;&#103;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#109;">&#115;&#x74;&#101;&#112;&#x68;&#97;&#110;&#46;&#106;&#x6f;&#114;&#101;&#x6b;&#x40;&#103;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#109;</a></p>
+<p>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at</p>
+<p><a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied. See the License for the specific language governing
+permissions and limitations under the License.</p></div></div><div class="code"><div class="wrapper">{
+  parse
+}          = <span class="hljs-built_in">require</span> <span class="hljs-string">'../Rules'</span>
+
+{
+  trim
+}          = <span class="hljs-built_in">require</span> <span class="hljs-string">'../Utility'</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'> see <a href="http://www.w3.org/TR/2000/REC-DOM-Level-2-Style-20001113/css.html#CSS-ElementCSSInlineStyle">http://www.w3.org/TR/2000/REC-DOM-Level-2-Style-20001113/css.html#CSS-ElementCSSInlineStyle</a> and see <a href="http://www.w3.org/TR/1998/REC-html40-19980424/present/styles.html#h-14.2.2">http://www.w3.org/TR/1998/REC-html40-19980424/present/styles.html#h-14.2.2</a></span></p>
+<h1 id="rulemaps-">RuleMaps …</h1>
+<hr>
+<p>… look like “identifier: expression; identifier2: expression2”. They
+provide a simplified implementation of:</p></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'> class RuleMap and namespace GoateeRules.Unordered</span></p>
+<hr></div></div><div class="code"><div class="wrapper"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RuleMap</span></span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Constructor</span></p>
+<hr>
+<p>Parameters:</p>
+<ul>
+<li><p><strong>rules is optional and must be an Object.</strong></p>
+</li>
+<li><p><strong>priority is optional and must be an Object.</strong></p>
+</li>
+</ul></div></div><div class="code"><div class="wrapper">  <span class="hljs-attribute">constructor</span>: <span class="hljs-function"><span class="hljs-params">(<span class="hljs-property">@rules</span> = {}, <span class="hljs-property">@priority</span> = {})</span> -&gt;</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Method add</span></p>
+<hr>
+<p>adds a new rule to this instance</p>
+<p>Parameters:</p>
+<ul>
+<li><p><strong>key must be a String.</strong></p>
+</li>
+<li><p><strong>value must be a mixed.</strong></p>
+</li>
+<li><p><strong>important must be a Boolean.</strong></p>
+</li>
+</ul>
+<p><strong>Returns a RuleMap</strong></p></div></div><div class="code"><div class="wrapper">  <span class="hljs-attribute">add</span>: <span class="hljs-function"><span class="hljs-params">(key, value, important)</span> -&gt;</span>
+
+    id     = <span class="hljs-property">@normalizeKey</span> key
+    exists = <span class="hljs-property">@rules</span>.hasOwnProperty(id)
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span> <span class="hljs-keyword">unless</span> important <span class="hljs-keyword">is</span> <span class="hljs-literal">true</span> <span class="hljs-keyword">or</span> \
+                       exists <span class="hljs-keyword">is</span> <span class="hljs-literal">false</span> <span class="hljs-keyword">or</span> \
+                       <span class="hljs-property">@priority</span>.hasOwnProperty(id) <span class="hljs-keyword">is</span> <span class="hljs-literal">false</span>
+
+    <span class="hljs-property">@rules</span>[id]    = <span class="hljs-property">@normalizeValue</span> value
+    <span class="hljs-property">@priority</span>[id] = <span class="hljs-literal">true</span> <span class="hljs-keyword">if</span> important <span class="hljs-keyword">is</span> <span class="hljs-literal">true</span>
+
+    <span class="hljs-keyword">this</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Method map</span></p>
+<hr>
+<p>Call fn for each rule&#39;s key, value and priority and return this.</p>
+<p>Parameters:</p>
+<ul>
+<li><strong>fn must be a Function.</strong></li>
+</ul>
+<p><strong>Returns an Array</strong></p></div></div><div class="code"><div class="wrapper">  <span class="hljs-attribute">each</span>: <span class="hljs-function"><span class="hljs-params">(fn)</span> -&gt;</span>
+    <span class="hljs-property">@map</span>(fn)
+    @</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Method map</span></p>
+<hr>
+<p>Call fn for each rule&#39;s key, value and priority and return the resulting
+Array.</p>
+<p>Parameters:</p>
+<ul>
+<li><strong>fn must be a Function.</strong></li>
+</ul>
+<p><strong>Returns an Array</strong></p></div></div><div class="code"><div class="wrapper">  <span class="hljs-attribute">map</span>: <span class="hljs-function"><span class="hljs-params">(fn)</span> -&gt;</span>
+    fn key, value, <span class="hljs-property">@priority</span>.hasOwnProperty(key) <span class="hljs-keyword">for</span> own key, value <span class="hljs-keyword">of</span> <span class="hljs-property">@rules</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Method apply</span></p>
+<hr>
+<p>Parses the given string  and applies the resulting map to this map, taking
+priorities into consideration.</p>
+<p>Parameters:</p>
+<ul>
+<li><strong>string must be a String.</strong></li>
+</ul>
+<p><strong>Returns a RuleMap</strong></p></div></div><div class="code"><div class="wrapper">  <span class="hljs-attribute">apply</span>: <span class="hljs-function"><span class="hljs-params">(string)</span> -&gt;</span>
+    parse string, @</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Method inject</span></p>
+<hr>
+<p>Opposite of @project(map). Returns this map with all rules from given map
+applied to this map, taking my and their priorities into consideration.</p>
+<p>Parameters:</p>
+<ul>
+<li><strong>map must be a RuleMap.</strong></li>
+</ul>
+<p><strong>Returns a RuleMap</strong></p></div></div><div class="code"><div class="wrapper">  <span class="hljs-attribute">inject</span>: <span class="hljs-function"><span class="hljs-params">(map)</span> -&gt;</span>
+    map.project <span class="hljs-keyword">this</span>
+    <span class="hljs-keyword">this</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Method inject</span></p>
+<hr>
+<p>Opposite of @inject(map). Returns the given map with all my rules applied
+to given map, taking their and my priorities into consideration.</p>
+<p>Parameters:</p>
+<ul>
+<li><strong>map must be a RuleMap.</strong></li>
+</ul>
+<p><strong>Returns a RuleMap</strong></p></div></div><div class="code"><div class="wrapper">  <span class="hljs-attribute">project</span>: <span class="hljs-function"><span class="hljs-params">(map)</span> -&gt;</span>
+    <span class="hljs-property">@each</span> (key, value, priority) -&gt;
+      map.add(key, value, priority)
+    <span class="hljs-keyword">this</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Method normalizeKey</span></p>
+<hr>
+<p>Parameters:</p>
+<ul>
+<li><strong>string must be a String.</strong></li>
+</ul>
+<p><strong>Returns a String</strong></p></div></div><div class="code"><div class="wrapper">  <span class="hljs-attribute">normalizeKey</span>: <span class="hljs-function"><span class="hljs-params">(string)</span> -&gt;</span>
+    trim string</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Method normalizeValue</span></p>
+<hr>
+<p>Parameters:</p>
+<ul>
+<li><strong>string must be a String.</strong></li>
+</ul>
+<p><strong>Returns a String</strong></p></div></div><div class="code"><div class="wrapper">  <span class="hljs-attribute">normalizeValue</span>: <span class="hljs-function"><span class="hljs-params">(string)</span> -&gt;</span>
+    trim string</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Method flatten</span></p>
+<hr>
+<p>Return each rule&#39;s key, value and priority as Array of Arrays.</p>
+<p>Parameters:</p>
+<ul>
+<li><strong>fn must be a Function.</strong></li>
+</ul>
+<p><strong>Returns an Array</strong></p></div></div><div class="code"><div class="wrapper">  <span class="hljs-attribute">flatten</span>: <span class="hljs-function"><span class="hljs-params">(fn)</span> -&gt;</span>
+    <span class="hljs-property">@map</span> (key, value, priority) -&gt;
+      [key, value, priority]</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Method toString</span></p>
+<hr>
+<p>Return a css-like representation of this maps&#39; rules. It looks, like:</p>
+<pre><code>identifier: value; key: expression=1+1; action: expr( … ; … );</code></pre>
+<p><strong>Returns a String</strong></p></div></div><div class="code"><div class="wrapper">  <span class="hljs-attribute">toString</span>: <span class="hljs-function">-&gt;</span>
+    rules = <span class="hljs-property">@map</span> (key, value, priority) -&gt;
+      rule  = <span class="hljs-string">"<span class="hljs-subst">#{key}</span>:<span class="hljs-subst">#{value}</span>"</span>
+      rule += <span class="hljs-string">" !important"</span> <span class="hljs-keyword">if</span> priority <span class="hljs-keyword">is</span> <span class="hljs-literal">true</span>
+      rule
+    rules.join <span class="hljs-string">';'</span>
+
+<span class="hljs-built_in">module</span>.exports = RuleMap</div></div></div></div></body></html>

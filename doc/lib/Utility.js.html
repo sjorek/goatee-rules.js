@@ -1,0 +1,126 @@
+<!DOCTYPE html><html lang="en"><head><title>lib/Utility</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="lib/Utility.js"><meta name="groc-project-path" content="lib/Utility.js"><meta name="groc-github-url" content="https://github.com/sjorek/goatee-rules.js"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/sjorek/goatee-rules.js/blob/master/lib/Utility.js">lib/Utility.js</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><p>© Copyright 2013-2016 Stephan Jorek <a href="&#x6d;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#x73;&#116;&#x65;&#112;&#104;&#x61;&#x6e;&#46;&#x6a;&#111;&#114;&#101;&#107;&#x40;&#103;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#x6d;">&#x73;&#116;&#x65;&#112;&#104;&#x61;&#x6e;&#46;&#x6a;&#111;&#114;&#101;&#107;&#x40;&#103;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#x6d;</a></p>
+<p>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at</p>
+<p><a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied. See the License for the specific language governing
+permissions and limitations under the License.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h1 id="utilities">Utilities</h1>
+<hr></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'> class Utility and namespace GoateeRules</span></p>
+<hr></div></div><div class="code"><div class="wrapper">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> Utility;
+
+    Utility = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</div></div></div><div class="segment"><div class="comments doc-section doc-section-static"><div class="wrapper"><p><span class='doc-section-header'>Static method isRuleMap</span></p>
+<hr>
+<p>Parameters:</p>
+<ul>
+<li><strong>obj must be a mixed.</strong></li>
+</ul>
+<p><strong>Returns a Boolean</strong></p></div></div><div class="code"><div class="wrapper">        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Utility</span>(<span class="hljs-params"></span>) </span>{}
+
+        Utility.isRuleMap = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">obj</span>) </span>{
+            <span class="hljs-keyword">return</span> (obj != <span class="hljs-literal">null</span>) &amp;&amp; (obj.rules != <span class="hljs-literal">null</span>) &amp;&amp; (obj.priority != <span class="hljs-literal">null</span>);
+        };</div></div></div><div class="segment"><div class="comments doc-section doc-section-static"><div class="wrapper"><p><span class='doc-section-header'>Static method parseScript is aliased as parse</span></p>
+<hr>
+<p>Parameters:</p>
+<ul>
+<li><strong>code must be a String.</strong></li>
+</ul>
+<p><strong>Returns an Expression</strong></p></div></div><div class="code"><div class="wrapper">        Utility.parse = Utility.parseScript = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">var</span> cache, parser;
+            parser = <span class="hljs-literal">null</span>;
+            cache = {};
+            <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">code</span>) </span>{
+                <span class="hljs-keyword">var</span> expression;
+                <span class="hljs-keyword">if</span> (cache.hasOwnProperty(code)) {
+                    <span class="hljs-keyword">return</span> cache[code];
+                }
+                <span class="hljs-keyword">if</span> (parser == <span class="hljs-literal">null</span>) {
+                    parser = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./Parser'</span>);
+                }
+                expression = parser.parse(code);
+                <span class="hljs-keyword">return</span> cache[code] = cache[<span class="hljs-string">''</span> + expression] = expression;
+            };
+        })();</div></div></div><div class="segment"><div class="comments doc-section doc-section-static"><div class="wrapper"><p><span class='doc-section-header'>Static method parseRules</span></p>
+<hr>
+<p>NON-STANDARD
+caching lightweight version of CSSOM.CSSStyleRule.parse</p>
+<p>Parameters:</p>
+<ul>
+<li><strong>code must be a String.</strong></li>
+</ul>
+<p><strong>Returns an Expressions</strong></p></div></div><div class="code"><div class="wrapper">        Utility.parseRules = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">var</span> cache, parser;
+            parser = <span class="hljs-literal">null</span>;
+            cache = {};
+            <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">code</span>) </span>{
+                <span class="hljs-keyword">var</span> rules;
+                <span class="hljs-keyword">if</span> (cache.hasOwnProperty(code)) {
+                    <span class="hljs-keyword">return</span> cache[code];
+                }
+                <span class="hljs-keyword">if</span> (parser == <span class="hljs-literal">null</span>) {
+                    parser = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./Rules'</span>);
+                }
+                rules = parser.parse(code);
+                <span class="hljs-keyword">return</span> cache[code] = cache[<span class="hljs-string">''</span> + rules] = rules;
+            };
+        })();</div></div></div><div class="segment"><div class="comments doc-section doc-section-static"><div class="wrapper"><p><span class='doc-section-header'>Static method trim</span></p>
+<hr>
+<p>Trim whitespace from begin and end of string.</p>
+<p>Parameters:</p>
+<ul>
+<li><strong>string must be a String.</strong><br/>(Input string.)</li>
+</ul>
+<p><strong>Returns a String</strong><br/>(Trimmed string.)</p></div></div><div class="code"><div class="wrapper">        Utility.trim = <span class="hljs-built_in">String</span>.prototype.trim != <span class="hljs-literal">null</span> ? <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">string</span>) </span>{
+            <span class="hljs-keyword">return</span> string.trim();
+        } : (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">var</span> _REGEXP_trim;
+            _REGEXP_trim = <span class="hljs-regexp">/^\s+|\s+$/g</span>;
+            <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">string</span>) </span>{
+                <span class="hljs-keyword">return</span> string.replace(_REGEXP_trim, <span class="hljs-string">''</span>);
+            };
+        })();</div></div></div><div class="segment"><div class="comments doc-section doc-section-static"><div class="wrapper"><p><span class='doc-section-header'>Static method camelize</span></p>
+<hr>
+<p>Converts “a-property-name” to “aPropertyName”</p>
+<p>Parameters:</p>
+<ul>
+<li><strong>string must be a String.</strong><br/>(Input string.)</li>
+</ul>
+<p><strong>Returns a String</strong><br/>(a camelized string.)</p></div></div><div class="code"><div class="wrapper">        Utility.camelize = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">var</span> _REGEXP_camelize, _camelize;
+            _REGEXP_camelize = <span class="hljs-regexp">/-([a-z0-9])/gi</span>;
+            _camelize = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">match, char, index, str</span>) </span>{
+                <span class="hljs-keyword">return</span> char.toUpperCase();
+            };
+            <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">string</span>) </span>{
+                <span class="hljs-keyword">return</span> string.replace(_REGEXP_camelize, _camelize);
+            };
+        })();</div></div></div><div class="segment"><div class="comments doc-section doc-section-static"><div class="wrapper"><p><span class='doc-section-header'>Static method dashify</span></p>
+<hr>
+<p>Converts “aPropertyName” to “a-property-name”</p>
+<p>Parameters:</p>
+<ul>
+<li><strong>string must be a String.</strong><br/>(Input string.)</li>
+</ul>
+<p><strong>Returns a String</strong><br/>(Dashed string.)</p></div></div><div class="code"><div class="wrapper">        Utility.dashify = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">var</span> _CHAR_dash, _REGEXP_dashify, _dashify;
+            _CHAR_dash = <span class="hljs-string">'-'</span>;
+            _REGEXP_dashify = <span class="hljs-regexp">/(^|[a-z0-9])([A-Z])/g</span>;
+            _dashify = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">match, char, camel, index, str</span>) </span>{
+                <span class="hljs-keyword">return</span> char.toLowerCase() + _CHAR_dash + camel.toLowerCase();
+            };
+            <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">string</span>) </span>{
+                <span class="hljs-keyword">return</span> string.replace(_REGEXP_dashify, _dashify);
+            };
+        })();
+
+        <span class="hljs-keyword">return</span> Utility;
+
+    })();
+
+    <span class="hljs-built_in">module</span>.exports = Utility;
+
+}).call(<span class="hljs-keyword">this</span>);
+<span class="hljs-comment">//# sourceMappingURL=Utility.js.map</span></div></div></div></div></body></html>

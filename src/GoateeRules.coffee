@@ -23,9 +23,19 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 ###
 
-##
-# @class
+###
+# # GoateeRules's …
+# ------------------
+#
+# … main entry-point.
+#
+###
+
+###*
+# -------------
+# @class GoateeRules
 # @namespace GoateeRules
+###
 class GoateeRules
 
   GoateeRules.NAME      = require('../package.json').name
@@ -33,54 +43,78 @@ class GoateeRules
 
   _compiler = null
 
-  ##
+  ###*
+  # -------------
+  # @method parse
   # @param {String} code
   # @return {Expression}
+  # @static
+  ###
   GoateeRules.parse = (code) ->
     _compiler ?= new (require './Compiler')
     _compiler.parse(code)
 
-  ##
+  ###*
+  # -------------
+  # @method evaluate
   # @param {String} code
-  # @param {Object} context (optional)
-  # @param {Object} variables (optional)
-  # @param {Array}  scope (optional)
-  # @param {Array}  stack (optional)
+  # @param {Object} [context]
+  # @param {Object} [variables]
+  # @param {Array}  [scope]
+  # @param {Array}  [stack]
   # @return {mixed}
+  # @static
+  ###
   GoateeRules.evaluate  = (code, context, variables, scope, stack) ->
     _compiler ?= new (require './Compiler')
     _compiler.evaluate(code, context, variables, scope, stack)
 
-  ##
+  ###*
+  # -------------
+  # @method render
   # @param {String} code
   # @return {String}
+  # @static
+  ###
   GoateeRules.render = (code) ->
     _compiler ?= new (require './Compiler')
     _compiler.render(code)
 
-  ##
-  # @param  {String|Expression} code, a String or an Expression
-  # @param  {Function}          callback (optional)
-  # @param  {Boolean}           compress, default is true
+  ###*
+  # -------------
+  # @method ast
+  # @param  {String|Expression} code
+  # @param  {Function}          [callback]
+  # @param  {Boolean}           [compress=true]
   # @return {Array|String|Number|true|false|null}
+  # @static
+  ###
   GoateeRules.ast = (data, callback, compress) ->
     _compiler ?= new (require './Compiler')
     _compiler.ast(data, callback, compress)
 
-  ##
+  ###*
+  # -------------
+  # @method stringify
   # @param  {String|Expression} data
-  # @param  {Function}          callback (optional)
-  # @param  {Boolean}           compress, default is true
+  # @param  {Function}          [callback]
+  # @param  {Boolean}           [compress=true]
   # @return {String}
+  # @static
+  ###
   GoateeRules.stringify = (data, callback, compress) ->
     _compiler ?= new (require './Compiler')
     _compiler.stringify(data, callback, compress)
 
-  ##
-  # @param  {String|Array} data, code-String or opcode-Array
-  # @param  {Function}     callback (optional)
-  # @param  {Boolean}      compress, default = true
+  ###*
+  # -------------
+  # @method compile
+  # @param  {String|Array}      data
+  # @param  {Function}          [callback]
+  # @param  {Boolean}           [compress=true]
   # @return {String}
+  # @static
+  ###
   GoateeRules.compile = (data, callback, compress) ->
     _compiler ?= new (require './Compiler')
     _compiler.compile(data, callback, compress)

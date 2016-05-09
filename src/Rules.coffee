@@ -14,29 +14,36 @@ implied. See the License for the specific language governing
 permissions and limitations under the License.
 ###
 
-##
-# @class
+###
+# # Rules …
+# -------------
+# … provide a lightweight version of CSSOM.CSSStyleRule.
+#
+####
+
+###*
+#  -------------
+# @class Rules
 # @namespace GoateeRules
+###
 class Rules
 
-  ##
+  ###*
+  #  -------------
   # NON-STANDARD
   # lightweight version of CSSOM.CSSStyleRule.parse
-  #
-  # @param  {String} rules
-  # @param  {AttributeMap|PropertyMap|RuleMap}  _map  Optional instance to merge
-  #                                                   rules into, internally.
-  # @return {AttributeMap|PropertyMap|RuleMap}        The filled **_map**
+  # @see implementation below
+  ###
   Rules.parse             = do ->
 
     ##
     # Un-inlined literals, to avoid object creation.
-    _CHAR_space           = " "
-    _CHAR_tab             = "\t" # tabulator
-    _CHAR_vtab            = "\v" # vertical tabulator
-    _CHAR_cr              = "\r" # carriage return
-    _CHAR_lf              = "\n" # line feed
-    _CHAR_ff              = "\f" # form feed
+    _CHAR_space           = ' '
+    _CHAR_tab             = '\t' # tabulator
+    _CHAR_vtab            = '\v' # vertical tabulator
+    _CHAR_cr              = '\r' # carriage return
+    _CHAR_lf              = '\n' # line feed
+    _CHAR_ff              = '\f' # form feed
     _CHAR_doublequote     = '"'
     _CHAR_singlequote     = "'"
     _CHAR_slash           = '/'
@@ -53,50 +60,69 @@ class Rules
 
     _REGEXP_isEscaped     = /[^\\](\\\\)*$/
 
-    ##
-    # Internal list of error messages, used by UnorderedRules.parse
+    ###*
+    #  -------------
+    # Internal list of error messages, used by Expressions.parse
     # @type {Array}
+    ###
     _errors               = [
-      "Unexpected content after important declaration"
-      "Missing closing string"
-      "Missing closing comment"
-      "Unexpected string opener"
-      "Missing identifier key"
-      "Important already declared"
+      'Unexpected content after important declaration'
+      'Missing closing string'
+      'Missing closing comment'
+      'Unexpected string opener'
+      'Missing identifier key'
+      'Important already declared'
     ]
 
-    ##
+    ###*
+    #  -------------
     # Internal error message function
+    # @function _error
     # @param  {Number} num
     # @param  {String} rules
+    # @param  {Number} i
     # @return {String}
+    # @private
+    ###
     _error                = (num, rules, i) ->
       """
       #{_errors[num - 1]}:
       “#{rules.slice(0, i)}»»»#{rules.charAt(i)}«««#{rules.slice(i + 1)}”
       """
 
+    ###*
+    #  -------------
+    # NON-STANDARD
+    # lightweight version of CSSOM.CSSStyleRule.parse
+    #
+    # @method parse
+    # @param  {String} rules
+    # @param  {AttributeMap|PropertyMap|RuleMap} [_map] Optional instance to
+    #                                                   merge rules into.
+    # @return {AttributeMap|PropertyMap|RuleMap}        The filled **_map**
+    # @static
+    ###
     (rules, _map)       ->
 
-      _map      ?= new (require('./Unordered/RuleMap').RuleMap)
+      _map      ?= new (require('./Unordered/RuleMap'))
       i          = 0
       j          = i
-      stateKey   = "key"
-      stateValue = "value"
+      stateKey   = 'key'
+      stateValue = 'value'
       state      = stateKey
-      buffer     = ""
-      char       = ""
-      key        = ""
-      value      = ""
+      buffer     = ''
+      char       = ''
+      key        = ''
+      value      = ''
       important  = false
 
-      `for (char = ""; (char = rules.charAt(i)) !== ""; i++) {`
+      `for (char = ''; (char = rules.charAt(i)) !== ''; i++) {`
 
       # console.log 'Processing', i, '=', char
 
       switch char
 
-        # " ", "\t", "\v", "\r", "\n", "\f"
+        # ' ', '\t', '\v', '\r', '\n', '\f'
         when _CHAR_space, _CHAR_tab, _CHAR_vtab, _CHAR_cr, _CHAR_lf, _CHAR_ff
 
           # SIGNIFICANT_WHITESPACE
@@ -126,11 +152,11 @@ class Rules
           break
 
         # Comment
-        # "/"
+        # '/'
         when _CHAR_slash
-          if rules.charAt(i + 1) is _CHAR_asterisk # "*"
+          if rules.charAt(i + 1) is _CHAR_asterisk # '*'
             i += 2
-            index = rules.indexOf _STRING_closecomment, i # "*/", i
+            index = rules.indexOf _STRING_closecomment, i # '*/', i
             throw (_error 3, rules, i) if index is -1
             i = index + 1
             continue
@@ -141,12 +167,12 @@ class Rules
             continue
           break
 
-        # ":"
+        # ':'
         when _CHAR_colon
           if state is stateKey
             key   += buffer
             throw (_error 5, rules, i) if key is _STRING_empty
-            buffer = ""
+            buffer = ''
             state  = stateValue
             continue
           else if important
@@ -156,21 +182,21 @@ class Rules
             continue
           break
 
-        # "!"
+        # '!'
         when _CHAR_exclamation
           if state is stateValue and rules.indexOf(_STRING_nonimportant, i) is i
             throw (_error 6, rules, i) if important
             important = true
-            i += 9 # = "important".length
+            i += 9 # = 'important'.length
             continue
           else if important
             throw (_error 1, rules, i)
           else
-            buffer += char;
+            buffer += char
             continue
           break
 
-        # ";"
+        # ';'
         when _CHAR_semicolon
           if state is stateKey
             continue
@@ -180,9 +206,9 @@ class Rules
             _map.add(key, value, important)
 
             important = false
-            key       = ""
-            value     = ""
-            buffer    = ""
+            key       = ''
+            value     = ''
+            buffer    = ''
             state     = stateKey
             continue
           else if important

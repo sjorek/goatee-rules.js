@@ -18,20 +18,40 @@ ScriptScope = require 'goatee-script.js/lib/Scope'
 
 Expressions = require './Expressions'
 
-##
+###
+# # Scope
+# -------
+#
+###
+
+###*
+#  -------------
+# @class Scope
 # @namespace GoateeRules
+###
 class Scope extends ScriptScope
 
-  ##
+  ###*
+  # -------------
   # Create a new **Expression** or **Expressions** instance
   #
+  # @method create
   # @param  {String}      operator
   # @param  {Array}       parameters
   # @return {Expressions|Expression}
+  ###
   create  : (operator, parameters) ->
     return @addRule new Expressions, parameters if operator is 'rules'
     super(operator, parameters)
 
+  ###*
+  #  -------------
+  # Add a Expression to the given ExpressionMap **rule**
+  #
+  # @method addRule
+  # @param {ExpressionMap} rule
+  # @param {Array}         parameters
+  ###
   addRule: (rule, parameters) ->
     [key,expression,important] = parameters
     if expression.operator.name is 'list'

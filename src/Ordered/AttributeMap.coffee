@@ -14,24 +14,35 @@ implied. See the License for the specific language governing
 permissions and limitations under the License.
 ###
 
+# External dependencies.
 RuleMap     = require './RuleMap'
 
 {
   dashify
 }           = require '../Utility'
 
-## AttributeMap
-
-# AttributeMap look like “attribute-key: expression; another-key: value”.
-# They provide a implementation of normalized to dash-seperated RuleMap.
+###
+# # AttributeMaps …
+# -----------------
 #
-# @class
+# … look like “attribute-key: expression; another-key: value”. They
+# provide a implementation of ordered `RuleMap`s having its keys
+# normalized to dash-seperation.
+###
+
+###*
+# -------------
+# @class AttributeMap
 # @namespace GoateeRules.Ordered
+###
 class AttributeMap extends RuleMap
 
-  ##
+  ###*
+  # -------------
+  # @method normalizeKey
   # @param  {String} string
   # @return {String}
+  ###
   normalizeKey: (string) ->
     dashify super(string)
 

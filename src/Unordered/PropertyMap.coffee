@@ -20,18 +20,28 @@ RuleMap   = require './RuleMap'
   camelize
 }         = require '../Utility'
 
-## PropertyMap
-
-# PropertyMap look like “propertyId: expression; anotherProp: value”.
-# They provide a implementation of normalized to camel-case RuleMap.
+###
+# # PropertyMaps …
+# -----------------
 #
-# @class
+# … look like “propertyId: expression; anotherProp: value”. They
+# provide a implementation of unordered `RuleMap`s having its keys
+# normalized to camel-case.
+###
+
+###*
+# -------------
+# @class PropertyMap
 # @namespace GoateeRules.Unordered
+###
 class PropertyMap extends RuleMap
 
-  ##
+  ###*
+  # -------------
+  # @method normalizeKey
   # @param  {String} string
   # @return {String}
+  ###
   normalizeKey: (string) ->
     camelize super(string)
 

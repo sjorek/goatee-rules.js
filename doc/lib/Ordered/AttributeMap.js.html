@@ -1,0 +1,56 @@
+<!DOCTYPE html><html lang="en"><head><title>lib/Ordered/AttributeMap</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="lib/Ordered/AttributeMap.js"><meta name="groc-project-path" content="lib/Ordered/AttributeMap.js"><meta name="groc-github-url" content="https://github.com/sjorek/goatee-rules.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/sjorek/goatee-rules.js/blob/master/lib/Ordered/AttributeMap.js">lib/Ordered/AttributeMap.js</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><p>© Copyright 2013-2016 Stephan Jorek <a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#111;&#x3a;&#115;&#x74;&#x65;&#112;&#x68;&#x61;&#110;&#46;&#x6a;&#111;&#x72;&#101;&#107;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#109;">&#115;&#x74;&#x65;&#112;&#x68;&#x61;&#110;&#46;&#x6a;&#111;&#x72;&#101;&#107;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#111;&#109;</a></p>
+<p>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at</p>
+<p><a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied. See the License for the specific language governing
+permissions and limitations under the License.</p></div></div><div class="code"><div class="wrapper">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> AttributeMap, RuleMap, dashify,
+        extend = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">child, parent</span>) </span>{
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> key <span class="hljs-keyword">in</span> parent) {
+                <span class="hljs-keyword">if</span> (hasProp.call(parent, key)) child[key] = parent[key];
+            }
+
+            <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ctor</span>(<span class="hljs-params"></span>) </span>{
+                <span class="hljs-keyword">this</span>.constructor = child;
+            }
+            ctor.prototype = parent.prototype;
+            child.prototype = <span class="hljs-keyword">new</span> ctor();
+            child.__super__ = parent.prototype;
+            <span class="hljs-keyword">return</span> child;
+        },
+        hasProp = {}.hasOwnProperty;
+
+    RuleMap = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./RuleMap'</span>);
+
+    dashify = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../Utility'</span>).dashify;</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h1 id="attributemaps-">AttributeMaps …</h1>
+<hr>
+<p>… look like “attribute-key: expression; another-key: value”. They
+provide a implementation of ordered <code>RuleMap</code>s having its keys
+normalized to dash-seperation.</p></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'> class AttributeMap and namespace GoateeRules.Ordered</span></p>
+<hr></div></div><div class="code"><div class="wrapper">    AttributeMap = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">superClass</span>) </span>{
+        extend(AttributeMap, superClass);
+
+        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">AttributeMap</span>(<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">return</span> AttributeMap.__super__.constructor.apply(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span>);
+        }</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'>Method normalizeKey</span></p>
+<hr>
+<p>Parameters:</p>
+<ul>
+<li><strong>string must be a String.</strong></li>
+</ul>
+<p><strong>Returns a String</strong></p></div></div><div class="code"><div class="wrapper">        AttributeMap.prototype.normalizeKey = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">string</span>) </span>{
+            <span class="hljs-keyword">return</span> dashify(AttributeMap.__super__.normalizeKey.call(<span class="hljs-keyword">this</span>, string));
+        };
+
+        <span class="hljs-keyword">return</span> AttributeMap;
+
+    })(RuleMap);
+
+    <span class="hljs-built_in">module</span>.exports = AttributeMap;
+
+}).call(<span class="hljs-keyword">this</span>);
+<span class="hljs-comment">//# sourceMappingURL=AttributeMap.js.map</span></div></div></div></div></body></html>

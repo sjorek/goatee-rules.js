@@ -14,6 +14,7 @@ implied. See the License for the specific language governing
 permissions and limitations under the License.
 ###
 
+# External dependencies.
 {
   isRuleMap,
   parse
@@ -28,21 +29,35 @@ ScriptCompiler = require 'goatee-script.js/lib/Compiler'
 
 Expressions    = require './Expressions'
 
-##
-# @class
+###
+# Compiling …
+# -----------
+#
+# … the goatee-rules.
+###
+
+###*
+# -------------
+# @class Compiler
 # @namespace GoateeRules
+###
 class Compiler extends ScriptCompiler
 
-  ##
-  # @param  {Function}  parseImpl
+  ###*
+  # -------------
+  # @param  {Function}  [parseImpl=GoateeRules.Utility.parse]
   # @constructor
+  ###
   constructor: (parseImpl = parse) ->
     super(parseImpl)
 
-  ##
+  ###*
+  # -------------
+  # @method parse
   # @param  {Array|String|Object} code, a String, opcode-Array or Object with
   #                               toString method
   # @return {Expression}
+  ###
   parse: (code) ->
     return @parseImpl(code.toString()) if not isArray code
     map = new Expressions
@@ -51,7 +66,9 @@ class Compiler extends ScriptCompiler
       map.add(key, @toExpression(value), important)
     map
 
-  ##
+  ###*
+  # -------------
+  # @method evaluate
   # @param  {Array|String|Object} code, a String, opcode-Array or Object with
   #                               toString method
   # @param  {Object}              context (optional)
@@ -59,24 +76,22 @@ class Compiler extends ScriptCompiler
   # @param  {Array}               scope (optional)
   # @param  {Array}               stack (optional)
   # @return {mixed}
+  ###
   evaluate: (code, context={}, variables={}, scope, stack) ->
     map = @parse(code)
     map.each (key, value, important) ->
       map.rules[key] = value.evaluate(context, variables, scope, stack)
       return
 
-  #  ##
-  #  # @param  {Array|String|Object} code, a String, opcode-Array or Object with
-  #  #                               toString method
-  #  # @return {String}
-  #  render: (code) ->
-  #    super(code)
-
-  ##
-  # @param  {String|Expression} code, a String or an Expression
-  # @param  {Function}          callback (optional)
-  # @param  {Boolean}           compress, default is on
+  ###*
+  # -------------
+  # @method ast
+  # @param  {Array|String|Object} code, a String, opcode-Array or Object with
+  #                               toString method
+  # @param  {Function}            callback (optional)
+  # @param  {Boolean}             [compress=true]
   # @return {Array}
+  ###
   ast: (data, callback, compress = on) ->
     rules = if isRuleMap data then data else @parse(data)
     self  = this
@@ -93,11 +108,15 @@ class Compiler extends ScriptCompiler
       return
     tree
 
-  ##
-  # @param  {String|Expression} data
-  # @param  {Function}          callback (optional)
-  # @param  {Boolean}           compress, default is on
+  ###*
+  # -------------
+  # @method stringyfy
+  # @param  {Array|String|Object} code, a String, opcode-Array or Object with
+  #                               toString method
+  # @param  {Function}            callback (optional)
+  # @param  {Boolean}             [compress=true]
   # @return {String}
+  ###
   stringify: (data, callback, compress = on) ->
     opcode = @ast(data, callback, compress)
     if compress
@@ -111,18 +130,13 @@ class Compiler extends ScriptCompiler
     else
       JSON.stringify opcode
 
-  #  ##
-  #  # @param  {String|Expression} data
-  #  # @param  {Function}          callback (optional)
-  #  # @param  {Boolean}           compress, default is on
-  #  # @return {Function}
-  #  closure: (data, callback, compress = on, prefix) ->
-  #    super(data, callback, compress, prefix)
-
-  ##
-  # @param  {String|Array} data, opcode-String or -Array
-  # @param  {Boolean}      compress, default = true
+  ###*
+  # -------------
+  # @method load
+  # @param  {String|Array} data            opcode-String or -Array
+  # @param  {Boolean}      [compress=true]
   # @return {String}
+  ###
   load: (data, compress = on) ->
     opcode = if isArray data then data else @expand(data)
     code   = []
@@ -131,15 +145,5 @@ class Compiler extends ScriptCompiler
       important = if important then ' !important' else ''
       code.push "#{key}:#{super(value, compress)}#{important}"
     code.join ';'
-
-  #  ##
-  #  # @param  {Array|String|Object} code, a String, opcode-Array or Object with
-  #  #                               toString method
-  #  # @param  {Function}            callback (optional)
-  #  # @param  {Boolean}             compress, default = true
-  #  # @return {String}
-  #  compile: (data, callback, compress = on) ->
-  #    opcode = if isArray data then data else @ast(data, callback, false)
-  #    @load(opcode, compress)
 
 module.exports = Compiler

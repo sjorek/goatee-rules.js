@@ -1,0 +1,1 @@
+{"version":3,"sources":["misc/groc/languages.coffee"],"names":[],"mappings":";AAAA;;;;;;AAAA;EAMA,MAAM,CAAC,OAAP,GAAiB,OAAA,CAAQ,0CAAR;AANjB","file":"misc/groc/languages.js","sourceRoot":"/source/","sourcesContent":["###\n# # Supported Languages\n# ---------------------\n#\n###\n\nmodule.exports = require 'goatee-script.js/lib/misc/groc/languages'\n"]}

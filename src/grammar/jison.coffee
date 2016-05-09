@@ -45,9 +45,9 @@ module.exports = (yy, notator) ->
         (
           -?\w
         )*
-      ///                             , -> 'KEY'
-      c ['rule'], /\s\!important\b/   , -> 'NONIMPORTANT'
-      r ':'                           , -> @begin 'rule' ; ':'
+      ///                            , -> 'KEY'
+      c ['rule'], /\s\!important\b/  , -> 'NONIMPORTANT'
+      r ':'                          , -> @begin 'rule' ; ':'
 
     # Inherit lexer tokens from ScriptGrammar
     ].concat grammar.lex.rules.map (v, k) ->
@@ -80,20 +80,20 @@ module.exports = (yy, notator) ->
 
       # Since we parse bottom-up, all parsing must end here.
       Rules: [
-        r 'End'                       , -> yy.scope.create 'scalar', [undefined]
-        r 'RuleMap End'               , -> $1
-        r 'Seperator RuleMap End'     , -> $2
+        r 'End'                      , -> yy.goatee.create 'scalar', [undefined]
+        r 'RuleMap End'              , -> $1
+        r 'Seperator RuleMap End'    , -> $2
       ]
       RuleMap: [
-        o 'Map'                       , -> yy.scope.create 'rules', $1
-        o 'RuleMap Seperator Map'     , -> yy.scope.addRule $1, $3
+        o 'Map'                      , -> yy.goatee.create 'rules', $1
+        o 'RuleMap Seperator Map'    , -> yy.goatee.addRule $1, $3
       ]
       Map: [
-        o 'KEY : Rule'                , -> [$1].concat $3
+        o 'KEY : Rule'               , -> [$1].concat $3
       ]
       Rule: [
-        o 'List'                      , -> [$1, off]
-        o 'List NONIMPORTANT'         , -> [$1, on]
+        o 'List'                     , -> [$1, off]
+        o 'List NONIMPORTANT'        , -> [$1, on]
       ]
 
     # Inherit all but “Script” and “Statements” operations from script-grammar
@@ -108,8 +108,8 @@ module.exports = (yy, notator) ->
       for rule in v
         if rule[0] is '! Expression'
           ops.push o 'NONIMPORTANT', ->
-            yy.scope.create '!' , [
-              yy.scope.create 'reference', ['important']
+            yy.goatee.create '!' , [
+              yy.goatee.create 'reference', ['important']
             ]
         ops.push rule
 
