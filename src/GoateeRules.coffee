@@ -1,5 +1,5 @@
 ###
-© Copyright 2013-2014 Stephan Jorek <stephan.jorek@gmail.com>  
+© Copyright 2013-2016 Stephan Jorek <stephan.jorek@gmail.com>
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
@@ -23,12 +23,10 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 ###
 
-exports = module?.exports ? this
-
 ##
 # @class
 # @namespace GoateeRules
-exports.GoateeRules = class GoateeRules
+class GoateeRules
 
   GoateeRules.NAME      = require('../package.json').name
   GoateeRules.VERSION   = require('../package.json').version
@@ -39,7 +37,7 @@ exports.GoateeRules = class GoateeRules
   # @param {String} code
   # @return {Expression}
   GoateeRules.parse = (code) ->
-    _compiler ?= new (require('./Compiler').Compiler)
+    _compiler ?= new (require './Compiler')
     _compiler.parse(code)
 
   ##
@@ -50,14 +48,14 @@ exports.GoateeRules = class GoateeRules
   # @param {Array}  stack (optional)
   # @return {mixed}
   GoateeRules.evaluate  = (code, context, variables, scope, stack) ->
-    _compiler ?= new (require('./Compiler').Compiler)
+    _compiler ?= new (require './Compiler')
     _compiler.evaluate(code, context, variables, scope, stack)
 
   ##
   # @param {String} code
   # @return {String}
   GoateeRules.render = (code) ->
-    _compiler ?= new (require('./Compiler').Compiler)
+    _compiler ?= new (require './Compiler')
     _compiler.render(code)
 
   ##
@@ -66,7 +64,7 @@ exports.GoateeRules = class GoateeRules
   # @param  {Boolean}           compress, default is true
   # @return {Array|String|Number|true|false|null}
   GoateeRules.ast = (data, callback, compress) ->
-    _compiler ?= new (require('./Compiler').Compiler)
+    _compiler ?= new (require './Compiler')
     _compiler.ast(data, callback, compress)
 
   ##
@@ -75,7 +73,7 @@ exports.GoateeRules = class GoateeRules
   # @param  {Boolean}           compress, default is true
   # @return {String}
   GoateeRules.stringify = (data, callback, compress) ->
-    _compiler ?= new (require('./Compiler').Compiler)
+    _compiler ?= new (require './Compiler')
     _compiler.stringify(data, callback, compress)
 
   ##
@@ -84,5 +82,7 @@ exports.GoateeRules = class GoateeRules
   # @param  {Boolean}      compress, default = true
   # @return {String}
   GoateeRules.compile = (data, callback, compress) ->
-    _compiler ?= new (require('./Compiler').Compiler)
+    _compiler ?= new (require './Compiler')
     _compiler.compile(data, callback, compress)
+
+module.exports = GoateeRules

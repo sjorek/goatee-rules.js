@@ -1,5 +1,5 @@
 ###
-© Copyright 2013-2014 Stephan Jorek <stephan.jorek@gmail.com>  
+© Copyright 2013-2016 Stephan Jorek <stephan.jorek@gmail.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,121 +14,101 @@ implied. See the License for the specific language governing
 permissions and limitations under the License.
 ###
 
-{Notator:{
-  r,o,c
-}}            = require 'goatee-script/lib/Notator'
+ScriptGrammar = require 'goatee-script.js/lib/Grammar'
+Notator       = require 'goatee-script.js/lib/Notator'
+{
+  isString,
+  isFunction
+}             = require 'goatee-script.js/lib//Utility'
+Scope         = require './Scope'
 
-ScriptGrammar = require('goatee-script/lib/Grammar').Grammar
+class Grammar extends ScriptGrammar
 
-{Scope}       = require './Scope'
-
-exports = module?.exports ? this
-
-exports.Grammar = class Grammar extends ScriptGrammar
-
-  # Actually this is not needed, but it looks nicer ;-)
-  $1 = $2 = $3 = $4 = $5 = $6 = $7 = $8 = null
-
-  yy = new Scope
-
-  ##
-  # Initializes the **Parser** with our **Grammar**
+  ###*
+  # -------------
+  # Loads the our **Grammar**
   #
-  # @param  {Grammar} grammar
-  # @param  {Scope}   scope
+  # @method loadGrammar
+  # @param  {String} [filename]
   # @return {Parser}
-  Grammar.createParser = (grammar = new Grammar, scope = yy) ->
-    ScriptGrammar.createParser grammar, scope
+  # @static
+  ###
+  Grammar.load = (filename = './grammar/jison.coffee',
+                  scope = {},
+                  notator = Notator)->
 
-  ##
+    scope.goatee = new Scope() unless scope.goatee?
+
+    grammar = require filename
+    # console.log 'load', grammar
+    # ext = path.extname(filename)
+    grammar = grammar(scope, notator) if isFunction grammar
+    grammar.yy.goatee = scope.goatee
+    grammar
+
+  ###*
+  # -------------
+  # Initializes our **Grammar**
+  #
+  # @method create
+  # @param  {String|Object} grammar filepath or object
+  # @return {Grammar}
+  # @static
+  ###
+  Grammar.create = (grammar = null, scope = {}, notator = Notator)->
+    if grammar is null or isString grammar
+      grammar = Grammar.load(grammar, scope, notator)
+    # console.log 'create', grammar
+    grammar = new Grammar grammar
+
+  ###*
+  # -------------
   # Create and return the parsers source code wrapped into a closure, still
   # keeping the value of `this`.
   #
+  # @method generateParser
+  # @param  {Function} [generator]
+  # @param  {String} [comment]
+  # @param  {String} [prefix]
+  # @param  {String} [suffix]
   # @return {String}
-  create: (comment  = '/* Goatee Rules Parser */', prefix, scope, suffix) ->
-    super(comment, prefix, scope, suffix)
+  # @static
+  ###
+  Grammar.generateParser = (parser = null,
+                            comment = '''
+                                      /* Goatee Rules Parser */
 
+                                      ''',
+                            prefix  = null,
+                            suffix  = null) ->
+
+    if parser is null or isString parser
+      parser = Grammar.createParser parser
+    ScriptGrammar.generateParser parser, comment, prefix, suffix
+
+  ###*
+  # -------------
+  # Initializes the **Parser** with our **Grammar**
+  #
+  # @method createParser
+  # @param  {Grammar} [grammar]
+  # @param  {Function|Boolean} [log]
+  # @return {Parser}
+  # @static
+  ###
+  Grammar.createParser = (grammar = null, log = null) ->
+    if grammar is null or isString grammar
+      grammar = Grammar.create grammar
+    ScriptGrammar.createParser(grammar, log)
+
+
+  ###*
+  # -------------
   # Use the default jison-lexer
-  lex: do ->
+  #
+  # @constructor
+  ###
+  constructor: (@grammar) ->
+    super(@grammar)
 
-    # Declare all lexer tokens
-    rules = [
-      r ///
-        (
-          [_a-zA-Z]     |
-          [-_][_a-zA-Z]
-        )
-        (
-          -?\w
-        )*
-      ///                             , -> 'KEY'
-      c ['rule'], /\s\!important\b/   , -> 'NONIMPORTANT'
-      r ':'                           , -> @begin 'rule' ; ':'
-
-    # Inherit lexer tokens from ScriptGrammar
-    ].concat ScriptGrammar::lex.rules.map (v, k) ->
-      switch v[1]
-        # '\s+', '/* … */'
-        when 'return;'
-          [['*']].concat v
-        # ';', 'EOF'
-        when 'return \';\';', 'return \'EOF\';'
-          v[1] = 'this.popState();' + v[1]
-          [['*']].concat v
-        else [['rule']].concat v
-
-    {
-      startConditions :
-        # “rule” is implicit (1), not explicit (0)
-        rule          : 1
-      rules           : rules
-    }
-
-  # The **Rules** is the top-level node in the syntax tree.
-  startSymbol : 'Rules'
-
-  ##
-  # The syntax description notated in Backus-Naur-Format
-  # ----------------------------------------------------
-  bnf: do ->
-
-    grammar =
-
-      # Since we parse bottom-up, all parsing must end here.
-      Rules: [
-        r 'End'                       , -> yy.create 'scalar', [undefined]
-        r 'RuleMap End'               , -> $1
-        r 'Seperator RuleMap End'     , -> $2
-      ]
-      RuleMap: [
-        o 'Map'                       , -> yy.create 'rules', $1
-        o 'RuleMap Seperator Map'     , -> yy.addRule $1, $3
-      ]
-      Map: [
-        o 'KEY : Rule'                , -> [$1].concat $3
-      ]
-      Rule: [
-        o 'List'                      , -> [$1, off]
-        o 'List NONIMPORTANT'         , -> [$1, on]
-      ]
-
-    # Inherit all but “Script” and “Statement” operations from ScriptGrammar
-    for own k,v of ScriptGrammar::bnf when k isnt 'Script' and k isnt 'Statements'
-      if k isnt 'Operation'
-        grammar[k] = v
-        continue
-
-      # Tweak “Operation” to include a hack to support “!important” as statement
-      # expression without interfering the final “!important” declaration
-      ops = []
-      for rule in v
-        if rule[0] is '! Expression'
-          ops.push o 'NONIMPORTANT', ->
-            yy.create '!' , [
-              yy.create 'reference', ['important']
-            ]
-        ops.push rule
-
-      grammar[k] = ops
-
-    grammar
+module.exports = Grammar

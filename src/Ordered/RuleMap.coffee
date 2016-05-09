@@ -1,5 +1,5 @@
 ###
-© Copyright 2013-2014 Stephan Jorek <stephan.jorek@gmail.com>  
+© Copyright 2013-2016 Stephan Jorek <stephan.jorek@gmail.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,9 +14,7 @@ implied. See the License for the specific language governing
 permissions and limitations under the License.
 ###
 
-UnorderedRuleMap = require('../Unordered/RuleMap').RuleMap
-
-exports = module?.exports ? this
+UnorderedRuleMap = require '../Unordered/RuleMap'
 
 ## RuleMap
 
@@ -26,7 +24,7 @@ exports = module?.exports ? this
 #
 # @class
 # @namespace GoateeRules.Ordered
-exports.RuleMap = class RuleMap extends UnorderedRuleMap
+class RuleMap extends UnorderedRuleMap
 
   ##
   # @param {Array}  sequence
@@ -64,3 +62,5 @@ exports.RuleMap = class RuleMap extends UnorderedRuleMap
   # @return {Array}
   map: (fn) ->
     fn key, @rules[key], @priority.hasOwnProperty(key) for key in @sequence
+
+module.exports = RuleMap

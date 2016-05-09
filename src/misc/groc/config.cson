@@ -1,0 +1,24 @@
+glob: [
+  'src/**/*.coffee'
+  'src/**/*.cson'
+  'spec/**/*.coffee'
+  'spec/**/*.cson'
+  'spec/**/*.js'
+  'spec/**/*.json'
+  'lib/**/*.js'
+  'lib/**/*.json'
+  # 'Cakefile'
+  'gulpfile.coffee'
+  'gulpfile.js'
+  'README.md'
+]
+out: 'doc'
+strip: ['']
+index: 'README.md'
+'index-page-title': 'goatee-rules.js'
+style: 'goatee-script.js/lib/misc/groc/style'
+languages: 'goatee-script.js/lib/misc/groc/languages'
+showdown: [
+  'table'
+]
+'whitespace-after-token': true

@@ -1,5 +1,5 @@
 ###
-© Copyright 2013-2014 Stephan Jorek <stephan.jorek@gmail.com>  
+© Copyright 2013-2016 Stephan Jorek <stephan.jorek@gmail.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,15 +14,13 @@ implied. See the License for the specific language governing
 permissions and limitations under the License.
 ###
 
-{Rules:{
+{
   parse
-}}          = require '../Rules'
+}          = require '../Rules'
 
-{Utility:{
+{
   trim
-}}          = require '../Utility'
-
-exports = module?.exports ? this
+}          = require '../Utility'
 
 ## RuleMap
 
@@ -34,7 +32,7 @@ exports = module?.exports ? this
 #
 # @class
 # @namespace GoateeRules.Unordered
-exports.RuleMap = class RuleMap
+class RuleMap
 
   ##
   # @param {Object} rules
@@ -141,3 +139,5 @@ exports.RuleMap = class RuleMap
       rule += " !important" if priority is true
       rule
     rules.join ';'
+
+module.exports = RuleMap

@@ -1,5 +1,5 @@
 ###
-© Copyright 2013-2014 Stephan Jorek <stephan.jorek@gmail.com>  
+© Copyright 2013-2016 Stephan Jorek <stephan.jorek@gmail.com>
 © Copyright 2009-2013 Jeremy Ashkenas <https://github.com/jashkenas>
 
 Permission is hereby granted, free of charge, to any person
@@ -27,14 +27,14 @@ OTHER DEALINGS IN THE SOFTWARE.
 # The `goatee-rules` utility. Handles evaluation of statements or launch an
 # interactive REPL.
 
-ScriptCommand = require('goatee-script/lib/Command').Command
-
-exports = module?.exports ? this
+ScriptCommand = require 'goatee-script.js/lib/Command'
 
 ##
 # @class
 # @namespace GoateeRules
-exports.Command = class Command extends ScriptCommand
+class Command extends ScriptCommand
 
-  constructor: (command = require('./GoateeRules').GoateeRules) ->
+  constructor: (command = require('./GoateeRules')) ->
     super(command)
+
+module.exports = Command

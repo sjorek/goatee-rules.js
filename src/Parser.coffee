@@ -1,5 +1,5 @@
 ###
-© Copyright 2013-2014 Stephan Jorek <stephan.jorek@gmail.com>  
+© Copyright 2013-2016 Stephan Jorek <stephan.jorek@gmail.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,18 +14,55 @@ implied. See the License for the specific language governing
 permissions and limitations under the License.
 ###
 
-{Grammar}  = require './Grammar'
+try
+  exports = require './ParserImpl'
+catch
+  exports = null
 
-exports = module?.exports ? this
+if exports is null
 
-##
-# Compatibillity layer for the “on-the-fly” generated parser
-# @type {Parser}
-exports.parser = parser = Grammar.createParser()
-exports.Parser = parser.Parser;
-exports.parse  = () -> parser.parse.apply(parser, arguments)
-exports.main   = (args) ->
-    if !args[1]
+  Grammar = require './Grammar'
+
+  exports = module?.exports ? this
+
+  ###
+  # #Parser
+  # -------------
+  #
+  # A thin compatibillity layer providing an
+  # “on-the-fly” generated goatee-rules parser.
+  ###
+
+  ###*
+  #  -------------
+  # @property parser
+  # @type {Parser}
+  # @static
+  ###
+  exports.parser = parser = Grammar.createParser()
+
+  ###*
+  #  -------------
+  # @class Parser
+  # @namespace GoateeScript
+  ###
+  exports.Parser = parser.Parser
+
+  ###*
+  #  -------------
+  # @function parse
+  # @static
+  ###
+  exports.parse  = () -> parser.parse.apply(parser, arguments)
+
+  ###*
+  #  -------------
+  # @function main
+  # @param {Array} args
+  # @static
+  ###
+  exports.main   = (args) ->
+    if not args[1]
       console.log "Usage: #{args[0]} FILE"
       process.exit 1
     source = require('fs').readFileSync(
@@ -33,6 +70,8 @@ exports.main   = (args) ->
     )
     parser.parse(source)
 
+module.exports = exports
+
+# excute main automatically
 if (module isnt undefined && require.main is module)
   exports.main process.argv.slice(1)
-

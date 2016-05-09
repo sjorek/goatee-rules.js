@@ -1,5 +1,5 @@
 ###
-© Copyright 2013-2014 Stephan Jorek <stephan.jorek@gmail.com>  
+© Copyright 2013-2016 Stephan Jorek <stephan.jorek@gmail.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,12 +14,10 @@ implied. See the License for the specific language governing
 permissions and limitations under the License.
 ###
 
-exports = module?.exports ? this
-
 ##
 # @class
 # @namespace GoateeRules
-exports.Utility = class Utility
+class Utility
 
   ##
   # @param  {Object}  The object to test
@@ -92,3 +90,4 @@ exports.Utility = class Utility
       char.toLowerCase() + _CHAR_dash + camel.toLowerCase()
     (string)            -> string.replace _REGEXP_dashify, _dashify
 
+module.exports = Utility

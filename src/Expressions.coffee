@@ -1,5 +1,5 @@
 ###
-© Copyright 2013-2014 Stephan Jorek <stephan.jorek@gmail.com>  
+© Copyright 2013-2016 Stephan Jorek <stephan.jorek@gmail.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,8 +14,6 @@ implied. See the License for the specific language governing
 permissions and limitations under the License.
 ###
 
-exports = module?.exports ? this
-
 ## ExpressionMap
 
 # ExpressionMaps look like “attribute-key: expression; another-key: expression”.
@@ -25,7 +23,7 @@ exports = module?.exports ? this
 # @namespace GoateeRules
 _create = (ParentClass) ->
 
-  ExpressionMap = class ExpressionMap extends ParentClass
+  class ExpressionMap extends ParentClass
 
     # lazy reference to **Parser.parse**
     parse = null
@@ -88,4 +86,4 @@ _create = (ParentClass) ->
 #  exports["Unordered#{_kind}Expressions"] = \
 #    _create require("./Unordered/#{_kind}Map")["#{_kind}Map"]
 
-exports.Expressions = _create require("./Ordered/PropertyMap").PropertyMap
+module.exports = _create require('./Ordered/PropertyMap')

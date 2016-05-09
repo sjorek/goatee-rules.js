@@ -1,5 +1,5 @@
 ###
-© Copyright 2013-2014 Stephan Jorek <stephan.jorek@gmail.com>  
+© Copyright 2013-2016 Stephan Jorek <stephan.jorek@gmail.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,12 +14,10 @@ implied. See the License for the specific language governing
 permissions and limitations under the License.
 ###
 
-exports = module?.exports ? this
-
 ##
 # @class
 # @namespace GoateeRules
-exports.Rules = class Rules
+class Rules
 
   ##
   # NON-STANDARD
@@ -42,7 +40,7 @@ exports.Rules = class Rules
     _CHAR_doublequote     = '"'
     _CHAR_singlequote     = "'"
     _CHAR_slash           = '/'
-    _CHAR_backslash       = '''\\'''
+    _CHAR_backslash       = '\\'
     _CHAR_colon           = ':'
     _CHAR_semicolon       = ';'
     _CHAR_exclamation     = '!'
@@ -205,3 +203,5 @@ exports.Rules = class Rules
       _map.add(key, value + buffer, important) if state is stateValue
 
       return _map
+
+module.exports = Rules

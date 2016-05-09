@@ -1,0 +1,173 @@
+# Parser: jison
+# -------------
+
+default:
+
+  deps: ['cson:transpile:jison:grammar:default:cson']
+
+  title: 'Creating “goatee-rules” default jison parser'
+
+  defaults :
+    goatee: true
+    beautify: true
+    # moduleName: 'JisonParser'
+    moduleType: 'commonjs'
+    # moduleType: 'amd'
+    # moduleType: 'js'
+
+  beautify:
+    indentSize: 2
+    jslintHappy: true
+
+  assets : [
+    'lib/': [
+      [
+        'lib/grammar/jison.json'
+      ]
+    ]
+  ]
+
+  # replace : []
+
+  rename : 'ParserImpl.js'
+
+  clean: [
+    'lib/ParserImpl.js'
+  ]
+
+  watch: true
+
+  logger:
+    before: 'Start creating the “goatee-rules” default parser …'
+    after: 'The “goatee-rules” default parser has been created.'
+    extname: '.js'
+    showChange: true
+
+commonjs:
+
+  deps: ['cson:transpile:jison:grammar:default:cson']
+
+  title: 'Creating “goatee-rules” jison parser for commonjs'
+
+  defaults :
+    beautify: true
+    # moduleName: 'JisonParser'
+    moduleType: 'commonjs'
+    # moduleType: 'amd'
+    # moduleType: 'js'
+
+  beautify:
+    indentSize: 2
+    jslintHappy: true
+
+  assets : [
+    'lib/parser': [
+      [
+        'lib/grammar/jison.json'
+      ]
+    ]
+  ]
+
+  # replace : []
+
+  rename : 'commonjs.js'
+
+  clean: [
+    'lib/parser/commonjs.js'
+  ]
+
+  watch: true
+
+  logger:
+    before: 'Start creating the “goatee-rules” parser for commonjs …'
+    after: 'The “goatee-rules” parser for commonjs has been created.'
+    extname: '.js'
+    showChange: true
+
+  queue: 'publish'
+
+amd:
+
+  deps: ['cson:transpile:jison:grammar:default:cson']
+
+  title: 'Creating “goatee-rules” jison parser for amd'
+
+  defaults :
+    beautify: true
+    # moduleName: 'JisonParser'
+    # moduleType: 'commonjs'
+    moduleType: 'amd'
+    # moduleType: 'js'
+
+  beautify:
+    indentSize: 2
+    jslintHappy: true
+
+  assets : [
+    'lib/parser': [
+      [
+        'lib/grammar/jison.json'
+      ]
+    ]
+  ]
+
+  # replace : []
+
+  rename : 'amd.js'
+
+  clean: [
+    'lib/parser/amd.js'
+  ]
+
+  watch: true
+
+  logger:
+    before: 'Start creating the “goatee-rules” parser for amd …'
+    after: 'The “goatee-rules” parser for amd has been created.'
+    extname: '.js'
+    showChange: true
+
+  queue: 'publish'
+
+javascript:
+
+  deps: ['cson:transpile:jison:grammar:default:cson']
+
+  title: 'Creating “goatee-rules” jison parser for javascript'
+
+  defaults :
+    beautify: true
+    # moduleName: 'JisonParser'
+    # moduleType: 'commonjs'
+    # moduleType: 'amd'
+    moduleType: 'js'
+
+  beautify:
+    indentSize: 2
+    jslintHappy: true
+
+  assets : [
+    'lib/parser': [
+      [
+        'lib/grammar/jison.json'
+      ]
+    ]
+  ]
+
+  # replace : []
+
+  rename : 'plain.js'
+
+  clean: [
+    'lib/parser/plain.js'
+  ]
+
+  watch: true
+
+  logger:
+    before: 'Start creating the “goatee-rules” parser for plain javascript …'
+    after: 'The “goatee-rules” parser for plain javascript has been created.'
+    extname: '.js'
+    showChange: true
+
+  queue: 'publish'

@@ -1,5 +1,5 @@
 ###
-© Copyright 2013-2014 Stephan Jorek <stephan.jorek@gmail.com>  
+© Copyright 2013-2016 Stephan Jorek <stephan.jorek@gmail.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,15 +14,13 @@ implied. See the License for the specific language governing
 permissions and limitations under the License.
 ###
 
-ScriptScope   = require('goatee-script/lib/Scope').Scope
+ScriptScope = require 'goatee-script.js/lib/Scope'
 
-{Expressions} = require './Expressions'
-
-exports = module?.exports ? this
+Expressions = require './Expressions'
 
 ##
 # @namespace GoateeRules
-exports.Scope = class Scope extends ScriptScope
+class Scope extends ScriptScope
 
   ##
   # Create a new **Expression** or **Expressions** instance
@@ -39,3 +37,5 @@ exports.Scope = class Scope extends ScriptScope
     if expression.operator.name is 'list'
       expression = @create 'group', [expression]
     rule.add key, expression, important
+
+module.exports = Scope

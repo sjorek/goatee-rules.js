@@ -1,5 +1,5 @@
 ###
-© Copyright 2013-2014 Stephan Jorek <stephan.jorek@gmail.com>  
+© Copyright 2013-2016 Stephan Jorek <stephan.jorek@gmail.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,26 +14,24 @@ implied. See the License for the specific language governing
 permissions and limitations under the License.
 ###
 
-{Utility:{
+{
   isRuleMap,
   parse
-}}              = require './Utility'
+}              = require './Utility'
 
-{Utility:{
+{
   isString,
   isArray
-}}              = require 'goatee-script/lib/Utility'
+}              = require 'goatee-script.js/lib/Utility'
 
-ScriptCompiler  = require('goatee-script/lib/Compiler').Compiler
+ScriptCompiler = require 'goatee-script.js/lib/Compiler'
 
-{Expressions}   = require './Expressions'
-
-exports = module?.exports ? this
+Expressions    = require './Expressions'
 
 ##
 # @class
 # @namespace GoateeRules
-exports.Compiler = class Compiler extends ScriptCompiler
+class Compiler extends ScriptCompiler
 
   ##
   # @param  {Function}  parseImpl
@@ -67,12 +65,12 @@ exports.Compiler = class Compiler extends ScriptCompiler
       map.rules[key] = value.evaluate(context, variables, scope, stack)
       return
 
-#  ##
-#  # @param  {Array|String|Object} code, a String, opcode-Array or Object with
-#  #                               toString method
-#  # @return {String}
-#  render: (code) ->
-#    super(code)
+  #  ##
+  #  # @param  {Array|String|Object} code, a String, opcode-Array or Object with
+  #  #                               toString method
+  #  # @return {String}
+  #  render: (code) ->
+  #    super(code)
 
   ##
   # @param  {String|Expression} code, a String or an Expression
@@ -113,13 +111,13 @@ exports.Compiler = class Compiler extends ScriptCompiler
     else
       JSON.stringify opcode
 
-#  ##
-#  # @param  {String|Expression} data
-#  # @param  {Function}          callback (optional)
-#  # @param  {Boolean}           compress, default is on
-#  # @return {Function}
-#  closure: (data, callback, compress = on, prefix) ->
-#    super(data, callback, compress, prefix)
+  #  ##
+  #  # @param  {String|Expression} data
+  #  # @param  {Function}          callback (optional)
+  #  # @param  {Boolean}           compress, default is on
+  #  # @return {Function}
+  #  closure: (data, callback, compress = on, prefix) ->
+  #    super(data, callback, compress, prefix)
 
   ##
   # @param  {String|Array} data, opcode-String or -Array
@@ -134,12 +132,14 @@ exports.Compiler = class Compiler extends ScriptCompiler
       code.push "#{key}:#{super(value, compress)}#{important}"
     code.join ';'
 
-#  ##
-#  # @param  {Array|String|Object} code, a String, opcode-Array or Object with
-#  #                               toString method
-#  # @param  {Function}            callback (optional)
-#  # @param  {Boolean}             compress, default = true
-#  # @return {String}
-#  compile: (data, callback, compress = on) ->
-#    opcode = if isArray data then data else @ast(data, callback, false)
-#    @load(opcode, compress)
+  #  ##
+  #  # @param  {Array|String|Object} code, a String, opcode-Array or Object with
+  #  #                               toString method
+  #  # @param  {Function}            callback (optional)
+  #  # @param  {Boolean}             compress, default = true
+  #  # @return {String}
+  #  compile: (data, callback, compress = on) ->
+  #    opcode = if isArray data then data else @ast(data, callback, false)
+  #    @load(opcode, compress)
+
+module.exports = Compiler
