@@ -22,7 +22,7 @@ permissions and limitations under the License.
 ###
 module.exports = (yy, notator) ->
 
-  # Use the default jison-lexer
+  ### Use the script's jison-grammar ###
   grammar = (require 'goatee-script.js/lib/grammar/jison')(yy, notator)
 
   r = notator.resolve
@@ -32,10 +32,16 @@ module.exports = (yy, notator) ->
   ### Actually this is not needed, but it looks nicer ;-) ###
   $1 = $2 = $3 = $4 = $5 = $6 = $7 = $8 = null
 
-  # Update the default jison-lexer
+  ###*
+  # -------------
+  # Use the default jison-lexer
+  # @type {Object}
+  # @property lex
+  # @static
+  ###
   grammar.lex = do ->
 
-    # Declare all lexer tokens
+    ### Declare all rule-related lexer tokens … ###
     rules = [
       r ///
         (
@@ -49,8 +55,8 @@ module.exports = (yy, notator) ->
       c ['rule'], /\s\!important\b/  , -> 'NONIMPORTANT'
       r ':'                          , -> @begin 'rule' ; ':'
 
-    # Inherit lexer tokens from ScriptGrammar
     ].concat grammar.lex.rules.map (v, k) ->
+      ### … and inherit the other lexer tokens from ScriptGrammar ###
       switch v[1]
         # '\s+', '/* … */'
         when 'return;'
@@ -63,23 +69,44 @@ module.exports = (yy, notator) ->
 
     {
       startConditions :
-        # “rule” is implicit (1), not explicit (0)
+        ### “rule” is implicit (1), not explicit (0) ###
         rule          : 1
       rules           : rules
     }
 
+  ###*
+  # -------------
   # The **Rules** is the top-level node in the syntax tree.
+  # @type {String}
+  # @property startSymbol
+  # @static
+  ###
   grammar.startSymbol = 'Rules'
 
-  ##
-  # The syntax description notated in Backus-Naur-Format
-  # ----------------------------------------------------
+  ###
+  # # Syntax description …
+  # ----------------------
+  #
+  # To build a grammar, a syntax is needed …
+  #
+  ###
+
+  ###*
+  # -------------
+  # … which is inherited and notated here in Backus-Naur-Format.
+  # @type {Object}
+  # @property bnf
+  # @static
+  ###
   grammar.bnf = do ->
 
     bnf =
 
-      # Since we parse bottom-up, all parsing must end here.
+      ###
+      Since we parse bottom-up, all parsing must end here.
+      ###
       Rules: [
+        # TODO use a precompiled “undefined” expression in Rules » End
         r 'End'                      , -> yy.goatee.create 'scalar', [undefined]
         r 'RuleMap End'              , -> $1
         r 'Seperator RuleMap End'    , -> $2
@@ -96,14 +123,18 @@ module.exports = (yy, notator) ->
         o 'List NONIMPORTANT'        , -> [$1, on]
       ]
 
-    # Inherit all but “Script” and “Statements” operations from script-grammar
+    ###
+    Inherit all but “Script” and “Statements” operations from script-grammar
+    ###
     for own k,v of grammar.bnf when k isnt 'Script' and k isnt 'Statements'
       if k isnt 'Operation'
         bnf[k] = v
         continue
 
-      # Tweak “Operation” to include a hack to support “!important” as statement
-      # expression without interfering the final “!important” declaration
+      ###
+      Tweak “Operation” to include a hack to support “!important” as statement
+      expression without interfering the final “!important” declaration
+      ###
       ops = []
       for rule in v
         if rule[0] is '! Expression'

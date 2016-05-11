@@ -19,7 +19,7 @@ Notator       = require 'goatee-script.js/lib/Notator'
 {
   isString,
   isFunction
-}             = require 'goatee-script.js/lib//Utility'
+}             = require 'goatee-script.js/lib/Utility'
 Scope         = require './Scope'
 
 class Grammar extends ScriptGrammar
@@ -28,7 +28,7 @@ class Grammar extends ScriptGrammar
   # -------------
   # Loads the our **Grammar**
   #
-  # @method loadGrammar
+  # @method load
   # @param  {String} [filename]
   # @return {Parser}
   # @static
@@ -40,7 +40,7 @@ class Grammar extends ScriptGrammar
     scope.goatee = new Scope() unless scope.goatee?
 
     grammar = require filename
-    # console.log 'load', grammar, 'from', filename
+    #console.log 'load', grammar, 'from', filename
     grammar = grammar(scope, notator) if isFunction grammar
     grammar.yy.goatee = scope.goatee
     grammar
@@ -57,7 +57,7 @@ class Grammar extends ScriptGrammar
   Grammar.create = (grammar = null, scope = {}, notator = Notator)->
     if grammar is null or isString grammar
       grammar = Grammar.load(grammar, scope, notator)
-    # console.log 'create', grammar
+    #console.log 'create', grammar
     grammar = new Grammar grammar
 
   ###*

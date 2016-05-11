@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><title>lib/grammar/jison</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="lib/grammar/jison.js"><meta name="groc-project-path" content="lib/grammar/jison.js"><meta name="groc-github-url" content="https://github.com/sjorek/goatee-rules.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/sjorek/goatee-rules.js/blob/master/lib/grammar/jison.js">lib/grammar/jison.js</a></div></div><div id="document"><div class="segment"></div><div class="segment"><div class="comments "><div class="wrapper"><p>© Copyright 2013-2016 Stephan Jorek <a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#x6f;&#58;&#x73;&#116;&#101;&#x70;&#x68;&#x61;&#110;&#x2e;&#106;&#x6f;&#114;&#101;&#107;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d;">&#x73;&#116;&#101;&#x70;&#x68;&#x61;&#110;&#x2e;&#106;&#x6f;&#114;&#101;&#107;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d;</a></p>
+<!DOCTYPE html><html lang="en"><head><title>lib/grammar/jison</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="lib/grammar/jison.js"><meta name="groc-project-path" content="lib/grammar/jison.js"><meta name="groc-github-url" content="https://github.com/sjorek/goatee-rules.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/sjorek/goatee-rules.js/blob/master/lib/grammar/jison.js">lib/grammar/jison.js</a></div></div><div id="document"><div class="segment"></div><div class="segment"><div class="comments "><div class="wrapper"><p>© Copyright 2013-2016 Stephan Jorek <a href="&#109;&#x61;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#115;&#116;&#x65;&#x70;&#x68;&#97;&#x6e;&#46;&#x6a;&#111;&#114;&#x65;&#107;&#x40;&#103;&#109;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#109;">&#115;&#116;&#x65;&#x70;&#x68;&#97;&#x6e;&#46;&#x6a;&#111;&#114;&#x65;&#107;&#x40;&#103;&#109;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#109;</a></p>
 <p>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at</p>
@@ -12,14 +12,13 @@ permissions and limitations under the License.</p></div></div></div><div class="
 <p>… this time it&#39;s jison.coffee !</p></div></div><div class="code"><div class="wrapper">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-keyword">var</span> hasProp = {}.hasOwnProperty;
 
-  <span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">yy, notator</span>) </span>{
-    <span class="hljs-keyword">var</span> $<span class="hljs-number">1</span>, $<span class="hljs-number">2</span>, $<span class="hljs-number">3</span>, $<span class="hljs-number">4</span>, $<span class="hljs-number">5</span>, $<span class="hljs-number">6</span>, $<span class="hljs-number">7</span>, $<span class="hljs-number">8</span>, c, grammar, o, r;
+  <span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">yy, notator</span>) </span>{</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Use the script&#39;s jison-grammar </p></div></div><div class="code"><div class="wrapper">    <span class="hljs-keyword">var</span> $<span class="hljs-number">1</span>, $<span class="hljs-number">2</span>, $<span class="hljs-number">3</span>, $<span class="hljs-number">4</span>, $<span class="hljs-number">5</span>, $<span class="hljs-number">6</span>, $<span class="hljs-number">7</span>, $<span class="hljs-number">8</span>, c, grammar, o, r;
     grammar = (<span class="hljs-built_in">require</span>(<span class="hljs-string">'goatee-script.js/lib/grammar/jison'</span>))(yy, notator);
     r = notator.resolve;
     o = notator.operation;
-    c = notator.conditional;</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Actually this is not needed, but it looks nicer ;-) </p></div></div><div class="code"><div class="wrapper">    $<span class="hljs-number">1</span> = $<span class="hljs-number">2</span> = $<span class="hljs-number">3</span> = $<span class="hljs-number">4</span> = $<span class="hljs-number">5</span> = $<span class="hljs-number">6</span> = $<span class="hljs-number">7</span> = $<span class="hljs-number">8</span> = <span class="hljs-literal">null</span>;
-    grammar.lex = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-      <span class="hljs-keyword">var</span> rules;
+    c = notator.conditional;</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Actually this is not needed, but it looks nicer ;-) </p></div></div><div class="code"><div class="wrapper">    $<span class="hljs-number">1</span> = $<span class="hljs-number">2</span> = $<span class="hljs-number">3</span> = $<span class="hljs-number">4</span> = $<span class="hljs-number">5</span> = $<span class="hljs-number">6</span> = $<span class="hljs-number">7</span> = $<span class="hljs-number">8</span> = <span class="hljs-literal">null</span>;</div></div></div><div class="segment"><div class="comments doc-section doc-section-static"><div class="wrapper"><p><span class='doc-section-header'>Static property lex of type <em>Object</em></span></p>
+<hr>
+<p>Use the default jison-lexer</p></div></div><div class="code"><div class="wrapper">    grammar.lex = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Declare all rule-related lexer tokens … </p></div></div><div class="code"><div class="wrapper">      <span class="hljs-keyword">var</span> rules;
       rules = [
         r(<span class="hljs-regexp">/([_a-zA-Z]|[-_][_a-zA-Z])(-?\w)*/</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
           <span class="hljs-keyword">return</span> <span class="hljs-string">'KEY'</span>;
@@ -29,8 +28,7 @@ permissions and limitations under the License.</p></div></div></div><div class="
           <span class="hljs-keyword">this</span>.begin(<span class="hljs-string">'rule'</span>);
           <span class="hljs-keyword">return</span> <span class="hljs-string">':'</span>;
         })
-      ].concat(grammar.lex.rules.map(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">v, k</span>) </span>{
-        <span class="hljs-keyword">switch</span> (v[<span class="hljs-number">1</span>]) {
+      ].concat(grammar.lex.rules.map(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">v, k</span>) </span>{</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>… and inherit the other lexer tokens from ScriptGrammar </p></div></div><div class="code"><div class="wrapper">        <span class="hljs-keyword">switch</span> (v[<span class="hljs-number">1</span>]) {
           <span class="hljs-keyword">case</span> <span class="hljs-string">'return;'</span>:
             <span class="hljs-keyword">return</span> [[<span class="hljs-string">'*'</span>]].concat(v);
           <span class="hljs-keyword">case</span> <span class="hljs-string">'return \';\';'</span>:
@@ -42,17 +40,19 @@ permissions and limitations under the License.</p></div></div></div><div class="
         }
       }));
       <span class="hljs-keyword">return</span> {
-        startConditions: {
-          rule: <span class="hljs-number">1</span>
+        startConditions: {</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>“rule” is implicit (1), not explicit (0) </p></div></div><div class="code"><div class="wrapper">          rule: <span class="hljs-number">1</span>
         },
         rules: rules
       };
-    })();
-    grammar.startSymbol = <span class="hljs-string">'Rules'</span>;
-    grammar.bnf = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    })();</div></div></div><div class="segment"><div class="comments doc-section doc-section-static"><div class="wrapper"><p><span class='doc-section-header'>Static property startSymbol of type <em>String</em></span></p>
+<hr>
+<p>The <strong>Rules</strong> is the top-level node in the syntax tree.</p></div></div><div class="code"><div class="wrapper">    grammar.startSymbol = <span class="hljs-string">'Rules'</span>;</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h1 id="syntax-description-">Syntax description …</h1>
+<hr>
+<p>To build a grammar, a syntax is needed …</p></div></div></div><div class="segment"><div class="comments doc-section doc-section-static"><div class="wrapper"><p><span class='doc-section-header'>Static property bnf of type <em>Object</em></span></p>
+<hr>
+<p>… which is inherited and notated here in Backus-Naur-Format.</p></div></div><div class="code"><div class="wrapper">    grammar.bnf = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
       <span class="hljs-keyword">var</span> bnf, i, k, len, ops, ref, rule, v;
-      bnf = {
-        Rules: [
+      bnf = {</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Since we parse bottom-up, all parsing must end here.</p></div></div><div class="code"><div class="wrapper">        Rules: [
           r(<span class="hljs-string">'End'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
             <span class="hljs-keyword">return</span> yy.goatee.create(<span class="hljs-string">'scalar'</span>, [<span class="hljs-keyword">void</span> <span class="hljs-number">0</span>]);
           }), r(<span class="hljs-string">'RuleMap End'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
@@ -80,8 +80,7 @@ permissions and limitations under the License.</p></div></div></div><div class="
             <span class="hljs-keyword">return</span> [$<span class="hljs-number">1</span>, <span class="hljs-literal">true</span>];
           })
         ]
-      };
-      ref = grammar.bnf;
+      };</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Inherit all but “Script” and “Statements” operations from script-grammar</p></div></div><div class="code"><div class="wrapper">      ref = grammar.bnf;
       <span class="hljs-keyword">for</span> (k <span class="hljs-keyword">in</span> ref) {
         <span class="hljs-keyword">if</span> (!hasProp.call(ref, k)) <span class="hljs-keyword">continue</span>;
         v = ref[k];
@@ -91,8 +90,8 @@ permissions and limitations under the License.</p></div></div></div><div class="
         <span class="hljs-keyword">if</span> (k !== <span class="hljs-string">'Operation'</span>) {
           bnf[k] = v;
           <span class="hljs-keyword">continue</span>;
-        }
-        ops = [];
+        }</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Tweak “Operation” to include a hack to support “!important” as statement
+expression without interfering the final “!important” declaration</p></div></div><div class="code"><div class="wrapper">        ops = [];
         <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>, len = v.length; i &lt; len; i++) {
           rule = v[i];
           <span class="hljs-keyword">if</span> (rule[<span class="hljs-number">0</span>] === <span class="hljs-string">'! Expression'</span>) {
