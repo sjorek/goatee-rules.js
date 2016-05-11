@@ -60,7 +60,61 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "title": "Development",
             "slug": "development"
           },
-          "depth": 2
+          "depth": 2,
+          "children": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "Install dependencies …",
+                "slug": "install-dependencies-"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "… for production version:",
+                "slug": "-for-production-version"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "… for development version:",
+                "slug": "-for-development-version"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "Run build …",
+                "slug": "run-build-"
+              },
+              "depth": 3,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 4,
+                    "title": "… in *nix-like environments:",
+                    "slug": "-in-nix-like-environments"
+                  },
+                  "depth": 4
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 4,
+                    "title": "… in Windows environments:",
+                    "slug": "-in-windows-environments"
+                  },
+                  "depth": 4
+                }
+              ]
+            }
+          ]
         }, {
           "type": "heading",
           "data": {

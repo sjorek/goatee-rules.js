@@ -1,6 +1,6 @@
 
-[goatee-rules](http://sjorek.github.io/goatee-rules/)
-=====================================================
+[goatee-rules](http://sjorek.github.io/goatee-rules.js/)
+========================================================
 
          _______  _______  _______  _______  _______  _______
         |    ___||       ||       ||_     _||    ___||    ___|
@@ -47,13 +47,13 @@ Example:
     test: 1 + 2 * 3 ; /* line-breaks are optional */
     an-attribute: 'tester'.replace('r','d') ; aProperty: null
 
-Also see “[goatee-js](http://sjorek.github.io/goatee-js)” and
-“[goatee-script](http://sjorek.github.io/goatee-script)”.
+Also see “[goatee.js](http://sjorek.github.io/goatee.js)” and
+“[goatee-script.js](http://sjorek.github.io/goatee-script.js)”.
 
 
 ## Installation
 
-    $ npm install -g goatee-rules
+    $ npm install -g goatee-rules.js
 
 
 ## Usage
@@ -81,32 +81,38 @@ Also see “[goatee-js](http://sjorek.github.io/goatee-js)” and
 
 ## Documentation
 
-Read the [annotated sources](http://sjorek.github.io/goatee-rules/).
+Read the [annotated sources](http://sjorek.github.io/goatee-rules.js/).
 
 
 ## Development
 
-Install dependencies:
+### Install dependencies …
 
-- [git-scm](http://git-scm.com)
-- [node.js *(≥ 0.10)*](http://nodejs.org)
-- [pygments](http://pygments.org)
+- [node.js](http://nodejs.org) _(≥ 0.10)_
 
-Install project:
+  ### … for production version:
 
-    $ git clone https://github.com/sjorek/goatee-rules
-    $ cd goatee-rules
-    $ npm install
+       $ npm install goatee-rules.js --save
 
-Run build in *nix-like environments:
+  ### … for development version:
 
-    $ PATH=$PATH:./node_modules/.bin cake all
+      $ git clone https://github.com/sjorek/goatee-rules.js
+      $ cd goatee-rules.js
+      $ npm install
 
-Run build in Windows environments (**not tested**):
+### Run build …
+
+#### … in *nix-like environments:
+
+    $ PATH=$PATH:./node_modules/.bin gulp
+
+#### … in Windows environments:
 
     $ set path=%PATH%;.\node_modules\.bin
     $ setx path "%PATH%"
-    $ cake all
+    $ gulp
+
+_(not tested yet)_
 
 
 ## Credits go to …

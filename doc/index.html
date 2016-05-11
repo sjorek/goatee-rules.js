@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><title>goatee-rules.js</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="index"><meta name="groc-project-path" content="README.md"><meta name="groc-github-url" content="https://github.com/sjorek/goatee-rules.js"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/sjorek/goatee-rules.js/blob/master/README.md">README.md</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="-goatee-rules-http-sjorek-github-io-goatee-rules-"><a href="http://sjorek.github.io/goatee-rules/">goatee-rules</a></h1>
+<!DOCTYPE html><html lang="en"><head><title>goatee-rules.js</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="index"><meta name="groc-project-path" content="README.md"><meta name="groc-github-url" content="https://github.com/sjorek/goatee-rules.js"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/sjorek/goatee-rules.js/blob/master/README.md">README.md</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="-goatee-rules-http-sjorek-github-io-goatee-rules-js-"><a href="http://sjorek.github.io/goatee-rules.js/">goatee-rules</a></h1>
 <pre><code>     _______  _______  _______  _______  _______  _______
     |    ___||       ||       ||_     _||    ___||    ___|
     |   | __ |   _   ||   _   |  |   |  |   |___ |   |___
@@ -38,10 +38,10 @@ css-rules.</p>
 <p>Example:</p>
 <pre><code>test: 1 + 2 * 3 ; /* line-breaks are optional */
 an-attribute: &#39;tester&#39;.replace(&#39;r&#39;,&#39;d&#39;) ; aProperty: null</code></pre>
-<p>Also see “<a href="http://sjorek.github.io/goatee-js">goatee-js</a>” and
-“<a href="http://sjorek.github.io/goatee-script">goatee-script</a>”.</p>
+<p>Also see “<a href="http://sjorek.github.io/goatee.js">goatee.js</a>” and
+“<a href="http://sjorek.github.io/goatee-script.js">goatee-script.js</a>”.</p>
 <h2 id="installation">Installation</h2>
-<pre><code>$ npm install -g goatee-rules</code></pre>
+<pre><code>$ npm install -g goatee-rules.js</code></pre>
 <h2 id="usage">Usage</h2>
 <pre><code>$ goatee-rules -h
 
@@ -64,24 +64,27 @@ Options:
 
 If called without options, `goatee-rules` will run interactive.</code></pre>
 <h2 id="documentation">Documentation</h2>
-<p>Read the <a href="http://sjorek.github.io/goatee-rules/">annotated sources</a>.</p>
+<p>Read the <a href="http://sjorek.github.io/goatee-rules.js/">annotated sources</a>.</p>
 <h2 id="development">Development</h2>
-<p>Install dependencies:</p>
+<h3 id="install-dependencies-">Install dependencies …</h3>
 <ul>
-<li><a href="http://git-scm.com">git-scm</a></li>
-<li><a href="http://nodejs.org">node.js <em>(≥ 0.10)</em></a></li>
-<li><a href="http://pygments.org">pygments</a></li>
-</ul>
-<p>Install project:</p>
-<pre><code>$ git clone https://github.com/sjorek/goatee-rules
-$ cd goatee-rules
+<li><p><a href="http://nodejs.org">node.js</a> <em>(≥ 0.10)</em></p>
+<h3 id="-for-production-version">… for production version:</h3>
+<pre><code> $ npm install goatee-rules.js --save</code></pre>
+<h3 id="-for-development-version">… for development version:</h3>
+<pre><code>$ git clone https://github.com/sjorek/goatee-rules.js
+$ cd goatee-rules.js
 $ npm install</code></pre>
-<p>Run build in *nix-like environments:</p>
-<pre><code>$ PATH=$PATH:./node_modules/.bin cake all</code></pre>
-<p>Run build in Windows environments (<strong>not tested</strong>):</p>
+</li>
+</ul>
+<h3 id="run-build-">Run build …</h3>
+<h4 id="-in-nix-like-environments">… in *nix-like environments:</h4>
+<pre><code>$ PATH=$PATH:./node_modules/.bin gulp</code></pre>
+<h4 id="-in-windows-environments">… in Windows environments:</h4>
 <pre><code>$ set path=%PATH%;.\node_modules\.bin
 $ setx path &quot;%PATH%&quot;
-$ cake all</code></pre>
+$ gulp</code></pre>
+<p><em>(not tested yet)</em></p>
 <h2 id="credits-go-to-">Credits go to …</h2>
 <ul>
 <li><p>… Zachary Carter and all contributors of
