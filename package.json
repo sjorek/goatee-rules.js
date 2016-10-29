@@ -2,15 +2,24 @@
   "name": "goatee-rules.js",
   "description": "Goatee is the missing complement for handlebar mustaches.",
   "version": "0.2.3",
-  "keywords": ["Goatee", "Node.js", "Browser", "Template", "Framework"],
+  "keywords": [
+    "Goatee",
+    "Node.js",
+    "Browser",
+    "Template",
+    "Framework"
+  ],
   "author": "Stephan Jorek <stephan.jorek@gmail.com>",
-  "licenses":     [{
-    "type":       "Apache",
-    "url":        "https://raw.github.com/sjorek/goatee-rules.js/master/LICENSE"
-  },{
-    "type":       "MIT",
-    "url":        "https://raw.github.com/jashkenas/coffee-script/master/LICENSE"
-  }],
+  "licenses": [
+    {
+      "type": "Apache",
+      "url": "https://raw.github.com/sjorek/goatee-rules.js/master/LICENSE"
+    },
+    {
+      "type": "MIT",
+      "url": "https://raw.github.com/jashkenas/coffee-script/master/LICENSE"
+    }
+  ],
   "engines": {
     "node": "~0.10"
   },
@@ -23,9 +32,9 @@
     "test": "PATH=$PATH:./node_modules/.bin gulp test",
     "doc": "PATH=$PATH:./node_modules/.bin gulp doc"
   },
-  "homepage":     "https://github.com/sjorek/goatee-rules.js/",
-  "bugs":         "https://github.com/sjorek/goatee-rules.js/issues",
-  "repository":   {
+  "homepage": "https://github.com/sjorek/goatee-rules.js/",
+  "bugs": "https://github.com/sjorek/goatee-rules.js/issues",
+  "repository": {
     "type": "git",
     "url": "git://github.com/sjorek/goatee-rules.js"
   },
@@ -33,9 +42,9 @@
     "nomnom": "~1.8"
   },
   "devDependencies": {
-    "benchmark": "^2.1.0",
-    "coffee-script": "^1.10.0",
-    "cson": "^3.0.2",
+    "benchmark": "^2.1.1",
+    "coffee-script": "^1.11.1",
+    "cson": "^4.0.0",
     "del": "^2.2.0",
     "groc": "^0.8.0",
     "gulp": "^3.9.1",
@@ -45,26 +54,26 @@
     "gulp-conventional-changelog": "^1.1.0",
     "gulp-cson": "^0.4.0",
     "gulp-footer": "^1.0.5",
-    "gulp-git": "^1.7.1",
+    "gulp-git": "^1.12.0",
     "gulp-groc": "iamdenny/gulp-groc",
-    "gulp-header": "^1.7.1",
-    "gulp-jasmine": "^2.3.0",
+    "gulp-header": "^1.8.8",
+    "gulp-jasmine": "^2.4.2",
     "gulp-logger": "0.0.2",
     "gulp-npm-check": "^1.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
-    "gulp-sourcemaps": "^1.6.0",
+    "gulp-sourcemaps": "^1.9.0",
     "gulp-template": "^4.0.0",
-    "gulp-uglify": "^1.5.3",
+    "gulp-uglify": "^1.5.4",
     "gulp-util": "^3.0.7",
-    "jasmine": "^2.4.1",
+    "jasmine": "^2.5.2",
     "jison": "^0.4.17",
     "map-stream": "0.0.6",
-    "npm-check": "^5.2.1",
+    "npm-check": "^5.4.0",
     "path": "^0.12.7",
-    "publish-please": "^1.3.10",
+    "publish-please": "^1.4.3",
     "require-cson": "^0.1.0",
-    "run-sequence": "^1.1.5"
+    "run-sequence": "^1.2.2"
   },
   "readmeFilename": "README.md"
 }
