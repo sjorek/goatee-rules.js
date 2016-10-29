@@ -1,1 +1,1 @@
-{"version":3,"sources":["misc/groc/style.coffee"],"names":[],"mappings":"AACA;EAAA,MAAM,CAAC,OAAP,GAAiB,OAAA,CAAQ,sCAAR;AAAjB","file":"misc/groc/style.js","sourceRoot":"/source/","sourcesContent":["\nmodule.exports = require 'goatee-script.js/lib/misc/groc/style'\n"]}
+{"version":3,"sources":["misc/groc/style.coffee"],"names":[],"mappings":"AACA;EAAA,MAAM,CAAC,OAAP,GAAiB,OAAA,CAAQ,sCAAR;AAAjB","file":"style.js","sourcesContent":["\nmodule.exports = require 'goatee-script.js/lib/misc/groc/style'\n"]}

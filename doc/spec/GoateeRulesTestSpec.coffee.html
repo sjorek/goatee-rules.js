@@ -1,5 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><title>spec/GoateeRulesTestSpec</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="spec/GoateeRulesTestSpec.coffee"><meta name="groc-project-path" content="spec/GoateeRulesTestSpec.coffee"><meta name="groc-github-url" content="https://github.com/sjorek/goatee-rules.js"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/sjorek/goatee-rules.js/blob/master/spec/GoateeRulesTestSpec.coffee">spec/GoateeRulesTestSpec.coffee</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><p>© Copyright 2013-2016 Stephan Jorek <a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#111;&#58;&#115;&#116;&#x65;&#112;&#104;&#97;&#110;&#x2e;&#x6a;&#x6f;&#x72;&#101;&#107;&#x40;&#x67;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;">&#115;&#116;&#x65;&#112;&#104;&#97;&#110;&#x2e;&#x6a;&#x6f;&#x72;&#101;&#107;&#x40;&#x67;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;</a>
-© Copyright 2012 Kris Nye <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#107;&#114;&#105;&#x73;&#110;&#x79;&#101;&#x40;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#x6f;&#x6d;">&#107;&#114;&#105;&#x73;&#110;&#x79;&#101;&#x40;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#x63;&#x6f;&#x6d;</a></p>
+<!DOCTYPE html><html lang="en"><head><title>spec/GoateeRulesTestSpec</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="spec/GoateeRulesTestSpec.coffee"><meta name="groc-project-path" content="spec/GoateeRulesTestSpec.coffee"><meta name="groc-github-url" content="https://github.com/sjorek/goatee-rules.js"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/sjorek/goatee-rules.js/blob/master/spec/GoateeRulesTestSpec.coffee">spec/GoateeRulesTestSpec.coffee</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><p>© Copyright 2013-2016 Stephan Jorek <a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#111;&#58;&#115;&#116;&#x65;&#x70;&#104;&#97;&#x6e;&#x2e;&#106;&#x6f;&#x72;&#101;&#107;&#64;&#x67;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#109;">&#115;&#116;&#x65;&#x70;&#104;&#97;&#x6e;&#x2e;&#106;&#x6f;&#x72;&#101;&#107;&#64;&#x67;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#x6f;&#109;</a>
+© Copyright 2012 Kris Nye <a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#111;&#x3a;&#x6b;&#x72;&#105;&#x73;&#x6e;&#121;&#x65;&#x40;&#x67;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#x6b;&#x72;&#105;&#x73;&#x6e;&#121;&#x65;&#x40;&#x67;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a></p>
 <p>Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
 files (the &quot;Software&quot;), to deal in the Software without
@@ -93,12 +93,12 @@ describe <span class="hljs-string">"GoateeRules"</span>, <span class="hljs-funct
       .toBe JSON.stringify(expected)
 
   it <span class="hljs-string">'can parse rules'</span>, <span class="hljs-function">-&gt;</span>
-      code = <span class="hljs-string">'test:1'</span>
-      rules = parse code
-      expect(rules.toString()).toBe code
+    code = <span class="hljs-string">'test:1'</span>
+    rules = parse code
+    expect(rules.toString()).toBe code
 
   xit <span class="hljs-string">'can add two positive numbers'</span>, <span class="hljs-function">-&gt;</span>
-      egal <span class="hljs-string">'test: 1+1'</span>, <span class="hljs-number">2</span>
+    egal <span class="hljs-string">'test: 1+1'</span>, <span class="hljs-number">2</span>
 
   xit <span class="hljs-string">'can add two positive numbers in given time'</span>, <span class="hljs-function"><span class="hljs-params">(done)</span> -&gt;</span>
 
@@ -116,33 +116,33 @@ describe <span class="hljs-string">"GoateeRules"</span>, <span class="hljs-funct
       .run({<span class="hljs-attribute">async</span>: <span class="hljs-literal">false</span> })
 
   xit <span class="hljs-string">'resolves expression vectors'</span>, <span class="hljs-function">-&gt;</span>
-      expect(parse(<span class="hljs-string">'test: 5'</span>).vector).toBe <span class="hljs-literal">false</span>
-      expect(parse(<span class="hljs-string">'test: 5+2'</span>).vector).toBe <span class="hljs-literal">false</span>
-      <span class="hljs-comment">#expect(parse('test: *').vector).toBe true</span>
-      <span class="hljs-comment">#expect(parse('test: *.alpha').vector).toBe true</span>
-      <span class="hljs-comment">#expect(parse('test: alpha.* * 12').vector).toBe true</span>
-      <span class="hljs-comment">#expect(parse('test: alpha.*').vector).toBe true</span>
-      expect(parse(<span class="hljs-string">'test: func(alpha)'</span>).vector).toBe <span class="hljs-literal">false</span>
-      <span class="hljs-comment">#expect(parse('test: func(*)').vector).toBe false</span>
-      <span class="hljs-comment">#expect(parse('test: func(alpha.*.beta)').vector).toBe false</span>
+    expect(parse(<span class="hljs-string">'test: 5'</span>).vector).toBe <span class="hljs-literal">false</span>
+    expect(parse(<span class="hljs-string">'test: 5+2'</span>).vector).toBe <span class="hljs-literal">false</span>
+    <span class="hljs-comment">#expect(parse('test: *').vector).toBe true</span>
+    <span class="hljs-comment">#expect(parse('test: *.alpha').vector).toBe true</span>
+    <span class="hljs-comment">#expect(parse('test: alpha.* * 12').vector).toBe true</span>
+    <span class="hljs-comment">#expect(parse('test: alpha.*').vector).toBe true</span>
+    expect(parse(<span class="hljs-string">'test: func(alpha)'</span>).vector).toBe <span class="hljs-literal">false</span>
+    <span class="hljs-comment">#expect(parse('test: func(*)').vector).toBe false</span>
+    <span class="hljs-comment">#expect(parse('test: func(alpha.*.beta)').vector).toBe false</span>
 
   xit <span class="hljs-string">'resolves one or multiple collapsing “undefined” values'</span>, <span class="hljs-function">-&gt;</span>
-      statements = [<span class="hljs-string">''</span>, <span class="hljs-string">';;;;'</span>, <span class="hljs-string">';/* nix */;'</span>]
-      <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> statements
-        expect(evaluate(s)).toBe <span class="hljs-literal">undefined</span>
-        expect(render(s)).toBe <span class="hljs-string">''</span>
+    statements = [<span class="hljs-string">''</span>, <span class="hljs-string">';;;;'</span>, <span class="hljs-string">';/* nix */;'</span>]
+    <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> statements
+      expect(evaluate(s)).toBe <span class="hljs-literal">undefined</span>
+      expect(render(s)).toBe <span class="hljs-string">''</span>
 
   xit <span class="hljs-string">'resolves one or multiple “null” values'</span>, <span class="hljs-function">-&gt;</span>
-      statements = [<span class="hljs-string">'test: null'</span>, <span class="hljs-string">'null;null'</span>, <span class="hljs-string">'null;null;null'</span>]
-      <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> statements
-        expect(evaluate(s)).toBe <span class="hljs-literal">null</span>
-        expect(render(s)).toBe s
+    statements = [<span class="hljs-string">'test: null'</span>, <span class="hljs-string">'null;null'</span>, <span class="hljs-string">'null;null;null'</span>]
+    <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> statements
+      expect(evaluate(s)).toBe <span class="hljs-literal">null</span>
+      expect(render(s)).toBe s
 
   xit <span class="hljs-string">'resolves multiple “null” and collapsing “undefined” values'</span>, <span class="hljs-function">-&gt;</span>
-      statements = [<span class="hljs-string">';null;null;;'</span>, <span class="hljs-string">'null;;null;;'</span>, <span class="hljs-string">'null;/*;null;*/null;;'</span>]
-      <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> statements
-        expect(evaluate(s)).toBe <span class="hljs-literal">null</span>
-        expect(render(s)).toBe <span class="hljs-string">'null;null'</span>
+    statements = [<span class="hljs-string">';null;null;;'</span>, <span class="hljs-string">'null;;null;;'</span>, <span class="hljs-string">'null;/*;null;*/null;;'</span>]
+    <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> statements
+      expect(evaluate(s)).toBe <span class="hljs-literal">null</span>
+      expect(render(s)).toBe <span class="hljs-string">'null;null'</span>
 
   xit <span class="hljs-string">'resolves scalar values (primitives)'</span>, <span class="hljs-function">-&gt;</span>
     egal <span class="hljs-string">"5"</span>, <span class="hljs-number">5</span>
@@ -152,11 +152,11 @@ describe <span class="hljs-string">"GoateeRules"</span>, <span class="hljs-funct
     egal <span class="hljs-string">"'a' + 'b'"</span>, <span class="hljs-string">'ab'</span>
 
   xit <span class="hljs-string">'resolves object access'</span>, <span class="hljs-function">-&gt;</span>
-      egal <span class="hljs-string">"codes"</span>, data.codes
-      egal <span class="hljs-string">"codes.alpha"</span>, data.codes.alpha
-      egal <span class="hljs-string">"codes.alpha.discount"</span>, data.codes.alpha.discount
+    egal <span class="hljs-string">"codes"</span>, data.codes
+    egal <span class="hljs-string">"codes.alpha"</span>, data.codes.alpha
+    egal <span class="hljs-string">"codes.alpha.discount"</span>, data.codes.alpha.discount
 
-      egal <span class="hljs-string">"codes.discount"</span>, <span class="hljs-literal">undefined</span>
+    egal <span class="hljs-string">"codes.discount"</span>, <span class="hljs-literal">undefined</span>
 
   xit <span class="hljs-string">'resolves object with children access'</span>, <span class="hljs-function">-&gt;</span>
     compare <span class="hljs-string">"*"</span>, _.values data
@@ -170,9 +170,19 @@ describe <span class="hljs-string">"GoateeRules"</span>, <span class="hljs-funct
     egal <span class="hljs-string">"children"</span>, data.children</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p> because the children object contains no children property</p></div></div><div class="code"><div class="wrapper">    egal <span class="hljs-string">"children.children"</span>, <span class="hljs-literal">undefined</span>
 
   xit <span class="hljs-string">'resolves children access'</span>, <span class="hljs-function">-&gt;</span>
-    compare <span class="hljs-string">"children.*"</span>, [data.children.pat, data.children.skip]
-    compare <span class="hljs-string">"children.*.children"</span>, [data.children.pat.children, data.children.skip.children]
-    compare <span class="hljs-string">"children.*.children.*"</span>, [data.children.pat.children.jay, data.children.pat.children.bob, data.children.skip.children.joe]
+    compare <span class="hljs-string">"children.*"</span>, [
+      data.children.pat,
+      data.children.skip
+    ]
+    compare <span class="hljs-string">"children.*.children"</span>, [
+      data.children.pat.children,
+      data.children.skip.children
+    ]
+    compare <span class="hljs-string">"children.*.children.*"</span>, [
+      data.children.pat.children.jay,
+      data.children.pat.children.bob,
+      data.children.skip.children.joe
+    ]
 
   xit <span class="hljs-string">'resolves object access predicates'</span>, <span class="hljs-function">-&gt;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p> bare predicates no longer supported so use this[predicate]</p></div></div><div class="code"><div class="wrapper">    egal <span class="hljs-string">"@{clothes != null}"</span>, data
     compare <span class="hljs-string">"@{clothes == null}"</span>, <span class="hljs-literal">undefined</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p> predicates</p></div></div><div class="code"><div class="wrapper">    compare <span class="hljs-string">"children.*{name == 'skip'}"</span>, [data.children.skip]
