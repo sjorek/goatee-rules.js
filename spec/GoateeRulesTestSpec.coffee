@@ -100,12 +100,12 @@ describe "GoateeRules", ->
       .toBe JSON.stringify(expected)
 
   it 'can parse rules', ->
-      code = 'test:1'
-      rules = parse code
-      expect(rules.toString()).toBe code
+    code = 'test:1'
+    rules = parse code
+    expect(rules.toString()).toBe code
 
   xit 'can add two positive numbers', ->
-      egal 'test: 1+1', 2
+    egal 'test: 1+1', 2
 
   xit 'can add two positive numbers in given time', (done) ->
 
@@ -123,33 +123,33 @@ describe "GoateeRules", ->
       .run({async: false })
 
   xit 'resolves expression vectors', ->
-      expect(parse('test: 5').vector).toBe false
-      expect(parse('test: 5+2').vector).toBe false
-      #expect(parse('test: *').vector).toBe true
-      #expect(parse('test: *.alpha').vector).toBe true
-      #expect(parse('test: alpha.* * 12').vector).toBe true
-      #expect(parse('test: alpha.*').vector).toBe true
-      expect(parse('test: func(alpha)').vector).toBe false
-      #expect(parse('test: func(*)').vector).toBe false
-      #expect(parse('test: func(alpha.*.beta)').vector).toBe false
+    expect(parse('test: 5').vector).toBe false
+    expect(parse('test: 5+2').vector).toBe false
+    #expect(parse('test: *').vector).toBe true
+    #expect(parse('test: *.alpha').vector).toBe true
+    #expect(parse('test: alpha.* * 12').vector).toBe true
+    #expect(parse('test: alpha.*').vector).toBe true
+    expect(parse('test: func(alpha)').vector).toBe false
+    #expect(parse('test: func(*)').vector).toBe false
+    #expect(parse('test: func(alpha.*.beta)').vector).toBe false
 
   xit 'resolves one or multiple collapsing “undefined” values', ->
-      statements = ['', ';;;;', ';/* nix */;']
-      for s in statements
-        expect(evaluate(s)).toBe undefined
-        expect(render(s)).toBe ''
+    statements = ['', ';;;;', ';/* nix */;']
+    for s in statements
+      expect(evaluate(s)).toBe undefined
+      expect(render(s)).toBe ''
 
   xit 'resolves one or multiple “null” values', ->
-      statements = ['test: null', 'null;null', 'null;null;null']
-      for s in statements
-        expect(evaluate(s)).toBe null
-        expect(render(s)).toBe s
+    statements = ['test: null', 'null;null', 'null;null;null']
+    for s in statements
+      expect(evaluate(s)).toBe null
+      expect(render(s)).toBe s
 
   xit 'resolves multiple “null” and collapsing “undefined” values', ->
-      statements = [';null;null;;', 'null;;null;;', 'null;/*;null;*/null;;']
-      for s in statements
-        expect(evaluate(s)).toBe null
-        expect(render(s)).toBe 'null;null'
+    statements = [';null;null;;', 'null;;null;;', 'null;/*;null;*/null;;']
+    for s in statements
+      expect(evaluate(s)).toBe null
+      expect(render(s)).toBe 'null;null'
 
   xit 'resolves scalar values (primitives)', ->
     egal "5", 5
@@ -159,11 +159,11 @@ describe "GoateeRules", ->
     egal "'a' + 'b'", 'ab'
 
   xit 'resolves object access', ->
-      egal "codes", data.codes
-      egal "codes.alpha", data.codes.alpha
-      egal "codes.alpha.discount", data.codes.alpha.discount
+    egal "codes", data.codes
+    egal "codes.alpha", data.codes.alpha
+    egal "codes.alpha.discount", data.codes.alpha.discount
 
-      egal "codes.discount", undefined
+    egal "codes.discount", undefined
 
   xit 'resolves object with children access', ->
     compare "*", _.values data
@@ -183,9 +183,19 @@ describe "GoateeRules", ->
     egal "children.children", undefined
 
   xit 'resolves children access', ->
-    compare "children.*", [data.children.pat, data.children.skip]
-    compare "children.*.children", [data.children.pat.children, data.children.skip.children]
-    compare "children.*.children.*", [data.children.pat.children.jay, data.children.pat.children.bob, data.children.skip.children.joe]
+    compare "children.*", [
+      data.children.pat,
+      data.children.skip
+    ]
+    compare "children.*.children", [
+      data.children.pat.children,
+      data.children.skip.children
+    ]
+    compare "children.*.children.*", [
+      data.children.pat.children.jay,
+      data.children.pat.children.bob,
+      data.children.skip.children.joe
+    ]
 
   xit 'resolves object access predicates', ->
     #  bare predicates no longer supported so use this[predicate]
