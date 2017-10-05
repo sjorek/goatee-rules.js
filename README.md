@@ -49,8 +49,8 @@ Example:
     test: 1 + 2 * 3 ; /* line-breaks are optional */
     an-attribute: 'tester'.replace('r','d') ; aProperty: null
 
-Also see “[goatee.js](http://sjorek.github.io/goatee.js)” and
-“[goatee-script.js](http://sjorek.github.io/goatee-script.js)”.
+Also see “[goatee.js](https://sjorek.github.io/goatee.js)” and
+“[goatee-script.js](https://sjorek.github.io/goatee-script.js)”.
 
 
 ## Installation
