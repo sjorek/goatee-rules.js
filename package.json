@@ -33,11 +33,11 @@
     "test": "PATH=$PATH:./node_modules/.bin gulp test",
     "doc": "PATH=$PATH:./node_modules/.bin gulp doc"
   },
-  "homepage": "https://github.com/sjorek/goatee-rules.js/",
+  "homepage": "https://sjorek.github.io/goatee-rules.js/",
   "bugs": "https://github.com/sjorek/goatee-rules.js/issues",
   "repository": {
     "type": "git",
-    "url": "git://github.com/sjorek/goatee-rules.js"
+    "url": "git@github.com:sjorek/goatee-rules.js.git"
   },
   "dependencies": {
     "goatee-script.js": "^0.3.5",
