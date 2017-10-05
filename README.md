@@ -90,11 +90,11 @@ Read the [annotated sources](http://sjorek.github.io/goatee-rules.js/).
 
 ### Install dependencies …
 
-- [node.js](http://nodejs.org) _(≥ 0.10)_
+- [node.js](http://nodejs.org) _(≥ 6.x)_
 
   ### … for production version:
 
-       $ npm install goatee-rules.js --save
+       $ npm install goatee-rules.js --save-prod
 
   ### … for development version:
 
@@ -104,15 +104,7 @@ Read the [annotated sources](http://sjorek.github.io/goatee-rules.js/).
 
 ### Run build …
 
-#### … in *nix-like environments:
-
-    $ PATH=$PATH:./node_modules/.bin gulp
-
-#### … in Windows environments:
-
-    $ set path=%PATH%;.\node_modules\.bin
-    $ setx path "%PATH%"
-    $ gulp
+    $ npm run build && npm run test && npm run doc
 
 _(not tested yet)_
 

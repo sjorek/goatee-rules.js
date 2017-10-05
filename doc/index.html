@@ -69,9 +69,9 @@ If called without options, `goatee-rules` will run interactive.</code></pre>
 <h2 id="development">Development</h2>
 <h3 id="install-dependencies-">Install dependencies …</h3>
 <ul>
-<li><p><a href="http://nodejs.org">node.js</a> <em>(≥ 0.10)</em></p>
+<li><p><a href="http://nodejs.org">node.js</a> <em>(≥ 6.x)</em></p>
 <h3 id="-for-production-version">… for production version:</h3>
-<pre><code> $ npm install goatee-rules.js --save</code></pre>
+<pre><code> $ npm install goatee-rules.js --save-prod</code></pre>
 <h3 id="-for-development-version">… for development version:</h3>
 <pre><code>$ git clone https://github.com/sjorek/goatee-rules.js
 $ cd goatee-rules.js
@@ -79,12 +79,7 @@ $ npm install</code></pre>
 </li>
 </ul>
 <h3 id="run-build-">Run build …</h3>
-<h4 id="-in-nix-like-environments">… in *nix-like environments:</h4>
-<pre><code>$ PATH=$PATH:./node_modules/.bin gulp</code></pre>
-<h4 id="-in-windows-environments">… in Windows environments:</h4>
-<pre><code>$ set path=%PATH%;.\node_modules\.bin
-$ setx path &quot;%PATH%&quot;
-$ gulp</code></pre>
+<pre><code>$ npm run build &amp;&amp; npm run test &amp;&amp; npm run doc</code></pre>
 <p><em>(not tested yet)</em></p>
 <h2 id="credits-go-to-">Credits go to …</h2>
 <ul>
