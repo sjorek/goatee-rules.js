@@ -1,5 +1,5 @@
 
-[goatee-rules.js](http://sjorek.github.io/goatee-rules.js/)
+[goatee-rules.js](https://sjorek.github.io/goatee-rules.js/)
 ===========================================================
 
 [![Dependency Status](https://gemnasium.com/badges/github.com/sjorek/goatee-rules.js.svg)](https://gemnasium.com/github.com/sjorek/goatee-rules.js)
@@ -83,7 +83,7 @@ Also see “[goatee.js](http://sjorek.github.io/goatee.js)” and
 
 ## Documentation
 
-Read the [annotated sources](http://sjorek.github.io/goatee-rules.js/).
+Read the [annotated sources](https://sjorek.github.io/goatee-rules.js/doc/).
 
 
 ## Development
