@@ -40,7 +40,7 @@
     "url": "git@github.com:sjorek/goatee-rules.js.git"
   },
   "dependencies": {
-    "goatee-script.js": "^0.3.5",
+    "goatee-script.js": "^0.3.6",
     "nomnom": "~1.8"
   },
   "devDependencies": {
