@@ -1,22 +1,34 @@
-<!DOCTYPE html><html lang="en"><head><title>src/GoateeRules</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="src/GoateeRules.coffee"><meta name="groc-project-path" content="src/GoateeRules.coffee"><meta name="groc-github-url" content="https://github.com/sjorek/goatee-rules.js"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/sjorek/goatee-rules.js/blob/master/src/GoateeRules.coffee">src/GoateeRules.coffee</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><p>© Copyright 2013-2016 Stephan Jorek <a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#115;&#x74;&#x65;&#x70;&#104;&#97;&#x6e;&#x2e;&#x6a;&#x6f;&#x72;&#x65;&#x6b;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#109;">&#115;&#x74;&#x65;&#x70;&#104;&#97;&#x6e;&#x2e;&#x6a;&#x6f;&#x72;&#x65;&#x6b;&#64;&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#109;</a></p>
-<p>Permission is hereby granted, free of charge, to any person
-obtaining a copy of this software and associated documentation
-files (the &quot;Software&quot;), to deal in the Software without
-restriction, including without limitation the rights to use,
-copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following
-conditions:</p>
-<p>The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.</p>
-<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h1 id="goateerules39s-">GoateeRules&#39;s …</h1>
+<!DOCTYPE html><html lang="en"><head><title>src/GoateeRules</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="src/GoateeRules.coffee"><meta name="groc-project-path" content="src/GoateeRules.coffee"><meta name="groc-github-url" content="https://github.com/sjorek/goatee-rules.js"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/sjorek/goatee-rules.js/blob/master/src/GoateeRules.coffee">src/GoateeRules.coffee</a></div></div><div id="document"><div class="segment"><div class="code folded"><div class="wrapper marker"><span class="c1">### </span></div><div class="wrapper"><span class="hljs-comment">### 
+BSD 3-Clause License
+
+Copyright (c) 2017, Stephan Jorek
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+* Neither the name of the copyright holder nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+###</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h1 id="goateerules39s-">GoateeRules&#39;s …</h1>
 <hr>
 <p>… main entry-point.</p></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p><span class='doc-section-header'> class GoateeRules and namespace GoateeRules</span></p>
 <hr></div></div><div class="code"><div class="wrapper"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GoateeRules</span></span>
@@ -31,7 +43,7 @@ OTHER DEALINGS IN THE SOFTWARE.</p></div></div></div><div class="segment"><div c
 <li><strong>code must be a String.</strong></li>
 </ul>
 <p><strong>Returns an Expression</strong></p></div></div><div class="code"><div class="wrapper">  GoateeRules.parse = <span class="hljs-function"><span class="hljs-params">(code)</span> -&gt;</span>
-    _compiler ?= <span class="hljs-keyword">new</span> (<span class="hljs-built_in">require</span> <span class="hljs-string">'./Compiler'</span>)
+    _compiler ?= <span class="hljs-keyword">new</span> (<span class="hljs-built_in">require</span>(<span class="hljs-string">'./Compiler'</span>))
     _compiler.parse(code)</div></div></div><div class="segment"><div class="comments doc-section doc-section-static"><div class="wrapper"><p><span class='doc-section-header'>Static method evaluate</span></p>
 <hr>
 <p>Parameters:</p>
@@ -48,7 +60,7 @@ OTHER DEALINGS IN THE SOFTWARE.</p></div></div></div><div class="segment"><div c
 </li>
 </ul>
 <p><strong>Returns a mixed</strong></p></div></div><div class="code"><div class="wrapper">  GoateeRules.evaluate  = <span class="hljs-function"><span class="hljs-params">(code, context, variables, scope, stack)</span> -&gt;</span>
-    _compiler ?= <span class="hljs-keyword">new</span> (<span class="hljs-built_in">require</span> <span class="hljs-string">'./Compiler'</span>)
+    _compiler ?= <span class="hljs-keyword">new</span> (<span class="hljs-built_in">require</span>(<span class="hljs-string">'./Compiler'</span>))
     _compiler.evaluate(code, context, variables, scope, stack)</div></div></div><div class="segment"><div class="comments doc-section doc-section-static"><div class="wrapper"><p><span class='doc-section-header'>Static method render</span></p>
 <hr>
 <p>Parameters:</p>
@@ -56,7 +68,7 @@ OTHER DEALINGS IN THE SOFTWARE.</p></div></div></div><div class="segment"><div c
 <li><strong>code must be a String.</strong></li>
 </ul>
 <p><strong>Returns a String</strong></p></div></div><div class="code"><div class="wrapper">  GoateeRules.render = <span class="hljs-function"><span class="hljs-params">(code)</span> -&gt;</span>
-    _compiler ?= <span class="hljs-keyword">new</span> (<span class="hljs-built_in">require</span> <span class="hljs-string">'./Compiler'</span>)
+    _compiler ?= <span class="hljs-keyword">new</span> (<span class="hljs-built_in">require</span>(<span class="hljs-string">'./Compiler'</span>))
     _compiler.render(code)</div></div></div><div class="segment"><div class="comments doc-section doc-section-static"><div class="wrapper"><p><span class='doc-section-header'>Static method ast</span></p>
 <hr>
 <p>Parameters:</p>
@@ -69,7 +81,7 @@ OTHER DEALINGS IN THE SOFTWARE.</p></div></div></div><div class="segment"><div c
 </li>
 </ul>
 <p><strong>Returns an Array or a String or a Number or a true or a false or a null</strong></p></div></div><div class="code"><div class="wrapper">  GoateeRules.ast = <span class="hljs-function"><span class="hljs-params">(data, callback, compress)</span> -&gt;</span>
-    _compiler ?= <span class="hljs-keyword">new</span> (<span class="hljs-built_in">require</span> <span class="hljs-string">'./Compiler'</span>)
+    _compiler ?= <span class="hljs-keyword">new</span> (<span class="hljs-built_in">require</span>(<span class="hljs-string">'./Compiler'</span>))
     _compiler.ast(data, callback, compress)</div></div></div><div class="segment"><div class="comments doc-section doc-section-static"><div class="wrapper"><p><span class='doc-section-header'>Static method stringify</span></p>
 <hr>
 <p>Parameters:</p>
@@ -82,7 +94,7 @@ OTHER DEALINGS IN THE SOFTWARE.</p></div></div></div><div class="segment"><div c
 </li>
 </ul>
 <p><strong>Returns a String</strong></p></div></div><div class="code"><div class="wrapper">  GoateeRules.stringify = <span class="hljs-function"><span class="hljs-params">(data, callback, compress)</span> -&gt;</span>
-    _compiler ?= <span class="hljs-keyword">new</span> (<span class="hljs-built_in">require</span> <span class="hljs-string">'./Compiler'</span>)
+    _compiler ?= <span class="hljs-keyword">new</span> (<span class="hljs-built_in">require</span>(<span class="hljs-string">'./Compiler'</span>))
     _compiler.stringify(data, callback, compress)</div></div></div><div class="segment"><div class="comments doc-section doc-section-static"><div class="wrapper"><p><span class='doc-section-header'>Static method compile</span></p>
 <hr>
 <p>Parameters:</p>
@@ -95,7 +107,7 @@ OTHER DEALINGS IN THE SOFTWARE.</p></div></div></div><div class="segment"><div c
 </li>
 </ul>
 <p><strong>Returns a String</strong></p></div></div><div class="code"><div class="wrapper">  GoateeRules.compile = <span class="hljs-function"><span class="hljs-params">(data, callback, compress)</span> -&gt;</span>
-    _compiler ?= <span class="hljs-keyword">new</span> (<span class="hljs-built_in">require</span> <span class="hljs-string">'./Compiler'</span>)
+    _compiler ?= <span class="hljs-keyword">new</span> (<span class="hljs-built_in">require</span>(<span class="hljs-string">'./Compiler'</span>))
     _compiler.compile(data, callback, compress)
 
 <span class="hljs-built_in">module</span>.exports = GoateeRules</div></div></div></div></body></html>

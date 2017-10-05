@@ -2,6 +2,8 @@
 [goatee-rules.js](http://sjorek.github.io/goatee-rules.js/)
 ===========================================================
 
+[![Dependency Status](https://gemnasium.com/badges/github.com/sjorek/goatee-rules.js.svg)](https://gemnasium.com/github.com/sjorek/goatee-rules.js)
+
          _______  _______  _______  _______  _______  _______
         |    ___||       ||       ||_     _||    ___||    ___|
         |   | __ |   _   ||   _   |  |   |  |   |___ |   |___

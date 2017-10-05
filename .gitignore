@@ -2,6 +2,7 @@
 .DS_Store
 
 # Generated folders from build process
+.groc.json
 /build
 temp*
 
@@ -12,8 +13,4 @@ components
 # Coverage report
 coverage*
 
-# Eclipse specific stuff
-.project
-.settings*
-.externalToolBuilders*
 

@@ -1,7 +1,7 @@
 {
   "name": "goatee-rules.js",
   "description": "Goatee is the missing complement for handlebar mustaches.",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "keywords": [
     "Goatee",
     "Node.js",
@@ -10,9 +10,10 @@
     "Framework"
   ],
   "author": "Stephan Jorek <stephan.jorek@gmail.com>",
+  "license": "BSD-3-Clause",
   "licenses": [
     {
-      "type": "Apache",
+      "type": "BSD-3-Clause",
       "url": "https://raw.github.com/sjorek/goatee-rules.js/master/LICENSE"
     },
     {
@@ -21,7 +22,7 @@
     }
   ],
   "engines": {
-    "node": "~0.10"
+    "node": "~6"
   },
   "bin": {
     "goatee-rules": "./bin/goatee-rules"
@@ -39,6 +40,7 @@
     "url": "git://github.com/sjorek/goatee-rules.js"
   },
   "dependencies": {
+    "goatee-script.js": "^0.3.5",
     "nomnom": "~1.8"
   },
   "devDependencies": {
